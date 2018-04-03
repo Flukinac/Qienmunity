@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return "ko";
+    return "ok";
 });
 
 Route::get('/nieuwpad', function () {
