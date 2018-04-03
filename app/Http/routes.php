@@ -31,3 +31,11 @@ Route::get('/nieuws', function () {
 Route::get('/resources', function () {
     return view('resources');
 });
+
+Route::get('/login', function () {
+    return view('login');
+});
+
+Route::get('/verify', function () {
+    return "testing posting";
+});
