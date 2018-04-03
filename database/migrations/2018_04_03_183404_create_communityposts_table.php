@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateNieuwspost extends Migration
+class CreateCommunitypostsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,14 +12,12 @@ class CreateNieuwspost extends Migration
      */
     public function up()
     {
-        Schema::table('nieuwspost', function (Blueprint $table) {
-            $table->increments('nieuws_id');
+        Schema::create('communityposts', function (Blueprint $table) {
+            $table->increments('commu_id');
             $table->text('titel');
             $table->text('content');
             $table->text('foto');
-            $table->integer('gebruiker_id');
-            $table->date('timestamp');
-                     
+            $table->timestamps();
         });
     }
 
@@ -30,8 +28,6 @@ class CreateNieuwspost extends Migration
      */
     public function down()
     {
-        Schema::table('nieuwspost', function (Blueprint $table) {
-            //
-        });
+        //
     }
 }
