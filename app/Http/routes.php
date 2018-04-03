@@ -15,7 +15,6 @@ Route::get('/', function () {
     return view('home');
 });
 
-
 Route::get('/community', function () {
     return view('community');
 });
