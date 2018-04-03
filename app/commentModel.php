@@ -10,7 +10,7 @@ class commentModel extends Model
         return $this->belongsTo('gebruikerModel','id');
     }
     
-        public function nieuwsPost(){
+    public function nieuwsPost(){
         return $this->belongsTo('gebruikerModel','nieuws_id');
     }
     

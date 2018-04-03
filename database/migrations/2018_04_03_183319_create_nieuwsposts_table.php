@@ -15,8 +15,8 @@ class CreateNieuwspostsTable extends Migration
         Schema::create('nieuwsposts', function (Blueprint $table) {
             $table->increments('nieuws_id');
             $table->string('titel');
-            $table->mediumText('content');
-            $table->string('foto');
+            $table->text('content');
+            $table->text('foto');
             $table->timestamps();
          
         });
