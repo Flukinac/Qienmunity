@@ -12,5 +12,9 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return "ko";
+});
+
+Route::get('/nieuwpad', function () {
+    return "hrd";
 });
