@@ -12,7 +12,35 @@
 */
 
 Route::get('/', function () {
+
     return "ok";
+ //   return view('home');
+});
+
+
+Route::get('/community', function () {
+    return view('community');
+});
+
+Route::get('/contact', function () {
+    return view('contact');
+});
+
+Route::get('/nieuws', function () {
+    return view('nieuws');
+});
+
+Route::get('/resources', function () {
+    return view('resources');
+});
+
+Route::get('/login', function () {
+    return view('login');
+});
+
+Route::get('/verify', function () {
+    return "testing posting";
+
 });
 
 Route::post('/nieuwpad', function () {
