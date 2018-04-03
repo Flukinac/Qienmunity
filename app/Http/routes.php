@@ -12,9 +12,21 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
-Route::get('/rik', function () {
-    return "Welcome to the real O.G.";
+Route::get('/community', function () {
+    return view('community');
+});
+
+Route::get('/contact', function () {
+    return view('contact');
+});
+
+Route::get('/nieuws', function () {
+    return view('nieuws');
+});
+
+Route::get('/resources', function () {
+    return view('resources');
 });
