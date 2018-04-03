@@ -14,3 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/Nena', function () {
+    return "Mini Cooper Squad";
+});
