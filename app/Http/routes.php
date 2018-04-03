@@ -12,5 +12,9 @@
 */
 
 Route::get('/', function () {
-    return 'QienMunity Suckaaas';
+    return view('welcome');
+});
+
+Route::get('/rik', function () {
+    return "Welcome to the real O.G.";
 });
