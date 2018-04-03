@@ -15,6 +15,19 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/Nena', function () {
-    return "Mini Cooper Squad";
+
+Route::get('/community', function () {
+    return view('community');
+});
+
+Route::get('/contact', function () {
+    return view('contact');
+});
+
+Route::get('/nieuws', function () {
+    return view('nieuws');
+});
+
+Route::get('/resources', function () {
+    return view('resources');
 });
