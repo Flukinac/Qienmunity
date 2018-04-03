@@ -15,6 +15,6 @@ Route::get('/', function () {
     return "ok";
 });
 
-Route::get('/nieuwpad', function () {
+Route::post('/nieuwpad', function () {
     return "hrd";
 });
