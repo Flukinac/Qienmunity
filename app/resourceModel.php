@@ -11,6 +11,6 @@ class resourceModel extends Model
     }
     
     public function comments(){
-        $this->hasMany('commentModel', 'rs_id');
+      return  $this->hasMany('commentModel', 'rs_id');
     }
 }
