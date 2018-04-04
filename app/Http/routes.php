@@ -1,10 +1,29 @@
 <?php
 
+<<<<<<< HEAD
+/*
+|--------------------------------------------------------------------------
+| Application Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register all of the routes for an application.
+| It's a breeze. Simply tell Laravel the URIs it should respond to
+| and give it the controller to call when that URI is requested.
+|'hj
+*/
+
+//Route::get('/', function () {
+//
+//    return "ok";
+// //   return view('home');
+//});
+=======
 Route::get('/', function () {
 
     return "ok";
  //   return view('home');
 });
+>>>>>>> test
 
 Route::get('/community', function () {
     return view('community');
@@ -44,5 +63,10 @@ Route::get('/verify', function () {
 
 Route::auth();
 
+<<<<<<< HEAD
+Route::get('/', 'HomeController@index');
+Route::get('/home', 'HomeController@index');
+=======
 Route::get('/home', 'HomeController@index');
 
+>>>>>>> test
