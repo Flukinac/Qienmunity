@@ -10,6 +10,7 @@ return array(
     'CreateCommunitypostsTable' => $baseDir . '/database/migrations/2018_04_03_183404_create_communityposts_table.php',
     'CreateNieuwspostsTable' => $baseDir . '/database/migrations/2018_04_03_183319_create_nieuwsposts_table.php',
     'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
+    'CreateProfileTable' => $baseDir . '/database/migrations/2018_04_04_130926_create_profile_table.php',
     'CreateResourcepostsTable' => $baseDir . '/database/migrations/2018_04_03_183116_create_resourceposts_table.php',
     'CreateUsersTable' => $baseDir . '/database/migrations/2014_10_12_000000_create_users_table.php',
     'DatabaseSeeder' => $baseDir . '/database/seeds/DatabaseSeeder.php',

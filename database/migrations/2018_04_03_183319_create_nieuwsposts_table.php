@@ -29,6 +29,6 @@ class CreateNieuwspostsTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('nieuwsposts');
     }
 }

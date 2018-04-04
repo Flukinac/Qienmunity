@@ -28,6 +28,6 @@ class CreateResourcepostsTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('resourceposts');
     }
 }
