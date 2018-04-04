@@ -37,6 +37,11 @@ Route::get('/profiel', function () {
     return view('profiel');
 });
 
+Route::get('/nieuwprofiel', function () {
+    return view('nieuwprofiel');
+
+});
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 });
