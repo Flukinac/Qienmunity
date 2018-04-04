@@ -31,3 +31,7 @@ Route::get('/nieuws', function () {
 Route::get('/resources', function () {
     return view('resources');
 });
+
+Route::get('/profiel', function () {
+    return view('profiel');
+});
