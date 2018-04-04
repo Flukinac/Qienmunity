@@ -11,6 +11,6 @@ class communityModel extends Model
     }
     
     public function comments(){
-        $this->hasMany('commentModel', 'commu_id');
+       return $this->hasMany('commentModel', 'commu_id');
     }
 }

@@ -35,6 +35,7 @@ Route::get('/resources', function () {
 
 Route::get('/dashboard', function () {
     return view('dashboard');
+});
 
 Route::get('/verify', function () {
     return "testing posting";
