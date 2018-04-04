@@ -11,11 +11,11 @@
 |'hj
 */
 
-Route::get('/', function () {
-
-    return "ok";
- //   return view('home');
-});
+//Route::get('/', function () {
+//
+//    return "ok";
+// //   return view('home');
+//});
 
 Route::get('/community', function () {
     return view('community');
@@ -44,4 +44,5 @@ Route::get('/verify', function () {
 
 Route::auth();
 
+Route::get('/', 'HomeController@index');
 Route::get('/home', 'HomeController@index');
