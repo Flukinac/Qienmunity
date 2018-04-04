@@ -1,5 +1,6 @@
 <?php
 
+<<<<<<< HEAD
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -16,6 +17,13 @@
 //    return "ok";
 // //   return view('home');
 //});
+=======
+Route::get('/', function () {
+
+    return "ok";
+ //   return view('home');
+});
+>>>>>>> test
 
 Route::get('/community', function () {
     return view('community');
@@ -33,6 +41,15 @@ Route::get('/resources', function () {
     return view('resources');
 });
 
+Route::get('/profiel', function () {
+    return view('profiel');
+});
+
+Route::get('/nieuwprofiel', function () {
+    return view('nieuwprofiel');
+
+});
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 });
@@ -42,7 +59,14 @@ Route::get('/verify', function () {
 
 });
 
+
+
 Route::auth();
 
+<<<<<<< HEAD
 Route::get('/', 'HomeController@index');
 Route::get('/home', 'HomeController@index');
+=======
+Route::get('/home', 'HomeController@index');
+
+>>>>>>> test
