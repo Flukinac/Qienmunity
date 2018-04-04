@@ -4,13 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class nieuwsModel extends Model
+class resourcepost extends Model
 {
     public function gebruiker(){
         return $this->belongsTo('gebruikerModel','id');
     }
     
     public function comments(){
-       return $this->hasMany('commentModel', 'nieuws_id');
+      return  $this->hasMany('Comment', 'rs_id');
     }
 }
