@@ -41,3 +41,7 @@ Route::get('/verify', function () {
     return "testing posting";
 
 });
+
+Route::auth();
+
+Route::get('/home', 'HomeController@index');
