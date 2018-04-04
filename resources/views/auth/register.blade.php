@@ -37,6 +37,20 @@
                                 @endif
                             </div>
                         </div>
+                        
+                        <div class="form-group{{ $errors->has('rol') ? ' has-error' : '' }}">
+                            <label for="rol" class="col-md-4 control-label">Rol</label>
+
+                            <div class="col-md-6">
+                                <input id="rol" type="text" class="form-control" name="rol" value="{{ old('rol') }}">
+
+                                @if ($errors->has('rol'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('rol') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
 
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                             <label for="password" class="col-md-4 control-label">Password</label>
