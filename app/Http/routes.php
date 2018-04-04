@@ -1,6 +1,6 @@
 <?php
 
-<<<<<<< HEAD
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -17,13 +17,7 @@
 //    return "ok";
 // //   return view('home');
 //});
-=======
-Route::get('/', function () {
 
-    return "ok";
- //   return view('home');
-});
->>>>>>> test
 
 Route::get('/community', function () {
     return view('community');
@@ -63,10 +57,6 @@ Route::get('/verify', function () {
 
 Route::auth();
 
-<<<<<<< HEAD
+
 Route::get('/', 'HomeController@index');
 Route::get('/home', 'HomeController@index');
-=======
-Route::get('/home', 'HomeController@index');
-
->>>>>>> test
