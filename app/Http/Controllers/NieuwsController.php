@@ -38,7 +38,10 @@ class NieuwsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'titel' => 'required',
+            'body' =>  'required',
+        ]);
     }
 
     /**
