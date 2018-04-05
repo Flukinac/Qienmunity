@@ -4,13 +4,16 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class communityModel extends Model
+class Nieuwspost extends Model
 {
+    public $primaryKey ='nieuws_id';
+    public $timestamps = true;
+    
     public function gebruiker(){
         return $this->belongsTo('gebruikerModel','id');
     }
     
     public function comments(){
-       return $this->hasMany('commentModel', 'commu_id');
+       return $this->hasMany('Comment', 'nieuws_id');
     }
 }
