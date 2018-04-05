@@ -8,5 +8,7 @@
         <a href="http://localhost:8000/community">Community</a><br>
         <a href="http://localhost:8000/contact">Contact</a><br>
         <a href="http://localhost:8000/resources">Resources</a><br>
+        
+        <a href="http://localhost:8000/nieuwegebruiker">Nieuwe gebruiker aanmaken</a><br>
     </body>
 </html>
