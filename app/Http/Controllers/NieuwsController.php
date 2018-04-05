@@ -42,6 +42,7 @@ class NieuwsController extends Controller
             'titel' => 'required',
             'body' =>  'required',
         ]);
+
     }
 
     /**
