@@ -16,7 +16,7 @@ class NieuwsController extends Controller
     public function index()
     {
         $post = Nieuwspost::all();
-        //$post = Nieuwspost::orderBy('titel','asc')->take(1)->get();
+        //$post = Nieuwspost::orderBy('nieuws_id','desc')->take(1)->get();
         return view('nieuwspage/nieuws')->with('nieuws',$post);
     }
 
@@ -40,9 +40,14 @@ class NieuwsController extends Controller
     {
         $this->validate($request,[
             'titel' => 'required',
-            'body' =>  'required',
+            'content' =>  'required',
         ]);
-
+        $post = new Nieuwspost;
+        $post->titel = $request->input('titel');
+        $post->content = $request->input('content');
+        $post->save();
+        
+        return redirect('/nieuwsposts');
     }
 
     /**
