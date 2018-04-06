@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+
 use App\Http\Requests;
 
 class PostIdController extends Controller
@@ -13,11 +14,19 @@ class PostIdController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    
+      
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index()
     {
         $user_id = auth()->user()->id;
         $user = User::find($user_id);
-        return view('nieuwspage/post')->with('posts',$user->nieuwsPosts);
+        return view('nieuwspage/post')->with('users',$user->nieuwsPosts);
+        
     }
 
     /**

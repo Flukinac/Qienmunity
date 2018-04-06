@@ -10,11 +10,11 @@ class Nieuwspost extends Model
     public $timestamps = true;
     
     public function gebruiker(){
-        return $this->belongsTo('App\User','id');
+        return $this->belongsTo('App\User');
     }
     
     public function comments(){
-       return $this->hasMany('App\Comment', 'id');
+       return $this->hasMany('App\Comment');
     }
     
 }
