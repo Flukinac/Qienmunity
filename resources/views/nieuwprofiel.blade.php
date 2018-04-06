@@ -1,10 +1,11 @@
-<html>
-    <body>
+@extends('layouts.app')
+
+@section('content')
         <h1>Nieuw profiel maken</h1><br>
         
         <a href="http://localhost:8000/">Home</a><br>
         <a href="http://localhost:8000/profiel">Profiel</a><br>
-        <a href="http://localhost:8000/nieuws">Nieuws</a><br>
+        <a href="http://localhost:8000/nieuwsposts">Nieuws</a><br>
         <a href="http://localhost:8000/community">Community</a><br>
         <a href="http://localhost:8000/resources">Resources</a><br>
         <a href="http://localhost:8000/contact">Contact</a><br>
@@ -23,5 +24,4 @@
             <input type="submit" value="Maak nieuw profiel aan >">
 
         </form>
-    </body>
-</html>
+@endsection

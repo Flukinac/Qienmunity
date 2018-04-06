@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Nieuwspost;
+use App\User;
 use App\Http\Requests;
 
-class NieuwsController extends Controller
+class PostIdController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,10 +15,9 @@ class NieuwsController extends Controller
      */
     public function index()
     {
-        
-        $post = Nieuwspost::all();
-        //$post = Nieuwspost::orderBy('nieuws_id','desc')->take(1)->get();
-        return view('nieuwspage/nieuws')->with('nieuws',$post);
+        $user_id = auth()->user()->id;
+        $user = User::find($user_id);
+        return view('nieuwspage/post')->with('posts',$user->nieuwsPosts);
     }
 
     /**
@@ -28,7 +27,7 @@ class NieuwsController extends Controller
      */
     public function create()
     {
-        return view('nieuwspage.create');
+        //
     }
 
     /**
@@ -39,16 +38,7 @@ class NieuwsController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,[
-            'titel' => 'required',
-            'content' =>  'required',
-        ]);
-        $post = new Nieuwspost;
-        $post->title = $request->input('titel');
-        $post->content = $request->input('content');
-        $post->save();
-        
-        return redirect('/nieuwsposts');
+        //
     }
 
     /**
@@ -59,9 +49,7 @@ class NieuwsController extends Controller
      */
     public function show($id)
     {
-        $post = Nieuwspost::find($id);
-        
-        return view('nieuwspage.show')->with('post', $post);
+        //
     }
 
     /**

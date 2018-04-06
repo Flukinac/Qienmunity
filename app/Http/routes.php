@@ -62,4 +62,10 @@ Route::get('/', 'HomeController@index');
 Route::get('/home', 'HomeController@index');
 
 Route::resource('nieuwsposts', 'NieuwsController');
-Route::resource('contact', 'ContactController@contactInput');
+
+Route::resource('contact', 'ContactController');
+
+
+Route::resource('post','PostIdController');
+
+

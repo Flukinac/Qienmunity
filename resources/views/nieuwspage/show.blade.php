@@ -12,7 +12,9 @@
   
         
         <h1>{{$post->titel}}</h1><br>
+        <p>{{$post->content}}</p>
         <small>Geschreven op {{$post->created_at}}</small>
+        
         
 @endsection
     
