@@ -13,7 +13,7 @@ class CreateCommunitypostsTable extends Migration
     public function up()
     {
         Schema::create('communityposts', function (Blueprint $table) {
-            $table->increments('commu_id');
+            $table->increments('id');
             $table->string('title');
             $table->text('content');
             $table->text('image');

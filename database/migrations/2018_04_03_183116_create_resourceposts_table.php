@@ -13,7 +13,7 @@ class CreateResourcepostsTable extends Migration
     public function up()
     {
         Schema::create('resourceposts', function (Blueprint $table) {
-            $table->increments('rs_id');
+            $table->increments('id');
             $table->string('title');
             $table->text('content');
             $table->text('image');
