@@ -14,9 +14,9 @@ class CreateCommunitypostsTable extends Migration
     {
         Schema::create('communityposts', function (Blueprint $table) {
             $table->increments('commu_id');
-            $table->string('titel');
+            $table->string('title');
             $table->text('content');
-            $table->text('foto');
+            $table->text('image');
             $table->timestamps();
         });
     }

@@ -6,11 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class resourcepost extends Model
 {
+    public $primaryKey ='rs_id';
+    public $timestamps = true;
+    
     public function gebruiker(){
-        return $this->belongsTo('gebruikerModel','id');
+        return $this->belongsTo('App\User','id');
     }
     
     public function comments(){
-      return  $this->hasMany('Comment', 'rs_id');
+      return  $this->hasMany('App\Comment', 'rs_id');
     }
 }

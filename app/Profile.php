@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class profile extends Model
 {
     public function gebruiker(){
-        return $this->belongsTo('gebruikerModel','id');
+        return $this->belongsTo('App\User','id');
     }
     
     
