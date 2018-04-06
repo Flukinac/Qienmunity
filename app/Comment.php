@@ -11,15 +11,15 @@ class comment extends Model
     }
     
     public function nieuwsPost(){
-        return $this->belongsTo('App\Nieuwspost','nieuws_id');
+        return $this->belongsTo('App\Nieuwspost','id');
     }
     
     public function communityPost(){
-        return $this->belongsTo('App\Communitypost','commu_id');
+        return $this->belongsTo('App\Communitypost','id');
     }
     
     public function resourcePost(){
-        return $this->belongsTo('App\Resourcepost','rs_id');
+        return $this->belongsTo('App\Resourcepost','id');
     }
     
 }

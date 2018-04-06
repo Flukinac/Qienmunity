@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Nieuwspost extends Model
 {
-    public $primaryKey ='nieuws_id';
+    public $primaryKey ='id';
     public $timestamps = true;
     
     public function gebruiker(){
@@ -14,7 +14,7 @@ class Nieuwspost extends Model
     }
     
     public function comments(){
-       return $this->hasMany('App\Comment', 'nieuws_id');
+       return $this->hasMany('App\Comment', 'id');
     }
     
 }

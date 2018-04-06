@@ -14,6 +14,6 @@ class communitypost extends Model
     }
     
     public function comments(){
-       return $this->hasMany('App\Comment', 'commu_id');
+       return $this->hasMany('App\Comment', 'id');
     }
 }

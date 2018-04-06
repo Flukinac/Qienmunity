@@ -62,3 +62,4 @@ Route::get('/', 'HomeController@index');
 Route::get('/home', 'HomeController@index');
 
 Route::resource('nieuwsposts', 'NieuwsController');
+Route::resource('post','PostIdController');

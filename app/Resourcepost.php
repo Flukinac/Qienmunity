@@ -14,6 +14,6 @@ class resourcepost extends Model
     }
     
     public function comments(){
-      return  $this->hasMany('App\Comment', 'rs_id');
+      return  $this->hasMany('App\Comment', 'id');
     }
 }
