@@ -8,5 +8,12 @@
         <a href="http://localhost:8000/nieuws">Nieuws</a><br>
         <a href="http://localhost:8000/community">Community</a><br>
         <a href="http://localhost:8000/resources">Resources</a><br>
+        <center>
+            <form action="/contact" method="POST">
+                <textarea rows="10" cols="50" name="contactText"> </textarea>
+                <input type="submit" class="contact" value="verzend">
+            </form>
+        </center>
+        
     </body>
 </html>
