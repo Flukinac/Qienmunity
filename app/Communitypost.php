@@ -9,7 +9,7 @@ class communitypost extends Model
     public $primaryKey ='commu_id';
     public $timestamps = true;
     
-    public function gebruiker(){
+    public function user(){
         return $this->belongsTo('App\User','id');
     }
     
