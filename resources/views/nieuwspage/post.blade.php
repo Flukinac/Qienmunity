@@ -7,12 +7,13 @@
             <th></th>
             <th></th>
         </tr>
-        @foreach($posts as $post)
-            <tr>
+        @foreach($users as $post)
+            <tr>    
                 <th>{{$post->title}}</th>
-                <th></th>
-                <th></th>
+                <th>{{$post->created_at}}  </th>
             </tr>
         @endforeach
+        
+        
     </table>
 @endsection

@@ -46,6 +46,7 @@ class NieuwsController extends Controller
         $post = new Nieuwspost;
         $post->title = $request->input('titel');
         $post->content = $request->input('content');
+        $post->user_id = auth()->user()->id;
         $post->save();
         
         return redirect('/nieuwsposts');
@@ -61,7 +62,7 @@ class NieuwsController extends Controller
     {
         $post = Nieuwspost::find($id);
         
-        return view('nieuwspage.show')->with('post', $post);
+        return view('nieuwspage.show')->with('posts', $post);
     }
 
     /**

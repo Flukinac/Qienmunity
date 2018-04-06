@@ -29,7 +29,7 @@ class User extends Authenticatable
     }
     
     public function nieuwsPosts(){
-        return $this->hasMany('App\Nieuwspost','id');
+        return $this->hasMany('App\Nieuwspost');
     }
     
     public function resourcePosts(){
