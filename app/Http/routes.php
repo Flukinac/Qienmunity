@@ -63,9 +63,7 @@ Route::get('/', 'HomeController@index');
 Route::get('/home', 'HomeController@index');
 
 
-Route::get('nieuwegebruiker', 'GebruikerController@nieuwegebruiker');
-
-Route::post('maakprofiel', 'GebruikerController@opslaan');
-
 Route::resource('nieuwsposts', 'NieuwsController');
+
+Route::resource('post','PostIdController');
 

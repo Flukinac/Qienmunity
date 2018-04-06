@@ -10,7 +10,7 @@
         <a href="http://localhost:8000/contact">Contact</a><br>
         <a href="http://localhost:8000/resources">Resources</a><br>
         
-        {!! Form::open(['action' => 'NieuwsController@store']) !!}
+        {!! Form::open(['action' => 'NieuwsController@store', 'method' => 'POST']) !!}
             {{Form::Label('titel')}}
                 {{Form::text('titel','',['class'=>'form-control', 'placeholder' => 'Titel'])}}
                 <br>

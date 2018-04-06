@@ -1,8 +1,18 @@
-<?php
+@extends('layouts.app')
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
+@section('content')
+    <table class="table table-striped">
+        <tr>
+            <th>Title</th>
+            <th></th>
+            <th></th>
+        </tr>
+        @foreach($posts as $post)
+            <tr>
+                <th>{{$post->title}}</th>
+                <th></th>
+                <th></th>
+            </tr>
+        @endforeach
+    </table>
+@endsection
