@@ -41,8 +41,12 @@ Route::get('/profiel', function () {
 
 Route::get('/nieuwprofiel', function () {
     return view('nieuwprofiel');
-
 });
+
+Route::get('/profielgemaakt', function () {
+    return view('profielgemaakt');
+});
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -50,10 +54,7 @@ Route::get('/dashboard', function () {
 
 Route::get('/verify', function () {
     return "testing posting";
-
 });
-
-
 
 Route::auth();
 
@@ -67,3 +68,4 @@ Route::resource('post','PostIdController');
 
 Route::resource('communitypost','CommunityController');
 
+Route::resource('profiles', 'ProfileController');
