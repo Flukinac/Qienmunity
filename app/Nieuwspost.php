@@ -9,7 +9,7 @@ class Nieuwspost extends Model
     public $primaryKey ='id';
     public $timestamps = true;
     
-    public function gebruiker(){
+    public function user(){
         return $this->belongsTo('App\User');
     }
     

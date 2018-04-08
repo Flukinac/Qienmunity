@@ -6,10 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class resourcepost extends Model
 {
-    public $primaryKey ='rs_id';
+    public $primaryKey ='id';
     public $timestamps = true;
     
-    public function gebruiker(){
+    public function user(){
         return $this->belongsTo('App\User','id');
     }
     
