@@ -7,13 +7,6 @@
 @section('content')
         <h1>Nieuw profiel maken</h1><br>
         
-        <a href="http://localhost:8000/">Home</a><br>
-        <a href="http://localhost:8000/profiel">Profiel</a><br>
-        <a href="http://localhost:8000/nieuwsposts">Nieuws</a><br>
-        <a href="http://localhost:8000/community">Community</a><br>
-        <a href="http://localhost:8000/resources">Resources</a><br>
-        <a href="http://localhost:8000/contact">Contact</a><br>
-        
         <h2>Maak nieuw profiel aan</h2><!--Formulier om en nieuw profiel aan te kunnen maken-->
         <form action="maakprofiel" action ="post" enctype="multipart/form-data">
             Rol: <select name="werkstatus">

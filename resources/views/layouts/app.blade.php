@@ -47,7 +47,13 @@
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ url('/home') }}">Home</a></li>
+                    <li><a href="{{ url('http://localhost:8000') }}">Home</a></li>
+                    <li><a href="{{ url('http://localhost:8000/dashboard') }}">Dashboard</a></li>
+                    <li><a href="{{ url('http://localhost:8000/profiles') }}">Profiel</a></li>
+                    <li><a href="{{ url('http://localhost:8000/nieuwsposts') }}">Nieuws</a></li>
+                    <li><a href="{{ url('http://localhost:8000/community') }}">Community</a></li>
+                    <li><a href="{{ url('http://localhost:8000/resources') }}">Resources</a></li>
+                    <li><a href="{{ url('http://localhost:8000/contact') }}">Contact</a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->

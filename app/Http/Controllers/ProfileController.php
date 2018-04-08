@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Nieuwspost;
-use App\Http\Requests;
+use App\Profile;
 
-class NieuwsController extends Controller
+class ProfileController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,10 +14,10 @@ class NieuwsController extends Controller
      */
     public function index()
     {
+        $profiles = Profile::orderBy('username','asc')->paginate(20);
+        return view('profiles.index')->with('profiles', $profiles);
         
-        $post = Nieuwspost::all();
-        //$post = Nieuwspost::orderBy('nieuws_id','desc')->take(1)->get();
-        return view('nieuwspage/nieuws')->with('nieuws',$post);
+        
     }
 
     /**
@@ -28,7 +27,7 @@ class NieuwsController extends Controller
      */
     public function create()
     {
-        return view('nieuwspage.create');
+        return view('profiles.create');
     }
 
     /**
@@ -39,17 +38,7 @@ class NieuwsController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,[
-            'titel' => 'required',
-            'content' =>  'required',
-        ]);
-        $post = new Nieuwspost;
-        $post->title = $request->input('titel');
-        $post->content = $request->input('content');
-        $post->user_id = auth()->user()->id;
-        $post->save();
-        
-        return redirect('/nieuwsposts');
+        //
     }
 
     /**
@@ -60,9 +49,8 @@ class NieuwsController extends Controller
      */
     public function show($id)
     {
-        $post = Nieuwspost::find($id);
-        
-        return view('nieuwspage.show')->with('posts', $post);
+        $profile = Profile::find($id);
+        return view('profiles.show')->with('profile', $profile);
     }
 
     /**
