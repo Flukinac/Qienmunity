@@ -65,3 +65,5 @@ Route::resource('nieuwsposts','NieuwsController');
 
 Route::resource('post','PostIdController');
 
+Route::resource('communitypost','CommunityController');
+
