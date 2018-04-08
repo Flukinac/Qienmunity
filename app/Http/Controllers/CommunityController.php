@@ -3,30 +3,21 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\User;
-
+use App\Communitypost;
 use App\Http\Requests;
 
-class PostIdController extends Controller
+class CommunityController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    
-      
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-    
     public function index()
     {
-        $user_id = auth()->user()->id;
-        $user = User::find($user_id);
-        return view('nieuwspage/post')->with('users',$user->nieuwsPosts);
-        
+         $post = Communitypost::all();
+//        $post = Nieuwspost::orderBy('nieuws_id','desc')->take(1)->get();
+        return view('community.newsfeed')->with('nieuws',$post);
     }
 
     /**
@@ -36,7 +27,7 @@ class PostIdController extends Controller
      */
     public function create()
     {
-        //
+        return view('community.create');
     }
 
     /**
@@ -47,7 +38,17 @@ class PostIdController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'titel' => 'required',
+            'content' =>  'required',
+        ]);
+        $post = new Communitypost;
+        $post->title = $request->input('titel');
+        $post->content = $request->input('content');
+        $post->user_id = auth()->user()->id;
+        $post->save();
+        
+        return redirect('/community');
     }
 
     /**
@@ -58,7 +59,9 @@ class PostIdController extends Controller
      */
     public function show($id)
     {
-        //
+        $post = Communitypost::find($id);
+        
+        return view('community.show')->with('post', $post);
     }
 
     /**
