@@ -15,14 +15,16 @@ class ContactController extends Controller
 {
     public function sendContact(Request $request){
         $title = $request->json()->all()['subject'];
-        $content = $request->json()->all()['text'];
-        
-        mail::send('contact', ['title' => $title, 'content' => $content] ,function($message){
-            $message->to('sevisser1@gmail.com','aan mij');
+        $mail = $request->json()->all()['text'];
+         
+        mail::send('mailTemplate', ['content' => $mail] ,function($message) use ($title){
+            
+            $message->subject($title);
             $message->from('sevisser1@gmail.com','mijzlef');
-            $message->subject('Laravel Basic Testing Mail');
+            $message->to('sevisser1@gmail.com');
+   
         });
-        echo "Basic Email Sent. Check your inbox.";
+        echo "Email Sent.";
     }
 }
 
