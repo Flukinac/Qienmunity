@@ -10,10 +10,10 @@ class resourcepost extends Model
     public $timestamps = true;
     
     public function user(){
-        return $this->belongsTo('App\User','id');
+        return $this->belongsTo('App\User');
     }
     
     public function comments(){
-      return  $this->hasMany('App\Comment', 'id');
+      return  $this->hasMany('App\Comment');
     }
 }

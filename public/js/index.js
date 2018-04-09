@@ -9,8 +9,6 @@ function backbone(){
         }
     });
     
-    
-    
     console.log("in backbone");
     
     var kip = new Dier();
