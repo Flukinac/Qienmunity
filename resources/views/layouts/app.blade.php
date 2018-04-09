@@ -51,7 +51,7 @@
                     <li><a href="{{ url('http://localhost:8000/dashboard') }}">Dashboard</a></li>
                     <li><a href="{{ url('http://localhost:8000/profiles') }}">Profiel</a></li>
                     <li><a href="{{ url('http://localhost:8000/nieuwsposts') }}">Nieuws</a></li>
-                    <li><a href="{{ url('http://localhost:8000/community') }}">Community</a></li>
+                    <li><a href="{{ url('http://localhost:8000/communitypost') }}">Community</a></li>
                     <li><a href="{{ url('http://localhost:8000/resources') }}">Resources</a></li>
                     <li><a href="{{ url('http://localhost:8000/contact') }}">Contact</a></li>
                 </ul>
