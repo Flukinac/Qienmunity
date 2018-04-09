@@ -12,6 +12,7 @@
         @else
             <p> No Nieuws Posts Yet</p>
         @endif
+
 @endsection
     
     
