@@ -36,19 +36,6 @@ Route::get('/resources', function () {
     return view('resources');
 });
 
-Route::get('/profiel', function () {
-    return view('profiel');
-});
-
-Route::get('/nieuwprofiel', function () {
-    return view('nieuwprofiel');
-});
-
-Route::get('/profielgemaakt', function () {
-    return view('profielgemaakt');
-});
-
-
 Route::get('/dashboard', function () {
     return view('dashboard');
 });
@@ -71,14 +58,3 @@ Route::resource('post','PostIdController');
 Route::resource('communitypost','CommunityController');
 
 Route::resource('profiles', 'ProfileController');
-
-
-
-Route::get('/postman', function(){
-    return "testing postman";
-    });
-Route::post('/postman', function(Request $request){
-        $kip = $request->json()->all();
-        return 'Postman goes '.$kip['geluid'];
-    });
-    
