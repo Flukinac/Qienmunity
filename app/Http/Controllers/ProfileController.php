@@ -38,7 +38,25 @@ class ProfileController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'username'=>'required',
+            'email'=>'required',
+        ]);
+        
+        //Nieuw profiel aanmaken
+        
+        $profile = new Profile;
+        $profile->username = $request->input('username');
+        $profile->email = $request->input('email');
+        $profile->dateofbirth = $request->input('dateofbirth');
+        $profile->position = $request->input('position');
+        $profile->biography = $request->input('biography');
+        if($request->input('image')){
+        $profile->image = $request->input('image');
+        }
+        $profile->save();
+        
+        return redirect('/profiles')->with('success', 'Nieuw profiel succesvol aangemaakt');
     }
 
     /**
