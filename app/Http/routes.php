@@ -49,10 +49,9 @@ Route::get('/verify', function () {
 
 });
 
-route::post('/contactMail',function(request $request){
-    $mailjson = $request->json()->all();
-    return ("voorbeeld".$mailjson['subject'].$mailjson['text']);
-});
+
+Route::post('/contactMail', 'ContactController@sendContact');
+
 
 Route::auth();
 
