@@ -3,8 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 use App\Communitypost;
+
 use App\Http\Requests;
+
 
 class CommunityController extends Controller
 {
@@ -41,16 +46,34 @@ class CommunityController extends Controller
         $this->validate($request,[
             'titel' => 'required',
             'content' =>  'required',
+            'image' => 'image|max:1999',
         ]);
+        $old_name = auth()->user()->name;
+        $file = $request->file('image');
+        $filename = $request['titel'] . '-' . auth()->user()->id . '.jpg';
+        $update = false;
+        if (Storage::disk('local')->has($filename)) {
+            $old_file = Storage::disk('local')->get($filename);
+            Storage::disk('local')->put($filename, $old_file);
+            $update = true;
+        }
+        if ($file) {
+            Storage::disk('local')->put($filename, File::get($file));
+        }
+                
         $post = new Communitypost;
         $post->title = $request->input('titel');
         $post->content = $request->input('content');
         $post->user_id = auth()->user()->id;
         $post->save();
         
-        return redirect('/community');
+        return view('community');
     }
-
+    public function getUserImage($filename)
+    {
+        $file = Storage::disk('local')->get($filename);
+        return new Response($file, 200);
+    }
     /**
      * Display the specified resource.
      *
