@@ -52,22 +52,26 @@ class CommunityController extends Controller
         $file = $request->file('image');
         $filename = $request['titel'] . '-' . auth()->user()->id . '.jpg';
         $update = false;
+        
         if (Storage::disk('local')->has($filename)) {
             $old_file = Storage::disk('local')->get($filename);
             Storage::disk('local')->put($filename, $old_file);
             $update = true;
         }
         if ($file) {
+            echo "hello";
             Storage::disk('local')->put($filename, File::get($file));
+            
         }
                 
         $post = new Communitypost;
         $post->title = $request->input('titel');
         $post->content = $request->input('content');
         $post->user_id = auth()->user()->id;
+        $post->image = $filename;
         $post->save();
         
-        return view('community');
+        return view('communitypost');
     }
     public function getUserImage($filename)
     {

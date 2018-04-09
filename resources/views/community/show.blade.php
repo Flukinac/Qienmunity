@@ -12,7 +12,7 @@
   
         
         <h1>{{$post->titel}}</h1><br>
-        <img style="width:100%" src="/storage/cover_images/{{$post->cover_image}}">
+        <img style="width:100%" src="/storage/cover_images/{{$post->image}}">
         <p>{{$post->content}}</p>
         <small>Geschreven op {{$post->created_at}} door {{$post->user->name}}</small>
         
