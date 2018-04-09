@@ -12,12 +12,12 @@
         <a href="http://localhost:8000/resources">Resources</a><br>
 
         <center>
-            <form action="/contact" method="POST">
-                <textarea rows="10" cols="50" name="contactText"> </textarea>
-                <input type="submit" class="contact" value="verzend">
-            </form>
+                <input type="hidden" name="_token" value="{{ csrf_token() }}"> 
+                <input type="text" class="subject" name="contactName"><br>
+                <textarea rows="10" class="text" cols="50" name="contactText"> </textarea>
+                <input type="button" onclick="contactPost()" class="contact" value="verzend">
         </center>
-        
+        <div id="mailSucces"></div>
     </body>
 </html>
 

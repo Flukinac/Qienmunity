@@ -1,6 +1,6 @@
 <?php
 
-
+use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -12,11 +12,7 @@
 |'hj
 */
 
-//Route::get('/', function () {
-//
-//    return "ok";
-// //   return view('home');
-//});
+
 
 
 Route::get('/community', function () {
@@ -53,7 +49,10 @@ Route::get('/verify', function () {
 
 });
 
-
+route::post('/contactMail',function(request $request){
+    $mailjson = $request->json()->all();
+    return ("voorbeeld".$mailjson['subject'].$mailjson['text']);
+});
 
 Route::auth();
 
@@ -63,7 +62,7 @@ Route::get('/home', 'HomeController@index');
 
 Route::resource('nieuwsposts', 'NieuwsController');
 
-Route::resource('contact', 'ContactController');
+
 
 
 Route::resource('post','PostIdController');
