@@ -18,6 +18,7 @@
 // //   return view('home');
 //});
 
+use Illuminate\Http\Request;
 
 Route::get('/community', function () {
     return view('community');
@@ -60,6 +61,7 @@ Route::auth();
 
 
 Route::get('/', 'HomeController@index');
+
 Route::get('/home', 'HomeController@index');
 
 Route::resource('nieuwsposts','NieuwsController');
@@ -69,3 +71,14 @@ Route::resource('post','PostIdController');
 Route::resource('communitypost','CommunityController');
 
 Route::resource('profiles', 'ProfileController');
+
+
+
+Route::get('/postman', function(){
+    return "testing postman";
+    });
+Route::post('/postman', function(Request $request){
+        $kip = $request->json()->all();
+        return 'Postman goes '.$kip['geluid'];
+    });
+    
