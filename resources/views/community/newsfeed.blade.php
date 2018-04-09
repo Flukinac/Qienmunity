@@ -11,7 +11,7 @@
                 </div>
             @endforeach
         @else
-            <p> No Nieuws Posts Yet</p>
+            <p> No Community Posts Yet</p>
         @endif
         
 @endsection
