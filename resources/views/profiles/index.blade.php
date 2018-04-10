@@ -6,7 +6,7 @@
         @if(count($profiles)>0)
             @foreach($profiles as $profile)
             <div class ='well'>
-                <a href ="/profiles/{{$profile->id}}"><img src="{{$profile->image}}" width="50px" height="50px"></a>
+                <a href ="/profiles/{{$profile->id}}"><img src="{{$profile->image}}"  height="50px"></a>
                 <b><a href ="/profiles/{{$profile->id}}"> {{$profile->username}}</a></b>
                 <small>Laatst geüpdate op {{$profile->updated_at}}</small>
             </div>

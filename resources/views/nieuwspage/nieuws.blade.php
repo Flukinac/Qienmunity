@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-        <h1>Nieuws</h1><br>
+        <h1>Nieuws</h1>
   <a href="/nieuwsposts/create" class="btn btn-default">Nieuw bericht ></a><br/><br/>
         @if(count($nieuws) >= 1)
             @foreach($nieuws as $post)
