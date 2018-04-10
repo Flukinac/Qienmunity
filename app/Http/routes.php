@@ -1,6 +1,6 @@
 <?php
 
-
+use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -12,11 +12,7 @@
 |'hj
 */
 
-//Route::get('/', function () {
-//
-//    return "ok";
-// //   return view('home');
-//});
+
 
 use Illuminate\Http\Request;
 
@@ -36,19 +32,6 @@ Route::get('/resources', function () {
     return view('resources');
 });
 
-Route::get('/profiel', function () {
-    return view('profiel');
-});
-
-Route::get('/nieuwprofiel', function () {
-    return view('nieuwprofiel');
-});
-
-Route::get('/profielgemaakt', function () {
-    return view('profielgemaakt');
-});
-
-
 Route::get('/dashboard', function () {
     return view('dashboard');
 });
@@ -56,6 +39,11 @@ Route::get('/dashboard', function () {
 Route::get('/verify', function () {
     return "testing posting";
 });
+
+
+
+Route::post('/contactMail', 'ContactController@sendContact');
+
 
 Route::auth();
 
@@ -66,19 +54,14 @@ Route::get('/home', 'HomeController@index');
 
 Route::resource('nieuwsposts','NieuwsController');
 
+
+
+
 Route::resource('post','PostIdController');
+
+
 
 Route::resource('communitypost','CommunityController');
 
 Route::resource('profiles', 'ProfileController');
 
-
-
-Route::get('/postman', function(){
-    return "testing postman";
-    });
-Route::post('/postman', function(Request $request){
-        $kip = $request->json()->all();
-        return 'Postman goes '.$kip['geluid'];
-    });
-    
