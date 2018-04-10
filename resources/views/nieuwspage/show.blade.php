@@ -2,13 +2,7 @@
 
 @section('content')
         
-
-        <a href="http://localhost:8000/">Home</a><br>
-        <a href="http://localhost:8000/profiel">Profiel</a><br>
-        <a href="http://localhost:8000/dashboard">Dashboard</a><br>
-        <a href="http://localhost:8000/community">Community</a><br>
-        <a href="http://localhost:8000/contact">Contact</a><br>
-        <a href="http://localhost:8000/resources">Resources</a><br>
+<a href="/nieuwsposts" class="btn btn-default">< Ga terug</a><br/><br/>
   
         
         <h1>{{$post->titel}}</h1><br>
@@ -17,4 +11,3 @@
         
         
 @endsection
-    

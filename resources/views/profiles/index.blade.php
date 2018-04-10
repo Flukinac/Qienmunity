@@ -2,7 +2,7 @@
 
 @section('content')
         <h1>Profielen</h1>
-            
+            <a href="/profiles/create" class="btn btn-default">Nieuw profiel ></a><br/><br/>
         @if(count($profiles)>0)
             @foreach($profiles as $profile)
             <div class ='well'>

@@ -2,6 +2,7 @@
 
 @section('content')
         <h1>Community</h1><br>
+<a href="/communitypost/create" class="btn btn-default">Nieuw bericht ></a><br/><br/>
 
 
         @if(count($nieuws) >= 1)
