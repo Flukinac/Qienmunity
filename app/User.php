@@ -25,22 +25,22 @@ class User extends Authenticatable
     ];
     
     public function communityPosts(){
-        return $this->hasMany('App\Communitypost','id');
+        return $this->hasMany('App\Communitypost');
     }
     
     public function nieuwsPosts(){
-        return $this->hasMany('App\Nieuwspost','id');
+        return $this->hasMany('App\Nieuwspost');
     }
     
     public function resourcePosts(){
-        return $this->hasMany('App\Resourcepost','id');
+        return $this->hasMany('App\Resourcepost');
     }
     
     public function comments(){
-        return $this->hasMany('App\Comment','id');
+        return $this->hasMany('App\Comment');
     }
     public function profile(){
-        return $this->hasOne('App\Profile','id');
+        return $this->hasOne('App\Profile');
     }
     
 }

@@ -1,9 +1,17 @@
 <?php
+
 namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
-use App\Nieuwspost;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
+use App\Communitypost;
+
 use App\Http\Requests;
-class NieuwsController extends Controller
+
+
+class CommunityController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -12,11 +20,11 @@ class NieuwsController extends Controller
      */
     public function index()
     {
-        
-        $post = Nieuwspost::all();
-//        $post = Nieuwspost::orderBy('id','desc')->take(1)->get();
-        return view('nieuwspage/nieuws')->with('nieuws',$post);
+         $post = Communitypost::all();
+//        $post = Nieuwspost::orderBy('nieuws_id','desc')->take(1)->get();
+        return view('community.newsfeed')->with('nieuws',$post);
     }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -24,8 +32,9 @@ class NieuwsController extends Controller
      */
     public function create()
     {
-        return view('nieuwspage.create');
+        return view('community.create');
     }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -37,13 +46,37 @@ class NieuwsController extends Controller
         $this->validate($request,[
             'titel' => 'required',
             'content' =>  'required',
+            'image' => 'image|max:1999',
         ]);
-        $post = new Nieuwspost;
+        $old_name = auth()->user()->name;
+        $file = $request->file('image');
+        $filename = $request['titel'] . '-' . auth()->user()->id . '.jpg';
+        $update = false;
+        
+        if (Storage::disk('local')->has($filename)) {
+            $old_file = Storage::disk('local')->get($filename);
+            Storage::disk('local')->put($filename, $old_file);
+            $update = true;
+        }
+        if ($file) {
+            echo "hello";
+            Storage::disk('local')->put($filename, File::get($file));
+            
+        }
+                
+        $post = new Communitypost;
         $post->title = $request->input('titel');
         $post->content = $request->input('content');
+        $post->user_id = auth()->user()->id;
+        $post->image = $filename;
         $post->save();
         
-        return redirect('/nieuwsposts');
+        return view('communitypost');
+    }
+    public function getUserImage($filename)
+    {
+        $file = Storage::disk('local')->get($filename);
+        return new Response($file, 200);
     }
     /**
      * Display the specified resource.
@@ -53,10 +86,11 @@ class NieuwsController extends Controller
      */
     public function show($id)
     {
-        $post = Nieuwspost::find($id);
+        $post = Communitypost::find($id);
         
-        return view('nieuwspage.show')->with('post', $post);
+        return view('community.show')->with('post', $post);
     }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -67,6 +101,7 @@ class NieuwsController extends Controller
     {
         //
     }
+
     /**
      * Update the specified resource in storage.
      *
@@ -78,6 +113,7 @@ class NieuwsController extends Controller
     {
         //
     }
+
     /**
      * Remove the specified resource from storage.
      *

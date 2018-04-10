@@ -9,12 +9,12 @@ class Nieuwspost extends Model
     public $primaryKey ='id';
     public $timestamps = true;
     
-    public function gebruiker(){
-        return $this->belongsTo('App\User','id');
+    public function user(){
+        return $this->belongsTo('App\User');
     }
     
     public function comments(){
-       return $this->hasMany('App\Comment', 'id');
+       return $this->hasMany('App\Comment');
     }
     
 }

@@ -4,11 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class profile extends Model
+class Profile extends Model
 {
-    public function gebruiker(){
-        return $this->belongsTo('App\User','id');
+   
+    public function user(){
+        return $this->belongsTo('App\User');
     }
-    
     
 }
