@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-        <a href="/profiles" class="btn btn-default">Terug ></a>
+        <a href="/profiles" class="btn btn-default">< Terug </a>
         <h1> {{$profile->username}} </h1>
         <ul>
             <li><img src ='{{$profile->image}}' width ="250px" height="250px"></li>

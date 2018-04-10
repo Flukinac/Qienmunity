@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-        <h1>Profiel</h1>
+        <h1>Profielen</h1>
             
         @if(count($profiles)>0)
             @foreach($profiles as $profile)
