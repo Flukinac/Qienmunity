@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 
 
 
+use Illuminate\Http\Request;
 
 Route::get('/community', function () {
     return view('community');
@@ -31,23 +32,14 @@ Route::get('/resources', function () {
     return view('resources');
 });
 
-Route::get('/profiel', function () {
-    return view('profiel');
-});
-
-Route::get('/nieuwprofiel', function () {
-    return view('nieuwprofiel');
-
-});
-
 Route::get('/dashboard', function () {
     return view('dashboard');
 });
 
 Route::get('/verify', function () {
     return "testing posting";
-
 });
+
 
 
 Route::post('/contactMail', 'ContactController@sendContact');
@@ -57,13 +49,19 @@ Route::auth();
 
 
 Route::get('/', 'HomeController@index');
+
 Route::get('/home', 'HomeController@index');
 
-Route::resource('nieuwsposts', 'NieuwsController');
+Route::resource('nieuwsposts','NieuwsController');
 
 
 
 
 Route::resource('post','PostIdController');
 
+
+
+Route::resource('communitypost','CommunityController');
+
+Route::resource('profiles', 'ProfileController');
 

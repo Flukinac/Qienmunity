@@ -3,29 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\User;
+use App\Profile;
 
-use App\Http\Requests;
-
-class PostIdController extends Controller
+class ProfileController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    
-      
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-    
     public function index()
     {
-        $user_id = auth()->user()->id;
-        $user = User::find($user_id);
-        return view('nieuwspage/post')->with('users',$user->nieuwsPosts);
+        $profiles = Profile::orderBy('username','asc')->paginate(20);
+        return view('profiles.index')->with('profiles', $profiles);
+        
         
     }
 
@@ -36,7 +27,7 @@ class PostIdController extends Controller
      */
     public function create()
     {
-        //
+        return view('profiles.create');
     }
 
     /**
@@ -47,7 +38,25 @@ class PostIdController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'username'=>'required',
+            'email'=>'required',
+        ]);
+        
+        //Nieuw profiel aanmaken
+        
+        $profile = new Profile;
+        $profile->username = $request->input('username');
+        $profile->email = $request->input('email');
+        $profile->dateofbirth = $request->input('dateofbirth');
+        $profile->position = $request->input('position');
+        $profile->biography = $request->input('biography');
+        if($request->input('image')){
+        $profile->image = $request->input('image');
+        }
+        $profile->save();
+        
+        return redirect('/profiles')->with('success', 'Nieuw profiel succesvol aangemaakt');
     }
 
     /**
@@ -58,7 +67,8 @@ class PostIdController extends Controller
      */
     public function show($id)
     {
-        //
+        $profile = Profile::find($id);
+        return view('profiles.show')->with('profile', $profile);
     }
 
     /**

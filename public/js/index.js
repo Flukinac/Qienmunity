@@ -1,4 +1,3 @@
-
 function contactPost(){
     var subject = $(".subject").val();
     var text = $(".text").val();
@@ -18,4 +17,21 @@ function objectify(subject, text){
     }
     xhttp.open("POST","http://localhost:8000/contactMail", true);
     xhttp.send(mailjson);
+
+backbone();
+
+function backbone(){
+    
+    var Dier = Backbone.Model.extend({
+        initialize:function(){
+            console.log("Nieuw dier geamaakt")
+        }
+    });
+    
+    console.log("in backbone");
+    
+    var kip = new Dier();
+    console.log(kip);
+    
+
 }
