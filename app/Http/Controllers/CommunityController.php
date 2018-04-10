@@ -21,6 +21,7 @@ class CommunityController extends Controller
     public function index()
     {
          $post = Communitypost::all();
+         
 //        $post = Nieuwspost::orderBy('nieuws_id','desc')->take(1)->get();
         return view('community.newsfeed')->with('nieuws',$post);
     }
@@ -50,7 +51,7 @@ class CommunityController extends Controller
         ]);
         $old_name = auth()->user()->name;
         $file = $request->file('image');
-        $filename = $request['titel'] . '-' . auth()->user()->id . '.jpg';
+        $filename = time().$request['titel'] . '-' . auth()->user()->id . '.jpg';
         $update = false;
         
         if (Storage::disk('local')->has($filename)) {
@@ -59,7 +60,6 @@ class CommunityController extends Controller
             $update = true;
         }
         if ($file) {
-            echo "hello";
             Storage::disk('local')->put($filename, File::get($file));
             
         }
@@ -86,9 +86,11 @@ class CommunityController extends Controller
      */
     public function show($id)
     {
-        $post = Communitypost::find($id);
+        $getPost = Communitypost::find($id);
+        $userPost = $getPost->user;
         
-        return view('community.show')->with('post', $post);
+        
+        return view('community.show')->with('post', $getPost);
     }
 
     /**
