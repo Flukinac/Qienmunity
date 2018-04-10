@@ -1,6 +1,6 @@
 <?php
 
-
+use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -12,13 +12,8 @@
 |'hj
 */
 
-//Route::get('/', function () {
-//
-//    return "ok";
-// //   return view('home');
-//});
 
-use Illuminate\Http\Request;
+
 
 Route::get('/community', function () {
     return view('community');
@@ -44,6 +39,11 @@ Route::get('/verify', function () {
     return "testing posting";
 });
 
+
+
+Route::post('/contactMail', 'ContactController@sendContact');
+
+
 Route::auth();
 
 
@@ -53,8 +53,14 @@ Route::get('/home', 'HomeController@index');
 
 Route::resource('nieuwsposts','NieuwsController');
 
+
+
+
 Route::resource('post','PostIdController');
+
+
 
 Route::resource('communitypost','CommunityController');
 
 Route::resource('profiles', 'ProfileController');
+

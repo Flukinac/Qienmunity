@@ -9,10 +9,11 @@
             @foreach($nieuws as $post)
                 <div class='well'>
                     <h3><a href="/communitypost/{{$post->id}}">{{$post->title}}</a></h3>
+
                 </div>
             @endforeach
         @else
-            <p> No Nieuws Posts Yet</p>
+            <p> No Community Posts Yet</p>
         @endif
         
 @endsection
