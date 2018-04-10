@@ -8,7 +8,7 @@
             @foreach($nieuws as $post)
                 <div class='well'>
                     <h3><a href="/communitypost/{{$post->id}}">{{$post->title}}</a></h3>
-                    <h2>De posts {{$post}}</h2>
+
                 </div>
             @endforeach
         @else
