@@ -21,8 +21,10 @@ class CommunityController extends Controller
     public function index()
     {
          $post = Communitypost::all();
+         
 //        $post = Nieuwspost::orderBy('nieuws_id','desc')->take(1)->get();
-        return view('community.newsfeed')->with('nieuws',$post);
+        return view('community.newsfeed')->with('nieuws',$post)
+                                         ->with(controller::authenticate());
     }
 
     /**
@@ -32,7 +34,7 @@ class CommunityController extends Controller
      */
     public function create()
     {
-        return view('community.create');
+        return view('community.create')->with(controller::authenticate());
     }
 
     /**
@@ -50,7 +52,7 @@ class CommunityController extends Controller
         ]);
         $old_name = auth()->user()->name;
         $file = $request->file('image');
-        $filename = $request['titel'] . '-' . auth()->user()->id . '.jpg';
+        $filename = time().$request['titel'] . '-' . auth()->user()->id . '.jpg';
         $update = false;
         
         if (Storage::disk('local')->has($filename)) {
@@ -59,7 +61,6 @@ class CommunityController extends Controller
             $update = true;
         }
         if ($file) {
-            echo "hello";
             Storage::disk('local')->put($filename, File::get($file));
             
         }
@@ -71,7 +72,7 @@ class CommunityController extends Controller
         $post->image = $filename;
         $post->save();
         
-        return view('communitypost');
+        return view('communitypost')->with(controller::authenticate());;
     }
     public function getUserImage($filename)
     {
@@ -86,9 +87,12 @@ class CommunityController extends Controller
      */
     public function show($id)
     {
-        $post = Communitypost::find($id);
+        $getPost = Communitypost::find($id);
+        $userPost = $getPost->user;
         
-        return view('community.show')->with('post', $post);
+        
+        return view('community.show')->with('post', $getPost)
+                                     ->with(controller::authenticate());
     }
 
     /**

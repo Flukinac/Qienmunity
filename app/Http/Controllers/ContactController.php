@@ -16,8 +16,10 @@ class ContactController extends Controller
     public function sendContact(Request $request){
         $title = $request->json()->all()['subject'];
         $mail = $request->json()->all()['text'];
+        $sendFrom = auth()->user()->name;
+        $replyTo = auth()->user()->email;
          
-        mail::send('mailTemplate', ['content' => $mail] ,function($message) use ($title){
+        mail::send('mailTemplate', ['content' => $mail,'sendFrom' => $sendFrom, 'replyTo' => $replyTo] ,function($message) use ($title){
             
             $message->subject($title);
             $message->from('sevisser1@gmail.com','mijzlef');

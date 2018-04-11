@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -14,7 +15,9 @@ use Illuminate\Http\Request;
 
 
 
-use Illuminate\Http\Request;
+
+
+
 
 Route::get('/community', function () {
     return view('community');
@@ -36,9 +39,7 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 });
 
-Route::get('/verify', function () {
-    return "testing posting";
-});
+
 
 
 
@@ -49,19 +50,19 @@ Route::auth();
 
 
 Route::get('/', 'HomeController@index');
-
 Route::get('/home', 'HomeController@index');
 
 Route::resource('nieuwsposts','NieuwsController');
-
-
-
-
-Route::resource('post','PostIdController');
-
-
 
 Route::resource('communitypost','CommunityController');
 
 Route::resource('profiles', 'ProfileController');
 
+Route::resource('post','PostIdController');
+
+
+
+
+
+
+route::get('testauth', 'testController@auth');  

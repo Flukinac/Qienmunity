@@ -15,7 +15,8 @@ class NieuwsController extends Controller
         
         $post = Nieuwspost::all();
 //        $post = Nieuwspost::orderBy('id','desc')->take(1)->get();
-        return view('nieuwspage/nieuws')->with('nieuws',$post);
+        return view('nieuwspage/nieuws')->with('nieuws',$post)
+                                        ->with(controller::authenticate());
     }
     /**
      * Show the form for creating a new resource.
@@ -24,7 +25,7 @@ class NieuwsController extends Controller
      */
     public function create()
     {
-        return view('nieuwspage.create');
+        return view('nieuwspage.create')->with(controller::authenticate());
     }
     /**
      * Store a newly created resource in storage.
@@ -43,7 +44,7 @@ class NieuwsController extends Controller
         $post->content = $request->input('content');
         $post->save();
         
-        return redirect('/nieuwsposts');
+        return redirect('/nieuwsposts')->with(controller::authenticate());
     }
     /**
      * Display the specified resource.
@@ -55,7 +56,8 @@ class NieuwsController extends Controller
     {
         $post = Nieuwspost::find($id);
         
-        return view('nieuwspage.show')->with('post', $post);
+        return view('nieuwspage.show')->with('post', $post)
+                                      ->with(controller::authenticate());
     }
     /**
      * Show the form for editing the specified resource.

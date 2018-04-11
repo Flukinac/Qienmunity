@@ -1,3 +1,5 @@
 /nbproject/private/
 /vendor/
-/.env/
+.env
+.DS Store
+
