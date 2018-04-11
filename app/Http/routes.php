@@ -50,6 +50,7 @@ Route::auth();
 
 
 Route::get('/', 'HomeController@index');
+
 Route::get('/home', 'HomeController@index');
 
 Route::resource('nieuwsposts','NieuwsController');
@@ -60,9 +61,5 @@ Route::resource('profiles', 'ProfileController');
 
 Route::resource('post','PostIdController');
 
+Route::get('testauth', 'testController@auth');  
 
-
-
-
-
-route::get('testauth', 'testController@auth');  
