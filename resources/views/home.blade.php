@@ -16,5 +16,8 @@
         </div>
     </div>
 </div>
+    <div style="background-color: red; color: yellow; display: {{$admin}}"  >admin</div>
+    <div style="background-color: green; color: yellow; display: {{$docent}}" >docent</div>
+    <div style="background-color: blue; color: yellow;" >student</div>
 @endsection
 
