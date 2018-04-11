@@ -17,6 +17,8 @@ use Illuminate\Http\Request;
 
 
 
+
+
 Route::get('/community', function () {
     return view('community');
 });

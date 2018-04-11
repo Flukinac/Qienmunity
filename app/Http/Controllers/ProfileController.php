@@ -15,7 +15,8 @@ class ProfileController extends Controller
     public function index()
     {
         $profiles = Profile::orderBy('username','asc')->paginate(20);
-        return view('profiles.index')->with('profiles', $profiles);
+        return view('profiles.index')->with('profiles', $profiles)
+                                     ->with(controller::authenticate());
         
         
     }
@@ -27,7 +28,7 @@ class ProfileController extends Controller
      */
     public function create()
     {
-        return view('profiles.create');
+        return view('profiles.create')->with(controller::authenticate());
     }
 
     /**
@@ -56,7 +57,8 @@ class ProfileController extends Controller
         }
         $profile->save();
         
-        return redirect('/profiles')->with('success', 'Nieuw profiel succesvol aangemaakt');
+        return redirect('/profiles')->with('success', 'Nieuw profiel succesvol aangemaakt')
+                                    ->with(controller::authenticate());
     }
 
     /**
@@ -68,7 +70,8 @@ class ProfileController extends Controller
     public function show($id)
     {
         $profile = Profile::find($id);
-        return view('profiles.show')->with('profile', $profile);
+        return view('profiles.show')->with('profile', $profile)
+                                    ->with(controller::authenticate());
     }
 
     /**

@@ -2,6 +2,7 @@
 
 @section('content')
         <h1>Nieuw profiel aanmaken</h1>
+        <a href="/profiles" class="btn btn-default">< Ga terug</a><br/><br/>
         {!! Form::open(['action' => 'ProfileController@store', 'method' => 'POST', 'enctype' => 'multipart/form-data', 'files' => true])!!}
             <div class='form-group'>
                 {{Form::label('username', 'Username (voor- en achternaam)')}}

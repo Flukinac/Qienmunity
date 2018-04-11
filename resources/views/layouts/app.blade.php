@@ -46,6 +46,7 @@
 
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
+                @if (auth()->user())
                 <ul class="nav navbar-nav">
                     <li><a href="{{ url('http://localhost:8000') }}">Home</a></li>
                     <li><a href="{{ url('http://localhost:8000/dashboard') }}">Dashboard</a></li>
@@ -55,14 +56,12 @@
                     <li><a href="{{ url('http://localhost:8000/resources') }}">Resources</a></li>
                     <li><a href="{{ url('http://localhost:8000/contact') }}">Contact</a></li>
                 </ul>
-
+                @endif
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->
                     @if (Auth::guest())
                         <li><a href="{{ url('/login') }}">Login</a></li>
-                        <li><a href="{{ url('/register') }}">Nieuwe user aanmaken</a></li>
-
                     @else
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -73,6 +72,7 @@
                                 <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
                             </ul>
                         </li>
+                        <li><a href="{{ url('/register') }}" style="display: {{$admin}}">Nieuwe user aanmaken</a></li>
                     @endif
                 </ul>
             </div>

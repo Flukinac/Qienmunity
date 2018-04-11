@@ -25,7 +25,7 @@ class HomeController extends Controller
      */
     public function index()
     {   
-        return view('home')->with(controller::athenticate());
+        return view('home')->with(controller::authenticate());
     }
 }
 //    $admin = "none";

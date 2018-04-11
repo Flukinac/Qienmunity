@@ -12,7 +12,7 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, AuthorizesResources, DispatchesJobs, ValidatesRequests;
         
-    public static function athenticate(){
+    public static function authenticate(){
         switch(auth()->user()->rol){
                 case 0;
                     $admin = "block";
