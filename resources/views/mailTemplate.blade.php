@@ -1,6 +1,8 @@
 <html>
 <head></head>
-<body style="background: grey; color: white">
-<p>{{$content}}</p>
+<body>
+    <p>{{$content}}</p><br>
+    <div>afzender Qienmunity | {{$sendFrom}}</div><br>
+    <div><h3>stuur uw antwoord naar: {{$replyTo}}</h3></div>
 </body>
 </html>

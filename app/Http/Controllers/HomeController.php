@@ -24,7 +24,21 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        return view('home');
+    {   
+        return view('home')->with(controller::athenticate());
     }
 }
+//    $admin = "none";
+//        $docent = "none";
+//        if(isset(auth()->rol)){
+//            switch(auth()->rol){
+//                case 0;
+//                    $admin = "block";
+//                    $docent = "block";
+//                    return 
+//                break;
+//                case 1;
+//                    $docent = "block";
+//                case 2;
+//                break;        
+//            }
