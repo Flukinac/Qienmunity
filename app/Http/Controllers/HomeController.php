@@ -25,20 +25,6 @@ class HomeController extends Controller
      */
     public function index()
     {   
-        return view('home')->with(controller::authenticate());
+        return view('home');
     }
 }
-//    $admin = "none";
-//        $docent = "none";
-//        if(isset(auth()->rol)){
-//            switch(auth()->rol){
-//                case 0;
-//                    $admin = "block";
-//                    $docent = "block";
-//                    return 
-//                break;
-//                case 1;
-//                    $docent = "block";
-//                case 2;
-//                break;        
-//            }

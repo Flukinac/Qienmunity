@@ -85,6 +85,7 @@
                                 <button type="submit" class="btn btn-primary">
                                     <i class="fa fa-btn fa-user"></i> Maak nieuwe user 
                                 </button>
+                                <a href="/home" class="btn btn-primary"> Terug </a>
                             </div>
                         </div>
                     </form>
