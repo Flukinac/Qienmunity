@@ -63,4 +63,3 @@ Route::resource('post','PostIdController');
 Route::resource('communitypost','CommunityController');
 
 Route::resource('profiles', 'ProfileController');
-

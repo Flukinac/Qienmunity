@@ -79,7 +79,8 @@ class ProfileController extends Controller
      */
     public function edit($id)
     {
-        //
+        $profile = Profile::find($id);
+        return view('profiles.edit')->with('profile', $profile);
     }
 
     /**
@@ -91,7 +92,25 @@ class ProfileController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,[
+            'username'=>'required',
+            'email'=>'required',
+        ]);
+        
+        //Profiel wijzigen
+        
+        $profile = Profile::find($id);
+        $profile->username = $request->input('username');
+        $profile->email = $request->input('email');
+        $profile->dateofbirth = $request->input('dateofbirth');
+        $profile->position = $request->input('position');
+        $profile->biography = $request->input('biography');
+        if($request->input('image')){
+        $profile->image = $request->input('image');
+        }
+        $profile->save();
+        
+        return redirect('/profiles/'.$id)->with('success', 'Profiel succesvol gewijzigd');
     }
 
     /**
