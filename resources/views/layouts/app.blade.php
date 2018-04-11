@@ -62,6 +62,7 @@
                     <!-- Authentication Links -->
                     @if (Auth::guest())
                         <li><a href="{{ url('/login') }}">Login</a></li>
+                        
                     @else
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -72,7 +73,9 @@
                                 <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
                             </ul>
                         </li>
-                        <li><a href="{{ url('/register') }}" style="display: {{$admin}}">Nieuwe user aanmaken</a></li>
+                        @if (auth()->user()->rol <= 0)
+                        <li><a href="{{ url('/register') }}">Nieuwe user aanmaken</a></li>
+                        @endif
                     @endif
                 </ul>
             </div>

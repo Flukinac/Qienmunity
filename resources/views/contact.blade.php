@@ -11,9 +11,7 @@
                 <textarea rows="10" class="text" cols="50" placeholder="text invoer mail" name="contactText"></textarea>
                 <input type="button" onclick="contactPost()" class="contact" value="verzend"><br>
         </center>
-            <div style="background-color: red; color: yellow; display: {{$admin}}"  >admin</div>
-            <div style="background-color: green; color: yellow; display: {{$docent}}" >docent</div>
-            <div style="background-color: blue; color: yellow;" >student</div>
+            
         <div id="mailSucces"></div>
     </body>
 </html>

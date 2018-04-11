@@ -23,8 +23,8 @@ class CommunityController extends Controller
          $post = Communitypost::all();
          
 //        $post = Nieuwspost::orderBy('nieuws_id','desc')->take(1)->get();
-        return view('community.newsfeed')->with('nieuws',$post)
-                                         ->with(controller::authenticate());
+        return view('community.newsfeed')->with('nieuws',$post);
+                                         
     }
 
     /**
@@ -34,7 +34,7 @@ class CommunityController extends Controller
      */
     public function create()
     {
-        return view('community.create')->with(controller::authenticate());
+        return view('community.create');
     }
 
     /**
@@ -72,7 +72,7 @@ class CommunityController extends Controller
         $post->image = $filename;
         $post->save();
         
-        return view('communitypost')->with(controller::authenticate());;
+        return view('communitypost');
     }
     public function getUserImage($filename)
     {
@@ -91,8 +91,8 @@ class CommunityController extends Controller
         $userPost = $getPost->user;
         
         
-        return view('community.show')->with('post', $getPost)
-                                     ->with(controller::authenticate());
+        return view('community.show')->with('post', $getPost);
+                                     
     }
 
     /**
