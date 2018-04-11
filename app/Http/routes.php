@@ -62,5 +62,10 @@ Route::resource('post','PostIdController');
 
 Route::resource('communitypost','CommunityController');
 
+Route::get('/munityimage/{filename}', [
+    'uses' => 'CommunityController@getUserImage',
+    'as' => 'account.image'
+]);
+
 Route::resource('profiles', 'ProfileController');
 
