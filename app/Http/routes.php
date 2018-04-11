@@ -39,7 +39,9 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 });
 
-
+Route::get('/nieuwegebruiker', function () {
+    return view('auth/register');
+});
 
 
 

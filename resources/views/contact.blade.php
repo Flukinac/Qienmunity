@@ -6,10 +6,9 @@
 
 
         <center>
-                <input type="hidden" name="_token" value="{{ csrf_token() }}"> 
-                <input type="text" class="subject" placeholder="onderwerp" name="contactName">onderwerp<br>
-                <textarea rows="10" class="text" cols="50" placeholder="text invoer mail" name="contactText"></textarea>
-                <input type="button" onclick="contactPost()" class="contact" value="verzend"><br>
+                <input type="text" class="subject" placeholder="onderwerp" name="contactName"><br><br>
+                <textarea rows="10" class="text" cols="50" placeholder="text invoer mail" name="contactText"></textarea><br><br>
+                <input type="button" onclick="contactPost()" class="btn btn-primary" value="verzend">
         </center>
             
         <div id="mailSucces"></div>

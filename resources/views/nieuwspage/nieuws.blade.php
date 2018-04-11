@@ -2,7 +2,7 @@
 
 @section('content')
         <h1>Nieuws</h1>
-            @if (auth()->user()->rol <= 0)
+            @if (auth()->user()->rol == 0)
                 <a href="/nieuwsposts/create" class="btn btn-default">Nieuw bericht ></a>
             @endif
             <br/><br/>

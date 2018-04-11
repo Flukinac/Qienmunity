@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    @unless (Auth::check() || Request::url() == "http://localhost:8000/login")
+        <script>window.location.href = "/login";</script>
+    @endunless
+   
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    
     <title>QienMunity</title>
 
     <!-- Fonts -->
@@ -40,7 +44,7 @@
 
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    QienMunity
+                    QienMunity  
                 </a>
             </div>
 
@@ -73,7 +77,7 @@
                                 <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
                             </ul>
                         </li>
-                        @if (auth()->user()->rol <= 0)
+                        @if (auth()->user()->rol == 0)
                         <li><a href="{{ url('/register') }}">Nieuwe user aanmaken</a></li>
                         @endif
                     @endif
