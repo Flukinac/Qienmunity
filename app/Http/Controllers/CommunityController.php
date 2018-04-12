@@ -22,7 +22,6 @@ class CommunityController extends Controller
     {
          $post = Communitypost::orderBy('id','desc')->get();
          
-//        $post = Nieuwspost::orderBy('nieuws_id','desc')->take(1)->get();
         return view('community.newsfeed')->with('nieuws',$post);
     }
 

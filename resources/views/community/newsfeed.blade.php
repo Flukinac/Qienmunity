@@ -8,6 +8,7 @@
             @foreach($nieuws as $post)
                 <div class='well'>
                     <h3><a href="/communitypost/{{$post->id}}">{{$post->title}}</a></h3>
+                    <small>{{$post->content}}</small>
 
                 </div>
             @endforeach
