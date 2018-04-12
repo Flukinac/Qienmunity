@@ -1,8 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-        
-        
+
         <h1>{{$post->title}}</h1><br>
         @if (Storage::disk('local')->has($post->title . '-' . $user->id . '.jpg'))
             <section class="row new-post">
@@ -10,6 +9,7 @@
                     <img src="{{ route('community.image', ['filename' => $post->title . '-' . $user->id . '.jpg']) }}" alt="" class="img-responsive">
                 </div>
             </section>
+
         
         <br>
         <h2>Content</h2>

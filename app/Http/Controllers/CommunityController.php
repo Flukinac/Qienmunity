@@ -23,6 +23,7 @@ class CommunityController extends Controller
          $post = Communitypost::orderBy('id','desc')->get();
          
         return view('community.newsfeed')->with('nieuws',$post);
+                                         
     }
 
     /**
@@ -89,7 +90,9 @@ class CommunityController extends Controller
         $userPost = $getPost->user;
         
         
+
         return view('community.show',['user' => auth()->user()])->with('post', $getPost);
+
     }
 
     /**

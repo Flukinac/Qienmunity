@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    @unless (Auth::check() || Request::url() == "http://localhost:8000/login")
+        <script>window.location.href = "/login";</script>
+    @endunless
+   
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    
     <title>QienMunity</title>
 
     <!-- Fonts -->
@@ -40,12 +44,13 @@
 
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    QienMunity
+                    QienMunity  
                 </a>
             </div>
 
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
+                @if (auth()->user())
                 <ul class="nav navbar-nav">
                     <li><a href="{{ url('http://localhost:8000') }}">Home</a></li>
                     <li><a href="{{ url('http://localhost:8000/dashboard') }}">Dashboard</a></li>
@@ -55,14 +60,13 @@
                     <li><a href="{{ url('http://localhost:8000/resources') }}">Resources</a></li>
                     <li><a href="{{ url('http://localhost:8000/contact') }}">Contact</a></li>
                 </ul>
-
+                @endif
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->
                     @if (Auth::guest())
                         <li><a href="{{ url('/login') }}">Login</a></li>
-                        <li><a href="{{ url('/register') }}">Nieuwe user aanmaken</a></li>
-
+                        
                     @else
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -73,6 +77,9 @@
                                 <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
                             </ul>
                         </li>
+                        @if (auth()->user()->rol == 0)
+                        <li><a href="{{ url('/register') }}">Nieuwe user aanmaken</a></li>
+                        @endif
                     @endif
                 </ul>
             </div>
@@ -88,8 +95,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
-
- 
 
     <script src="{{URL::asset('js/index.js')}}"></script>
 

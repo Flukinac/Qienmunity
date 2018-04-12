@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
 <h1>Home</h1>
 
 <div class="container">
@@ -16,5 +17,12 @@
         </div>
     </div>
 </div>
+    @if (auth()->user()->rol <= 0)
+    <div style="background-color: red; color: yellow;"  >admin</div>
+    @endif
+    @if (auth()->user()->rol <= 1)
+    <div style="background-color: green; color: yellow;" >docent</div>
+    @endif
+    <div style="background-color: blue; color: yellow;" >student</div>
 @endsection
 
