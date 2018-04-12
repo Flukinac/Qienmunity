@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -11,6 +12,9 @@ use Illuminate\Http\Request;
 | and give it the controller to call when that URI is requested.
 |'hj
 */
+
+
+
 
 
 
@@ -35,8 +39,8 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 });
 
-Route::get('/verify', function () {
-    return "testing posting";
+Route::get('/nieuwegebruiker', function () {
+    return view('auth/register');
 });
 
 
@@ -53,14 +57,24 @@ Route::get('/home', 'HomeController@index');
 
 Route::resource('nieuwsposts','NieuwsController');
 
+Route::resource('communitypost','CommunityController');
 
-
+Route::resource('profiles', 'ProfileController');
 
 Route::resource('post','PostIdController');
 
 
 
+
 Route::resource('communitypost','CommunityController');
 
+Route::get('/munityimage/{filename}', [
+    'uses' => 'CommunityController@getUserImage',
+    'as' => 'community.image'
+]);
+
 Route::resource('profiles', 'ProfileController');
+
+Route::get('testauth', 'testController@auth');  
+
 

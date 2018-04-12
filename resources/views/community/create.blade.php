@@ -1,7 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-        <h1>Create Community Post</h1><br>
+        <h1>Nieuwe Community Post</h1><br>
+
+        <a href="/communitypost" class="btn btn-default">< Ga terug</a><br/><br/>
 
         
         {!! Form::open(['action' => 'CommunityController@store', 'method' => 'POST', 'enctype' => 'multipart/form-data','files'=>true]) !!}

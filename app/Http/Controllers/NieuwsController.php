@@ -13,9 +13,11 @@ class NieuwsController extends Controller
     public function index()
     {
         
+
         $post = Nieuwspost::all();
 //        $post = Nieuwspost::orderBy('id','desc')->take(1)->get();
         return view('nieuwspage/nieuws')->with('nieuws',$post);
+                                        
     }
     /**
      * Show the form for creating a new resource.
@@ -56,6 +58,7 @@ class NieuwsController extends Controller
         $post = Nieuwspost::find($id);
         
         return view('nieuwspage.show')->with('post', $post);
+                                      
     }
     /**
      * Show the form for editing the specified resource.
