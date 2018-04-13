@@ -63,18 +63,18 @@ Route::resource('profiles', 'ProfileController');
 
 Route::resource('post','PostIdController');
 
-
-
-
 Route::resource('communitypost','CommunityController');
+
+Route::resource('profiles', 'ProfileController');
+
+Route::get('testauth', 'testController@auth');  
 
 Route::get('/munityimage/{filename}', [
     'uses' => 'CommunityController@getUserImage',
     'as' => 'community.image'
 ]);
 
-Route::resource('profiles', 'ProfileController');
-
-Route::get('testauth', 'testController@auth');  
-
-
+Route::get('/munityimage/{filename}', [
+    'uses' => 'ProfileController@getUserImage',
+    'as' => 'profile.image'
+]);

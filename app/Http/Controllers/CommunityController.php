@@ -44,10 +44,12 @@ class CommunityController extends Controller
      */
     public function store(Request $request)
     {
+//        ==========-----DATA VALIDATION================
         $this->validate($request,[
             'titel' => 'required',
             'content' =>  'required',
         ]);
+//        ==========-----FOTO UPLOAD================
         $old_name = auth()->user()->name;
         $file = $request->file('image');
         $filename = $request['titel'] . '-' . auth()->user()->id . '.jpg';
@@ -62,7 +64,7 @@ class CommunityController extends Controller
             Storage::disk('local')->put($filename, File::get($file));
             
         }
-                
+ //        ==========-----DATABASE SAVING================               
         $post = new Communitypost;
         $post->title = $request->input('titel');
         $post->content = $request->input('content');
@@ -70,7 +72,7 @@ class CommunityController extends Controller
         $post->image = $filename;
         $post->save();
         
-        
+//        ==========-----VIEW================
         return view('community');
     }
     public function getUserImage($filename)
