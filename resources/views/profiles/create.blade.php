@@ -26,7 +26,7 @@
             </div>
             <div class='form-group'>
                 {{Form::label('image', 'Profielfoto')}}
-                {{Form::text('image', '',['class'=>'form-control', 'placeholder'=>'Tijdelijk: url van afbeelding'])}}
+                {{Form::file('image',['class'=>'form-control', 'placeholder'=>'Foto Mothafackaaaaa'])}}
             </div>
             {{Form::submit('Maak profiel aan >', ['class'=>'btn btn-primary'])}}
         {!! Form::close() !!}
