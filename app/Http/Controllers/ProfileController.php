@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 use App\Profile;
 
 class ProfileController extends Controller
@@ -43,6 +46,23 @@ class ProfileController extends Controller
             'username'=>'required',
             'email'=>'required',
         ]);
+
+//        ==========-----FOTO UPLOAD================
+        
+        $old_name = auth()->user()->name;
+        $file = $request->file('image');
+        $filename = $request['username'] . '-' . auth()->user()->id . '.jpg';
+        $update = false;
+        
+        if (Storage::disk('local')->has($filename)) {
+            $old_file = Storage::disk('local')->get($filename);
+            Storage::disk('local')->put($filename, $old_file);
+            $update = true;
+        }
+        if ($file) {
+            Storage::disk('local')->put($filename, File::get($file));
+            
+        }
         
         //Nieuw profiel aanmaken
         
@@ -60,6 +80,12 @@ class ProfileController extends Controller
         return redirect('/profiles')->with('success', 'Nieuw profiel succesvol aangemaakt');
                                     
     }
+    
+    public function getUserImage($filename)
+    {
+        $file = Storage::disk('local')->get($filename);
+        return new Response($file, 200);
+    }
 
     /**
      * Display the specified resource.
@@ -70,7 +96,7 @@ class ProfileController extends Controller
     public function show($id)
     {
         $profile = Profile::find($id);
-        return view('profiles.show')->with('profile', $profile);
+        return view('profiles.show',['user' => auth()->user()])->with('profile', $profile);
                                     
     }
 

@@ -10,10 +10,10 @@
                 </div>
             </section>
 
-        
-        <br>
-        <h2>Content</h2>
+            <br>
+            <h2>Content</h2>
         @endif
+        
         <p>{{$post->content}}</p>
         <hr>
         <small>@Geschreven op {{$post->created_at}} door {{$post->user->name}}</small>
