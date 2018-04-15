@@ -52,13 +52,13 @@
                 <!-- Left Side Of Navbar -->
                 @if (auth()->user())
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ url('http://localhost:8000') }}">Home</a></li>
-                    <li><a href="{{ url('http://localhost:8000/dashboard') }}">Dashboard</a></li>
-                    <li><a href="{{ url('http://localhost:8000/profiles') }}">Profiel</a></li>
-                    <li><a href="{{ url('http://localhost:8000/nieuwsposts') }}">Nieuws</a></li>
-                    <li><a href="{{ url('http://localhost:8000/communitypost') }}">Community</a></li>
-                    <li><a href="{{ url('http://localhost:8000/resources') }}">Resources</a></li>
-                    <li><a href="{{ url('http://localhost:8000/contact') }}">Contact</a></li>
+                    <li><a href="{{ url('/') }}">Home</a></li>
+                    <li><a href="{{ url('/dashboard') }}">Dashboard</a></li>
+                    <li><a href="{{ url('/profiles') }}">Profielen</a></li>
+                    <li><a href="{{ url('/nieuwsposts') }}">Nieuws</a></li>
+                    <li><a href="{{ url('/communitypost') }}">Community</a></li>
+                    <li><a href="{{ url('/resources') }}">Resources</a></li>
+                    <li><a href="{{ url('/contact') }}">Contact</a></li>
                 </ul>
                 @endif
                 <!-- Right Side Of Navbar -->
@@ -70,9 +70,9 @@
                     @else
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                <@if (Storage::disk('local')->has(auth()->user()->name . '-' . auth()->user()->id . '.jpg'))
+                                @if (Storage::disk('local')->has(auth()->user()->name . '-' . auth()->user()->id . '.jpg'))
 
-                                    <li><img src="{{ route('profile.image', ['filename' => auth()->user()->name . '-' . auth()->user()->id . '.jpg']) }}" alt="" class="img-responsive"></li>
+                                <li><a href="/myprofile"><img width=30px src="{{ route('profile.image', ['filename' => auth()->user()->name . '-' . auth()->user()->id . '.jpg']) }}" alt="" class="img-responsive"></a></li>
    
                                 @endif
                                 {{ auth()->user()->name }} <span class="caret"></span>
@@ -80,6 +80,7 @@
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{ url('/myprofile') }}"><i class="fa fa-btn"></i>Mijn profiel</a></li>
                                 <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
                             </ul>
                         </li>
