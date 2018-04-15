@@ -27,6 +27,10 @@ Route::get('/nieuwegebruiker', function () {
     return view('auth/register');
 });
 
+Route::get('/login', function () {
+    return view('auth.login');
+});
+
 Route::post('/contactMail', 'ContactController@sendContact');
 
 Route::get('/', 'HomeController@index');
