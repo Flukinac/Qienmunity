@@ -23,7 +23,6 @@
         body {
             font-family: 'Lato';
         }
-
         .fa-btn {
             margin-right: 6px;
         }
@@ -70,7 +69,8 @@
                     @else
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                <@if (Storage::disk('local')->has(auth()->user()->name . '-' . auth()->user()->id . '.jpg'))
+
+                                @if (Storage::disk('local')->has(auth()->user()->name . '-' . auth()->user()->id . '.jpg'))
 
                                     <li><img src="{{ route('profile.image', ['filename' => auth()->user()->name . '-' . auth()->user()->id . '.jpg']) }}" alt="" class="img-responsive"></li>
    
@@ -80,6 +80,7 @@
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{ url('/myprofile') }}"><i class="fa fa-btn"></i>Mijn profiel</a></li>
                                 <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
                             </ul>
                         </li>
