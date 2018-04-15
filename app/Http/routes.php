@@ -80,6 +80,6 @@ Route::get('/munityimage/{filename}', [
 ]);
  
 Route::get('/auth/success', [
-    'as'   => 'auth.success',
-    'uses' => 'Auth\AuthController@success'
+    'uses' => 'Auth\AuthController@success',
+    'as'   => 'auth.success'
 ]);
