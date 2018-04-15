@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 use App\Profile;
+use App\User;
 
 class ProfileController extends Controller
 {
@@ -18,6 +22,14 @@ class ProfileController extends Controller
         return view('profiles.index')->with('profiles', $profiles);
                                      
         
+        
+    }
+    
+        public function myProfile()
+    {
+        $user_id = auth()->user()->id;
+        $user = User::find($user_id);
+        return view('profiles.myprofile')->with('profile', $user->profile);
         
     }
 
@@ -43,6 +55,23 @@ class ProfileController extends Controller
             'username'=>'required',
             'email'=>'required',
         ]);
+
+//        ==========-----FOTO UPLOAD================
+        
+        $old_name = auth()->user()->name;
+        $file = $request->file('image');
+        $filename = $request['username'] . '-' . auth()->user()->id . '.jpg';
+        $update = false;
+        
+        if (Storage::disk('local')->has($filename)) {
+            $old_file = Storage::disk('local')->get($filename);
+            Storage::disk('local')->put($filename, $old_file);
+            $update = true;
+        }
+        if ($file) {
+            Storage::disk('local')->put($filename, File::get($file));
+            
+        }
         
         //Nieuw profiel aanmaken
         
@@ -55,10 +84,17 @@ class ProfileController extends Controller
         if($request->input('image')){
         $profile->image = $request->input('image');
         }
+        $profile->user_id = auth()->user()->id;
         $profile->save();
         
         return redirect('/profiles')->with('success', 'Nieuw profiel succesvol aangemaakt');
                                     
+    }
+    
+    public function getUserImage($filename)
+    {
+        $file = Storage::disk('local')->get($filename);
+        return new Response($file, 200);
     }
 
     /**
@@ -70,7 +106,7 @@ class ProfileController extends Controller
     public function show($id)
     {
         $profile = Profile::find($id);
-        return view('profiles.show')->with('profile', $profile);
+        return view('profiles.show',['user' => auth()->user()])->with('profile', $profile);
                                     
     }
 
@@ -126,4 +162,6 @@ class ProfileController extends Controller
     {
         //
     }
+    
+    
 }

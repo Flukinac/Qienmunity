@@ -10,7 +10,6 @@
             <li><b>Bio: </b>{{$profile->biography}}</li>
             <li><b>E-mail: </b>{{$profile->email}}</li>
         </ul>
-        <a href ="/profiles/{{$profile->id}}/edit" class="btn btn-default">Profiel bewerken ></a>
         <hr/>
         <small>Laatst geüpdate op: {{$profile->updated_at}}</small>
 @endsection
