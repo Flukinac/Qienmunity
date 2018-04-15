@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use Validator;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
@@ -28,7 +29,7 @@ class AuthController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/register';
+    protected $redirectTo = 'auth/register';
 
     /**
      * Create a new authentication controller instance.
@@ -70,5 +71,24 @@ class AuthController extends Controller
             'rol'=> $data['rol'],
             'password' => bcrypt($data['password']),
         ]);
+    }
+    public function register(Request $request)
+{
+    $validator = $this->validator($request->all());
+ 
+    if ($validator->fails()) {
+        $this->throwValidationException(
+            $request, $validator
+        );
+    }
+ 
+    $this->create($request->all());
+ 
+    return redirect(route('auth.success')); // Change this route to your needs
+}
+
+    public function success()
+    {
+        return view('auth/register');
     }
 }

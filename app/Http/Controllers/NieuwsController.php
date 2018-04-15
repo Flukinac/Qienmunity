@@ -3,6 +3,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Nieuwspost;
 use App\Http\Requests;
+use Illuminate\Pagination\PaginationServiceProvider;
+
 class NieuwsController extends Controller
 {
     /**
@@ -13,8 +15,8 @@ class NieuwsController extends Controller
     public function index()
     {
         
-        $post = Nieuwspost::orderBy('id','desc')->get();
-        return view('nieuwspage/nieuws')->with('nieuws',$post);
+        $post = Nieuwspostd::paginate(6);
+        return view('nieuwspage/nieuws',['nieuws'=>$post]);
                                         
     }
     /**

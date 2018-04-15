@@ -78,3 +78,8 @@ Route::get('/munityimage/{filename}', [
     'uses' => 'ProfileController@getUserImage',
     'as' => 'profile.image'
 ]);
+ 
+Route::get('/auth/success', [
+    'as'   => 'auth.success',
+    'uses' => 'Auth\AuthController@success'
+]);
