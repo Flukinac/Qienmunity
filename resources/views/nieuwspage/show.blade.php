@@ -5,7 +5,6 @@
 
 <a href="/nieuwsposts" class="btn btn-default">< Ga terug</a><br/><br/>
   
-        
 
         <h1>{{$post->title}}</h1><br>
         <p>{{$post->content}}</p>

@@ -69,6 +69,7 @@
                     @else
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+
                                 @if (Storage::disk('local')->has(auth()->user()->name . '-' . auth()->user()->id . '.jpg'))
 
                                     <li><img src="{{ route('profile.image', ['filename' => auth()->user()->name . '-' . auth()->user()->id . '.jpg']) }}" alt="" class="img-responsive"></li>

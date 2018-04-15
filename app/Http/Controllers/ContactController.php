@@ -23,7 +23,7 @@ class ContactController extends Controller
             
             $message->subject($title);
             $message->from('sevisser1@gmail.com','mijzlef');
-            $message->to('sevisser1@gmail.com');
+            $message->to('jack.corrigan@qien.nl');
    
         });
         echo "Email Sent.";
