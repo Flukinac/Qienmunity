@@ -23,7 +23,6 @@
         body {
             font-family: 'Lato';
         }
-
         .fa-btn {
             margin-right: 6px;
         }
@@ -68,7 +67,10 @@
                         <li><a href="{{ url('/login') }}">Login</a></li>
                         
                     @else
-                    @if (Storage::disk('local')->has(auth()->user()->name . '-' . auth()->user()->id . '.jpg'))
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+
+                                @if (Storage::disk('local')->has(auth()->user()->name . '-' . auth()->user()->id . '.jpg'))
 
                                 <li><a href="/myprofile"><img width=30px src="{{ route('profile.image', ['filename' => auth()->user()->name . '-' . auth()->user()->id . '.jpg']) }}" alt="" class="img-responsive"></a></li>
    
@@ -76,7 +78,11 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                 {{ auth()->user()->name }} <span class="caret"></span>
-                                                            <ul class="dropdown-menu" role="menu">
+                                
+                            </a>
+
+                            <ul class="dropdown-menu" role="menu">
+                                
                                 <li><a href="{{ url('/myprofile') }}"><i class="fa fa-btn"></i>Mijn profiel</a></li>
                                 <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
                             </ul>
