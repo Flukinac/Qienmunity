@@ -57,7 +57,7 @@ Route::get('/', 'HomeController@index');
 Route::get('/home', 'HomeController@index');
 
 route::get('/nieuwsposts/{$id}',function($id){
-       return view(nieuwspost/show)->with('post', $id);
+       return view('nieuwspost/show')->with('post', $id);
 });
 
 Route::resource('nieuwsposts','NieuwsController');

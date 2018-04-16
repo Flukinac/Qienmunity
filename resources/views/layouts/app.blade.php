@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    @unless (Auth::check() || Request::url() == "http://localhost:8000/login")
+    @unless (Auth::check())
         <script>window.location.href = "/login";</script>
     @endunless
    
