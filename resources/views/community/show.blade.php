@@ -6,7 +6,7 @@
         @if (Storage::disk('local')->has($post->title . '-' . $user->id . '.jpg'))
             <section class="row new-post">
                 <div class="col-md-6 col-md-offset-3">
-                    <img src="{{ route('community.image', ['filename' => $post->title . '-' . $user->id . '.jpg']) }}" alt="" class="img-responsive">
+                    
                 </div>
             </section>
 

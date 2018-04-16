@@ -2,22 +2,6 @@
 
 use Illuminate\Http\Request;
 
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the controller to call when that URI is requested.
-|'hj
-*/
-
-
-
-
-
-
 
 Route::get('/community', function () {
     return view('community');
@@ -43,7 +27,9 @@ Route::get('/nieuwegebruiker', function () {
     return view('auth/register');
 });
 
-
+//Route::get('/login', function () {
+//    return view('auth.login');
+//});
 
 Route::post('/contactMail', 'ContactController@sendContact');
 
