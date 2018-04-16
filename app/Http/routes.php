@@ -47,6 +47,7 @@ Route::get('/nieuwegebruiker', function () {
 
 Route::post('/contactMail', 'ContactController@sendContact');
 
+Route::post('/search', 'NieuwsController@searching');
 
 Route::auth();
 
@@ -68,6 +69,8 @@ Route::resource('communitypost','CommunityController');
 Route::resource('profiles', 'ProfileController');
 
 Route::get('testauth', 'testController@auth');  
+
+
 
 Route::get('/munityimage/{filename}', [
     'uses' => 'CommunityController@getUserImage',

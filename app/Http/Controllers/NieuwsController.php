@@ -15,7 +15,7 @@ class NieuwsController extends Controller
     public function index()
     {
         
-        $post = Nieuwspostd::paginate(6);
+        $post = Nieuwspost::paginate(6);
         return view('nieuwspage/nieuws',['nieuws'=>$post]);
                                         
     }
@@ -54,11 +54,9 @@ class NieuwsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        $post = Nieuwspost::find($id);
-        
-        return view('nieuwspage.show')->with('post', $post);
-                                      
+    {   
+            $post = Nieuwspost::find($id);
+            return view('nieuwspage/show')->with('post', $post);                       
     }
     /**
      * Show the form for editing the specified resource.
@@ -90,5 +88,12 @@ class NieuwsController extends Controller
     public function destroy($id)
     {
         //
+    }
+    
+    public function searching(Request $request){
+        $query = $request;
+        $posts = $query ? Nieuwspost::find($query)->orderBy('id', 'desc')->paginate(6) : Nieuwspost::all();
+        return view ('nieuwspage/show')->with('post', $posts);
+        
     }
 }
