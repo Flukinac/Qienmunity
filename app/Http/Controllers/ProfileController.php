@@ -162,7 +162,7 @@ class ProfileController extends Controller
         }
         $profile->save();
         
-        return redirect('/profiles/'.$id)->with('success', 'Profiel succesvol gewijzigd');
+        return redirect('/myprofile')->with('success', 'Profiel succesvol gewijzigd');
     }
 
     /**
