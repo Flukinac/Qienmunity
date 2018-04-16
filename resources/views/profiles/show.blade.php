@@ -6,7 +6,7 @@
         <ul>
             <li>@if (Storage::disk('local')->has($profile->username . '-' . $user->id . '.jpg'))
                 <section class="row new-post">
-                        <img width = 250px src="{{ route('profile.image', ['filename' => $profile->username . '-' . $user->id . '.jpg']) }}" alt="" class="img-responsive">
+                        <img width=250px src="{{ route('profile.image', ['filename' => $profile->username . '-' . $user->id . '.jpg']) }}" alt="" class="img-responsive">
                     </section>
                 @endif</li>
             <li><b>Geboortedatum: </b>{{$profile->dateofbirth}}</li>
