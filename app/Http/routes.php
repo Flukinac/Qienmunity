@@ -34,16 +34,10 @@ Route::group(['middleware' => 'auth'], function () {
         return view('auth/register');
     });
 
-    //Route::get('/login', function () {
-    //    return view('auth.login');
-    //});
 
     Route::post('/contactMail', 'ContactController@sendContact');
 
     Route::post('/search', 'NieuwsController@searching');
-
-
-
 
 
     Route::get('/home', [
@@ -51,8 +45,6 @@ Route::group(['middleware' => 'auth'], function () {
             );
 
     Route::resource('nieuwsposts','NieuwsController');
-
-    //Route::resource('communitypost','CommunityController');
 
     Route::resource('profiles', 'ProfileController');
 
