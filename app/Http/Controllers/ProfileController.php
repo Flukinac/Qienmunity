@@ -133,23 +133,22 @@ class ProfileController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request,[
-            'image'=>'required',
             'email'=>'required',
         ]);
         
         //        ==========-----FOTO UPDATE================
-        
+        if($request->input('image')){
         $old_name = auth()->user()->name;
-        $old_filename = $old_name . '-' . auth()->user()->id . '.jpg';
-//        DELETE FILE FROM STORAGE.
-        Storage::delete($old_filename);
-//        ADD FILE TO STORAGE
-        $file = $request->file('image');
-        $filename = $old_name . '-' . auth()->user()->id . '.jpg';
+            $old_filename = $old_name . '-' . auth()->user()->id . '.jpg';
+    //        DELETE FILE FROM STORAGE.
+            Storage::delete($old_filename);
+    //        ADD FILE TO STORAGE
+            $file = $request->file('image');
+            $filename = $old_name . '-' . auth()->user()->id . '.jpg';
 
-        Storage::disk('local')->put($filename, File::get($file));
+            Storage::disk('local')->put($filename, File::get($file));
 
-        
+        }
         //Profiel wijzigen
         
         $profile = Profile::find($id);
