@@ -72,13 +72,12 @@ Route::resource('profiles', 'ProfileController');
 Route::get('testauth', 'testController@auth');  
 
 
-
 Route::get('/munityimage/{filename}', [
     'uses' => 'CommunityController@getUserImage',
     'as' => 'community.image'
 ]);
 
-Route::get('/munityimage/{filename}', [
+Route::get('/profileimage/{filename}', [
     'uses' => 'ProfileController@getUserImage',
     'as' => 'profile.image'
 ]);
