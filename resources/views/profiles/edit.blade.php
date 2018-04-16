@@ -2,12 +2,9 @@
 
 @section('content')
         <h1>Profiel bewerken</h1>
-        <a href="/profiles" class="btn btn-default">< Ga terug</a><br/><br/>
-        {!! Form::open(['action' => ['ProfileController@update', $profile->id],'method' => 'POST', 'enctype' => 'multipart/form-data', 'files' => true])!!}
-            <div class='form-group'>
-                {{Form::label('username', 'Username (voor- en achternaam)')}}
-                {{Form::text('username', $profile->username,['class'=>'form-control', 'placeholder'=>'Username (voor- en achternaam)'])}}
-            </div>
+        <h2>{{$profile->username}}</h2>
+        <a href="/myprofile" class="btn btn-default">< Ga terug</a><br/><br/>
+        {!! Form::open(['action' => ['ProfileController@update', $profile->id], 'method' => 'POST', 'enctype' => 'multipart/form-data', 'files' => true])!!}
             <div class='form-group'>
                 {{Form::label('email', 'E-mail')}}
                 {{Form::text('email', $profile->email,['class'=>'form-control', 'placeholder'=>'example@qien.nl'])}}
@@ -26,7 +23,7 @@
             </div>
             <div class='form-group'>
                 {{Form::label('image', 'Profielfoto')}}
-                {{Form::text('image', $profile->image,['class'=>'form-control', 'placeholder'=>'Tijdelijk: url van afbeelding'])}}
+                {{Form::file('image',['class'=>'form-control'])}}
             </div>
             {{Form::hidden('_method','PUT')}}
             {{Form::submit('Wijzig profiel >', ['class'=>'btn btn-primary'])}}
