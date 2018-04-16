@@ -3,6 +3,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Nieuwspost;
 use App\Http\Requests;
+use Illuminate\Pagination\PaginationServiceProvider;
+
 class NieuwsController extends Controller
 {
     /**
@@ -13,8 +15,8 @@ class NieuwsController extends Controller
     public function index()
     {
         
-        $post = Nieuwspost::orderBy('id','desc')->get();
-        return view('nieuwspage/nieuws')->with('nieuws',$post);
+        $post = Nieuwspost::paginate(6);
+        return view('nieuwspage/nieuws',['nieuws'=>$post]);
                                         
     }
     /**
@@ -52,11 +54,9 @@ class NieuwsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        $post = Nieuwspost::find($id);
-        
-        return view('nieuwspage.show')->with('post', $post);
-                                      
+    {   
+            $post = Nieuwspost::find($id);
+            return view('nieuwspage/show')->with('post', $post);                       
     }
     /**
      * Show the form for editing the specified resource.
@@ -88,5 +88,12 @@ class NieuwsController extends Controller
     public function destroy($id)
     {
         //
+    }
+    
+    public function searching(Request $request){
+        $query = $request;
+        $posts = $query ? Nieuwspost::find($query)->orderBy('id', 'desc')->paginate(6) : Nieuwspost::all();
+        return view ('nieuwspage/show')->with('post', $posts);
+        
     }
 }

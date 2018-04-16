@@ -27,12 +27,15 @@ Route::get('/nieuwegebruiker', function () {
     return view('auth/register');
 });
 
-Route::get('/login', function () {
-    return view('auth.login');
-});
-Route::auth();
+//Route::get('/login', function () {
+//    return view('auth.login');
+//});
 
 Route::post('/contactMail', 'ContactController@sendContact');
+
+Route::post('/search', 'NieuwsController@searching');
+
+Route::auth();
 
 Route::get('/', 'HomeController@index');
 
@@ -54,6 +57,8 @@ Route::resource('profiles', 'ProfileController');
 
 Route::get('testauth', 'testController@auth');  
 
+
+
 Route::get('/munityimage/{filename}', [
     'uses' => 'CommunityController@getUserImage',
     'as' => 'community.image'
@@ -62,4 +67,9 @@ Route::get('/munityimage/{filename}', [
 Route::get('/munityimage/{filename}', [
     'uses' => 'ProfileController@getUserImage',
     'as' => 'profile.image'
+]);
+ 
+Route::get('/auth/success', [
+    'uses' => 'Auth\AuthController@success',
+    'as'   => 'auth.success'
 ]);
