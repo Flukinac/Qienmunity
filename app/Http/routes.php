@@ -77,7 +77,7 @@ Route::get('/munityimage/{filename}', [
     'as' => 'community.image'
 ]);
 
-Route::get('/munityimage/{filename}', [
+Route::get('/profileimage/{filename}', [
     'uses' => 'ProfileController@getUserImage',
     'as' => 'profile.image'
 ]);

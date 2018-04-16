@@ -144,7 +144,7 @@ class ProfileController extends Controller
         Storage::delete($old_filename);
 //        ADD FILE TO STORAGE
         $file = $request->file('image');
-        $filename = $request['username'] . '-' . auth()->user()->id . '.jpg';
+        $filename = $old_name . '-' . auth()->user()->id . '.jpg';
 
         Storage::disk('local')->put($filename, File::get($file));
 
