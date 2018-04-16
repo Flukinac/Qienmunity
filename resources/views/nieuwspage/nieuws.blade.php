@@ -21,7 +21,7 @@
                 </div>              
             
             @endforeach
-
+            {{$nieuws->links()}}
         @else
             <p> No Nieuws Posts Yet</p>
         @endif
