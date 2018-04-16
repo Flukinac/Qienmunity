@@ -3,7 +3,7 @@
 @section('content')
         <h1>Profiel bewerken</h1>
         <a href="/myprofile" class="btn btn-default">< Ga terug</a><br/><br/>
-        {!! Form::open(['action' => 'ProfileController@store', 'method' => 'POST', 'enctype' => 'multipart/form-data', 'files' => true])!!}
+        {!! Form::open(['action' => ['ProfileController@update', $profile->id], 'method' => 'POST', 'enctype' => 'multipart/form-data', 'files' => true])!!}
             <div class='form-group'>
                 {{Form::label('username', 'Username (voor- en achternaam)')}}
                 {{Form::text('username', $profile->username,['class'=>'form-control', 'placeholder'=>'Username (voor- en achternaam)'])}}

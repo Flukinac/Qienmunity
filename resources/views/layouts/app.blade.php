@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    @unless (Auth::check() || Request::url() == "http://localhost:8000/login")
+    @unless (Auth::check() || Request::url() == "/login")
         <script>window.location.href = "/login";</script>
     @endunless
    
@@ -87,9 +87,9 @@
                                 <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
                             </ul>
                         </li>    
-                        @if (auth()->user()->rol == 0)
+    
                         <li><a href="{{ url('/register') }}">Nieuwe user aanmaken</a></li>
-                        @endif
+
                     @endif
                 </ul>
             </div>

@@ -30,6 +30,7 @@ Route::get('/nieuwegebruiker', function () {
 Route::get('/login', function () {
     return view('auth.login');
 });
+Route::auth();
 
 Route::post('/contactMail', 'ContactController@sendContact');
 
