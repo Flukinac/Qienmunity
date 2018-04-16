@@ -7,6 +7,7 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use App\Profile;
+use App\User;
 
 class ProfileController extends Controller
 {
@@ -21,6 +22,14 @@ class ProfileController extends Controller
         return view('profiles.index')->with('profiles', $profiles);
                                      
         
+        
+    }
+    
+        public function myProfile()
+    {
+        $user_id = auth()->user()->id;
+        $user = User::find($user_id);
+        return view('profiles.myprofile')->with('profile', $user->profile);
         
     }
 
@@ -75,6 +84,7 @@ class ProfileController extends Controller
         if($request->input('image')){
         $profile->image = $request->input('image');
         }
+        $profile->user_id = auth()->user()->id;
         $profile->save();
         
         return redirect('/profiles')->with('success', 'Nieuw profiel succesvol aangemaakt');
@@ -165,4 +175,6 @@ class ProfileController extends Controller
     {
         //
     }
+    
+    
 }
