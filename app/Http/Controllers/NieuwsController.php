@@ -41,6 +41,7 @@ class NieuwsController extends Controller
             'content' =>  'required',
         ]);
         $post = new Nieuwspost;
+        $post->user_id = auth()->user()->id;
         $post->title = $request->input('titel');
         $post->content = $request->input('content');
         $post->save();
@@ -56,7 +57,7 @@ class NieuwsController extends Controller
     public function show($id)
     {   
             $post = Nieuwspost::find($id);
-            return view('nieuwspage/show')->with('post', $post);                       
+            return view('nieuwspage.show')->with('post', $post);                     
     }
     /**
      * Show the form for editing the specified resource.
