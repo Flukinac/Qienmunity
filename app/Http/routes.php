@@ -51,7 +51,6 @@ Route::post('/search', 'NieuwsController@searching');
 
 Route::auth();
 
-
 Route::get('/', 'HomeController@index');
 
 Route::get('/home', 'HomeController@index');
