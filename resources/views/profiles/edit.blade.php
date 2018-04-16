@@ -26,7 +26,7 @@
             </div>
             <div class='form-group'>
                 {{Form::label('image', 'Profielfoto')}}
-                {{Form::text('image', $profile->image,['class'=>'form-control', 'placeholder'=>'Tijdelijk: url van afbeelding'])}}
+                {{Form::file('image',['class'=>'form-control'])}}
             </div>
             {{Form::hidden('_method','PUT')}}
             {{Form::submit('Wijzig profiel >', ['class'=>'btn btn-primary'])}}

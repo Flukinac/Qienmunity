@@ -56,12 +56,12 @@ class ProfileController extends Controller
         
         if (Storage::disk('local')->has($filename)) {
             $old_file = Storage::disk('local')->get($filename);
-            Storage::disk('local')->put($filename, $old_file);
+            Storage::delete($old_file);
+            Storage::disk('local')->put($filename, File::get($file));
             $update = true;
         }
-        if ($file) {
+        else if ($file) {
             Storage::disk('local')->put($filename, File::get($file));
-            
         }
         
         //Nieuw profiel aanmaken
@@ -125,6 +125,19 @@ class ProfileController extends Controller
             'username'=>'required',
             'email'=>'required',
         ]);
+        
+        //        ==========-----FOTO UPDATE================
+        
+        $old_name = auth()->user()->name;
+        $old_filename = $old_name . '-' . auth()->user()->id . '.jpg';
+//        DELETE FILE FROM STORAGE.
+        Storage::delete($old_filename);
+//        ADD FILE TO STORAGE
+        $file = $request->file('image');
+        $filename = $request['username'] . '-' . auth()->user()->id . '.jpg';
+
+        Storage::disk('local')->put($filename, File::get($file));
+
         
         //Profiel wijzigen
         
