@@ -62,6 +62,8 @@ Route::resource('communitypost','CommunityController');
 
 Route::resource('profiles', 'ProfileController');
 
+Route::get('/myprofile', 'ProfileController@myProfile');
+
 Route::resource('post','PostIdController');
 
 Route::resource('communitypost','CommunityController');
