@@ -16,7 +16,7 @@ class NieuwsController extends Controller
     {
         
         $post = Nieuwspost::paginate(6);
-        return view('nieuwspage/nieuws',['nieuws'=>$post]);
+        return view('nieuwspage/nieuws')->with('nieuws', $post);
                                         
     }
     /**
@@ -92,8 +92,8 @@ class NieuwsController extends Controller
     
     public function searching(Request $request){
         $query = $request;
-        $posts = $query ? Nieuwspost::find($query)->orderBy('id', 'desc')->paginate(6) : Nieuwspost::all();
-        return view ('nieuwspage/show')->with('post', $posts);
+        $posts = $query ? Nieuwspost::find($query)->orderBy('id', 'desc') : Nieuwspost::all();
+        return view ('nieuwspage/show')->with('post', $posts)->paginate(6);
         
     }
 }
