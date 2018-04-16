@@ -1,5 +1,4 @@
 @extends('layouts.app')
-
 @section('content')
         <a href="/profiles" class="btn btn-default">< Terug naar alle profielen</a>
         <h1> {{$profile->username}} </h1>
