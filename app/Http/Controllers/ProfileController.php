@@ -60,7 +60,7 @@ class ProfileController extends Controller
         
         $old_name = auth()->user()->name;
         $file = $request->file('image');
-        $filename = $request['username'] . '-' . auth()->user()->id . '.jpg';
+        $filename = auth()->user()->name . '-' . auth()->user()->id . '.jpg';
         $update = false;
         
         if (Storage::disk('local')->has($filename)) {
