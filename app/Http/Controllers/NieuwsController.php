@@ -41,6 +41,7 @@ class NieuwsController extends Controller
             'content' =>  'required',
         ]);
         $post = new Nieuwspost;
+        $post->user_id = auth()->user()->id;
         $post->title = $request->input('titel');
         $post->content = $request->input('content');
         $post->save();
