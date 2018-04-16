@@ -15,7 +15,7 @@
         @if(count($nieuws) >= 1)
             @foreach($nieuws as $post)
                 <div class='well'>
-                    <h3><a href="/nieuwsposts/{{$post}}">{{$post->title}}</a></h3>
+                    <h3><a href="/nieuwsposts/{{$post->id}}">{{$post->title}}</a></h3>
                     <div><h4>{{str_limit($post->content, 50)}}</h4></div><br>
                     <div><h5>Gepost op: {{$post->created_at}}</h5></div>
                 </div>              
