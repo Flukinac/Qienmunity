@@ -137,7 +137,7 @@ class ProfileController extends Controller
         ]);
         
         //        ==========-----FOTO UPDATE================
-        if($request->input('image')){
+        if($request->file('image')){
         $old_name = auth()->user()->name;
             $old_filename = $old_name . '-' . auth()->user()->id . '.jpg';
     //        DELETE FILE FROM STORAGE.
@@ -156,7 +156,7 @@ class ProfileController extends Controller
         $profile->dateofbirth = $request->input('dateofbirth');
         $profile->position = $request->input('position');
         $profile->biography = $request->input('biography');
-        if($request->input('image')){
+        if($request->file('image')){
         $profile->image = $request->input('image');
         }
         $profile->save();
