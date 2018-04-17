@@ -28,7 +28,7 @@
                         {!! Form::open(['action' => ['NieuwsController@update', $post->id], 'method' => 'POST'])!!}
                             {{Form::hidden('_method', 'PUT')}}
                             {{Form::hidden('unpin', 'unpin')}}
-                            {{Form::submit('unpin', ['class' => 'btn btn-primary'])}}
+                            {{Form::submit('Unpin', ['class' => 'btn btn-primary'])}}
                         {!!Form::close()!!}  
                     @endif
                     @endif
@@ -39,7 +39,7 @@
             <p> Geen Pinned Posts</p>
         @endif
         <hr>
-        <hr>
+
         
         @if(count($nieuws) >= 1)
             @foreach($nieuws as $post)
@@ -60,7 +60,7 @@
                         {!! Form::open(['action' => ['NieuwsController@update', $post->id], 'method' => 'POST'])!!}
                             {{Form::hidden('_method', 'PUT')}}
                             {{Form::hidden('pinned', 'pinned')}}
-                            {{Form::submit('bookmark', ['class' => 'btn btn-primary'])}}
+                            {{Form::submit('Pin', ['class' => 'btn btn-primary'])}}
                         {!!Form::close()!!}  
                     @endif
                 </div>              
