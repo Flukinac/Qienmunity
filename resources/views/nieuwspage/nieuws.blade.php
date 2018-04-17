@@ -50,8 +50,9 @@
                         
                     @endif
                     @if (auth()->user()->rol == 0)
-                        {!!Form::open(['route' => ['nieuws.bookmark', $post->id], 'method' => 'POST'])!!}
+                        {!! Form::open(['action' => ['NieuwsController@update', $post->id], 'method' => 'POST'])!!}
                             {{Form::hidden('_method', 'PUT')}}
+                            {{Form::hidden('pinned', 'pinned')}}
                             {{Form::submit('bookmark', ['class' => 'btn btn-primary'])}}
                         {!!Form::close()!!}  
                     @endif

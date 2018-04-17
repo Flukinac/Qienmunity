@@ -82,18 +82,28 @@ class NieuwsController extends Controller
 
     public function update(Request $request, $id)
     {
-        $this->validate($request,[
-            'titel' => 'required',
-            'content' =>  'required',
-        ]);
-        $post = Nieuwspost::find($id);
-        $post->title = $request->input('titel');
-        $post->content = $request->input('content');
+        if(!$request->pinned){
+            $this->validate($request,[
+                'titel' => 'required',
+                'content' =>  'required',
+            ]);
+            $post = Nieuwspost::find($id);
+            $post->title = $request->input('titel');
+            $post->content = $request->input('content');
+        }else{
+            $post = Nieuwspost::find($id);
+            $post->pinned = 1;
+        }
+            
         $post->save();
         
-        return redirect('/nieuwsposts')->with('success', 'Post succesvol gewijzigd');
-
+        if(!$request->pinned){
+            return redirect('/nieuwsposts')->with('success', 'Post succesvol gewijzigd');
+        }else{
+             return redirect('/nieuwsposts')->with('success', 'Post succesvol gewijzigd');
+        }
     }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -107,10 +117,4 @@ class NieuwsController extends Controller
         return redirect('/nieuwsposts')->with('success', 'Post is verwijderd');
     }
     
-    public function bookmark(Request $request, $id){
-        
-         $post = Nieuwspost::find($id);
-         $post->pinned = 1;
-         return redirect('/nieuwsposts')->with('success', 'De post is #pinned');
-    }
 }
