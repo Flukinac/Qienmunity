@@ -40,9 +40,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/search', 'NieuwsController@searching');
 
 
-    Route::get('/home', [
-        'uses'=>'HomeController@index']
-            );
+    Route::get('/home','HomeController@index');
+    
+    Route::post('comments/{post_id}', ['uses' => 'CommentController@store', 'as' => 'comments.store']);
 
     Route::resource('nieuwsposts','NieuwsController');
 
