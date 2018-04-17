@@ -13,7 +13,13 @@ class ExampleTest extends TestCase
      */
     public function testBasicExample()
     {
+        $this->assertTrue(true);
+    }
+    
+        public function testProfileHasUserId()
+    {
         $this->visit('/')
-             ->see('Laravel 5');
+             ->see('qienmunity')
+             ->dontSee('henk');
     }
 }

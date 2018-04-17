@@ -73,7 +73,7 @@ class ProfileController extends Controller
             Storage::disk('local')->put($filename, File::get($file));
         }
         
-        //Nieuw profiel aanmaken
+//        ==========-----PROFIEL AANMAKEN================
         
         $profile = new Profile;
         $profile->username = $request->input('username');

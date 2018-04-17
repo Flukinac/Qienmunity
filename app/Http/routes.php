@@ -1,9 +1,8 @@
 <?php
 
 use Illuminate\Http\Request;
-
-
-
+use App\User;
+use App\Profile;
 
 Route::auth();
 Route::get('/', 'HomeController@index');
@@ -38,7 +37,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/contactMail', 'ContactController@sendContact');
 
     Route::post('/search', 'NieuwsController@searching');
-
 
     Route::get('/home', [
         'uses'=>'HomeController@index']
