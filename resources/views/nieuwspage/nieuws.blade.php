@@ -20,7 +20,10 @@
                     <div><h5>Gepost op: {{$post->created_at}}</h5></div>
                     @if (auth()->user()->rol == 0||(auth()->user()->id == $post->id))
                         <a href ="/nieuwsposts/{{$post->id}}/edit" class="btn btn-primary" > Wijzig Nieuwspost</a>
-                        <a href ="/nieuwsposts/{{$post->id}}/destroy" class="btn btn-danger" > Verwijder Nieuwspost</a>   
+                        {!!Form::open(['action' => ['NieuwsController@destroy', $post->id], 'method' => 'POST', 'class' => 'pull-right'])!!}
+                            {{Form::hidden('_method', 'DELETE')}}
+                            {{Form::submit('Delete', ['class' => 'btn btn-danger'])}}
+                        {!!Form::close()!!}  
                     @endif
                 </div>              
             
