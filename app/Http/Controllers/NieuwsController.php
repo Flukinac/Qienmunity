@@ -68,7 +68,8 @@ class NieuwsController extends Controller
     
     public function edit($id)
     {
-        //
+        $post = Nieuwspost::find($id);
+        return view('nieuwspage.edit')->with('post', $post); 
     }
     /**
      * Update the specified resource in storage.
@@ -77,11 +78,20 @@ class NieuwsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
-    {   
-        $query = $request->json()->all()['term'];
-        $posts = Nieuwspost::find($query);
-        return view ('nieuwspage/show')->with('post', $posts);
+
+    public function update(Request $request, $id)
+    {
+        $this->validate($request,[
+            'titel' => 'required',
+            'content' =>  'required',
+        ]);
+        $post = Nieuwspost::find($id);
+        $post->title = $request->input('titel');
+        $post->content = $request->input('content');
+        $post->save();
+        
+        return redirect('/nieuwsposts');
+
     }
     /**
      * Remove the specified resource from storage.
@@ -91,7 +101,9 @@ class NieuwsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post = Nieuwspost::find($id);
+        $post->delete();
+        return redirect('/nieuwsposts');
     }
     
 }
