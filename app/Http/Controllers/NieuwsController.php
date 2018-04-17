@@ -80,8 +80,9 @@ class NieuwsController extends Controller
     public function update(Request $request)
     {   
         $query = $request->json()->all()['term'];
-        $posts = Nieuwspost::find($query);
-        return view ('nieuwspage/show')->with('post', $posts);
+        $zoek = Nieuwspost::find($query);
+        $posts = DB::table('nieuwsposts')->where('title', LIKE $zoek)->first();
+        return $query; ('name', 'John')->value('email');
     }
     /**
      * Remove the specified resource from storage.

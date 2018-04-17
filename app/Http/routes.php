@@ -47,8 +47,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::resource('profiles', 'ProfileController');
 
-    Route::get('/myprofile',[
-        'uses'=>'ProfileController@myProfile'] );
+    Route::get('/myprofile','ProfileController@myProfile' );
 
     Route::resource('post','PostIdController');
 
