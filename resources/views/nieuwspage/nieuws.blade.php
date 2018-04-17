@@ -18,6 +18,10 @@
                     <h3><a href="/nieuwsposts/{{$post->id}}">{{$post->title}}</a></h3>
                     <div><h4>{{str_limit($post->content, 50)}}</h4></div><br>
                     <div><h5>Gepost op: {{$post->created_at}}</h5></div>
+                    @if (auth()->user()->rol == 0||(auth()->user()->id == $post->id))
+                        <a href ="/nieuwsposts/{{$post->id}}/edit" class="btn btn-primary" > Wijzig Nieuwspost</a>
+                        <a href ="/nieuwsposts/{{$post->id}}/destroy" class="btn btn-danger" > Verwijder Nieuwspost</a>   
+                    @endif
                 </div>              
             
             @endforeach
