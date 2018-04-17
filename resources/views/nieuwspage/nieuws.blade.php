@@ -24,6 +24,13 @@
                             {{Form::hidden('_method', 'DELETE')}}
                             {{Form::submit('Delete', ['class' => 'btn btn-danger'])}}
                         {!!Form::close()!!}  
+                         @if (auth()->user()->rol == 0)
+                        {!! Form::open(['action' => ['NieuwsController@update', $post->id], 'method' => 'POST'])!!}
+                            {{Form::hidden('_method', 'PUT')}}
+                            {{Form::hidden('unpin', 'unpin')}}
+                            {{Form::submit('unpin', ['class' => 'btn btn-primary'])}}
+                        {!!Form::close()!!}  
+                    @endif
                     @endif
                 </div>              
             

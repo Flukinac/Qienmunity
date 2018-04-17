@@ -82,7 +82,7 @@ class NieuwsController extends Controller
 
     public function update(Request $request, $id)
     {
-        if(!$request->pinned){
+        if((!$request->pinned) && (!$request->unpin)){
             $this->validate($request,[
                 'titel' => 'required',
                 'content' =>  'required',
@@ -90,9 +90,12 @@ class NieuwsController extends Controller
             $post = Nieuwspost::find($id);
             $post->title = $request->input('titel');
             $post->content = $request->input('content');
-        }else{
+        }elseif(!$request->unpin){
             $post = Nieuwspost::find($id);
             $post->pinned = 1;
+        }else{
+            $post = Nieuwspost::find($id);
+            $post->pinned = 0;
         }
             
         $post->save();
@@ -100,7 +103,7 @@ class NieuwsController extends Controller
         if(!$request->pinned){
             return redirect('/nieuwsposts')->with('success', 'Post succesvol gewijzigd');
         }else{
-             return redirect('/nieuwsposts')->with('success', 'Post succesvol gewijzigd');
+             return redirect('/nieuwsposts')->with('success', 'Post succesvol vastgepint');
         }
     }
 
