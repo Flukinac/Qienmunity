@@ -13,9 +13,14 @@ class ExampleTest extends TestCase
      */
     public function testBasicExample()
     {
-        $buttonText = 'submit';
-        $this->visit('/nieuwsposts/create')
-        ->press($buttonText)
-        ->assertRedirectedToRoute('/nieuwsposts');
+
+        $this->assertTrue(true);
+    }
+    
+        public function testProfileHasUserId()
+    {
+        $this->visit('/')
+             ->see('qienmunity')
+             ->dontSee('henk');
     }
 }

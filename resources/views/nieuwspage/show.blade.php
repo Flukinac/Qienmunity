@@ -3,6 +3,7 @@
 @section('content')
         
 
+
 <a href="/nieuwsposts" class="btn btn-default">< Ga terug</a><br/><br/>
 
         <div class="row">
@@ -42,6 +43,7 @@
                 {{ Form::close() }}
         </div>
       
+
         
         
 @endsection

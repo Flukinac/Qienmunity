@@ -42,7 +42,11 @@
                             <label for="rol" class="col-md-4 control-label">Rol</label>
 
                             <div class="col-md-6">
-                                <input id="rol" type="text" class="form-control" name="rol" value="{{ old('rol') }}">
+                                <select id="rol" name="rol" class="form-control">
+                                    <option>Admin</option>
+                                    <option>Trainee</option>
+                                    <option>Docent</option>
+                                </select>
 
                                 @if ($errors->has('rol'))
                                     <span class="help-block">
