@@ -103,7 +103,7 @@ class AuthController extends Controller
  
     $this->create($request->all());
  
-    return redirect(route('auth.success')); // Change this route to your needs
+    return redirect('/register')->with('success', 'Gebruiker succesvol aangemaakt'); // Change this route to your needs
 }
 
     public function success()
