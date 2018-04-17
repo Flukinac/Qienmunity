@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Auth;
 
+use DB;
 use App\User;
+use App\Profile;
 use Validator;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -64,14 +66,23 @@ class AuthController extends Controller
      * @return User
      */
     protected function create(array $data)
-    {
-        return User::create([
+    {  
+        User::create ([
             'name' => $data['name'],
             'email' => $data['email'],
             'rol'=> $data['rol'],
-            'password' => bcrypt($data['password']),
+            'password' => bcrypt($data['password'])
+        ]); 
+        
+        $user = DB::table('users')->where('email', $data['email'])->first();
+
+        Profile::create ([
+            'username' => $user->name,
+            'email' => $user->email,
+            'user_id' => $user->id
         ]);
     }
+     
     public function register(Request $request)
 {
     $validator = $this->validator($request->all());

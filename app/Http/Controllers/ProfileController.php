@@ -73,7 +73,7 @@ class ProfileController extends Controller
             Storage::disk('local')->put($filename, File::get($file));
         }
         
-        //Nieuw profiel aanmaken
+//        ==========-----PROFIEL AANMAKEN================
         
         $profile = new Profile;
         $profile->username = $request->input('username');
@@ -137,7 +137,7 @@ class ProfileController extends Controller
         ]);
         
         //        ==========-----FOTO UPDATE================
-        if($request->input('image')){
+        if($request->file('image')){
         $old_name = auth()->user()->name;
             $old_filename = $old_name . '-' . auth()->user()->id . '.jpg';
     //        DELETE FILE FROM STORAGE.
@@ -156,12 +156,12 @@ class ProfileController extends Controller
         $profile->dateofbirth = $request->input('dateofbirth');
         $profile->position = $request->input('position');
         $profile->biography = $request->input('biography');
-        if($request->input('image')){
+        if($request->file('image')){
         $profile->image = $request->input('image');
         }
         $profile->save();
         
-        return redirect('/profiles/'.$id)->with('success', 'Profiel succesvol gewijzigd');
+        return redirect('/myprofile')->with('success', 'Profiel succesvol gewijzigd');
     }
 
     /**
