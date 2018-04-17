@@ -67,6 +67,14 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {  
+        if($data['rol'] == 'Admin'){
+            $data['rol'] = 0;
+        } elseif ($data['rol'] == 'Trainee'){
+            $data['rol'] = 1;
+        } elseif ($data['rol'] == 'Docent'){
+            $data['rol'] = 2;
+        } 
+        
         User::create ([
             'name' => $data['name'],
             'email' => $data['email'],
