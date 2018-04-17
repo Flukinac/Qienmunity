@@ -41,7 +41,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/home','HomeController@index');
     
     Route::post('comments/{post_id}', ['uses' => 'CommentController@store', 'as' => 'comments.store']);
-
+   
+    Route::post('bookmark/{post_id}', ['uses' => 'NieuwsController@bookmark', 'as' => 'nieuws.bookmark']);
 
     Route::resource('nieuwsposts','NieuwsController');
 
