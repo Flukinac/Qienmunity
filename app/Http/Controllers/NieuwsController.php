@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
+use DB;
 use App\Nieuwspost;
 use App\Http\Requests;
 use Illuminate\Pagination\PaginationServiceProvider;
@@ -14,9 +15,9 @@ class NieuwsController extends Controller
      */
     public function index()
     {
-        
-        $post = Nieuwspost::paginate(6);
-        return view('nieuwspage/nieuws')->with('nieuws', $post);
+        $pinned = DB::table('nieuwsposts')->where('pinned', 1)->get();
+        $post =  DB::table('nieuwsposts')->where('pinned', 0)->paginate(6);
+        return view('nieuwspage/nieuws')->with('nieuws', $post)->with('pinned', $pinned);
                                         
     }
     /**
@@ -90,7 +91,7 @@ class NieuwsController extends Controller
         $post->content = $request->input('content');
         $post->save();
         
-        return redirect('/nieuwsposts');
+        return redirect('/nieuwsposts')->with('success', 'Post succesvol gewijzigd');
 
     }
     /**
@@ -103,7 +104,13 @@ class NieuwsController extends Controller
     {
         $post = Nieuwspost::find($id);
         $post->delete();
-        return redirect('/nieuwsposts');
+        return redirect('/nieuwsposts')->with('success', 'Post is verwijderd');
     }
     
+    public function bookmark(Request $request, $id){
+        
+         $post = Nieuwspost::find($id);
+         $post->pinned = 1;
+         return redirect('/nieuwsposts')->with('success', 'De post is #pinned');
+    }
 }

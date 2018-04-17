@@ -7,6 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'AddNewsidToComments' => $baseDir . '/database/migrations/2018_04_16_131927_add_newsid_to_comments.php',
+    'AddPinnedpostToNieuwspostsTable' => $baseDir . '/database/migrations/2018_04_17_135823_add_pinnedpost_to_nieuwsposts_table.php',
     'AddUserIdComments' => $baseDir . '/database/migrations/2018_04_06_133705_add_user_id_comments.php',
     'AddUserIdCommunity' => $baseDir . '/database/migrations/2018_04_06_133842_add_user_id_community.php',
     'AddUserIdNieuwspost' => $baseDir . '/database/migrations/2018_04_06_133856_add_user_id_nieuwspost.php',
@@ -16,7 +17,6 @@ return array(
     'CreateCommunitypostsTable' => $baseDir . '/database/migrations/2018_04_03_183404_create_communityposts_table.php',
     'CreateNieuwspostsTable' => $baseDir . '/database/migrations/2018_04_03_183319_create_nieuwsposts_table.php',
     'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
-    'CreateProfielsTable' => $baseDir . '/database/migrations/2018_04_08_191424_create_profiels_table.php',
     'CreateProfileTable' => $baseDir . '/database/migrations/2018_04_04_130926_create_profile_table.php',
     'CreateResourcepostsTable' => $baseDir . '/database/migrations/2018_04_03_183116_create_resourceposts_table.php',
     'CreateUsersTable' => $baseDir . '/database/migrations/2014_10_12_000000_create_users_table.php',

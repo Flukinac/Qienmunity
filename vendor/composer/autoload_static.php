@@ -270,6 +270,7 @@ class ComposerStaticInit6d643484cedaa02e7d1304e937782957
 
     public static $classMap = array (
         'AddNewsidToComments' => __DIR__ . '/../..' . '/database/migrations/2018_04_16_131927_add_newsid_to_comments.php',
+        'AddPinnedpostToNieuwspostsTable' => __DIR__ . '/../..' . '/database/migrations/2018_04_17_135823_add_pinnedpost_to_nieuwsposts_table.php',
         'AddUserIdComments' => __DIR__ . '/../..' . '/database/migrations/2018_04_06_133705_add_user_id_comments.php',
         'AddUserIdCommunity' => __DIR__ . '/../..' . '/database/migrations/2018_04_06_133842_add_user_id_community.php',
         'AddUserIdNieuwspost' => __DIR__ . '/../..' . '/database/migrations/2018_04_06_133856_add_user_id_nieuwspost.php',
@@ -279,7 +280,6 @@ class ComposerStaticInit6d643484cedaa02e7d1304e937782957
         'CreateCommunitypostsTable' => __DIR__ . '/../..' . '/database/migrations/2018_04_03_183404_create_communityposts_table.php',
         'CreateNieuwspostsTable' => __DIR__ . '/../..' . '/database/migrations/2018_04_03_183319_create_nieuwsposts_table.php',
         'CreatePasswordResetsTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
-        'CreateProfielsTable' => __DIR__ . '/../..' . '/database/migrations/2018_04_08_191424_create_profiels_table.php',
         'CreateProfileTable' => __DIR__ . '/../..' . '/database/migrations/2018_04_04_130926_create_profile_table.php',
         'CreateResourcepostsTable' => __DIR__ . '/../..' . '/database/migrations/2018_04_03_183116_create_resourceposts_table.php',
         'CreateUsersTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_000000_create_users_table.php',

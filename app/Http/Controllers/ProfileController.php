@@ -20,9 +20,7 @@ class ProfileController extends Controller
     {
         $profiles = Profile::orderBy('username','asc')->paginate(20);
         return view('profiles.index')->with('profiles', $profiles);
-                                     
-        
-        
+  
     }
     
         public function myProfile()
