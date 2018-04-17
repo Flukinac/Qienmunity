@@ -36,7 +36,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::post('/contactMail', 'ContactController@sendContact');
 
-    Route::post('/zoek', 'NieuwsController@update');
+    Route::post('/zoek', 'NieuwsController@index');
 
     Route::get('/home','HomeController@index');
     

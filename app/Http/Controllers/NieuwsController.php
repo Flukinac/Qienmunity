@@ -14,16 +14,15 @@ class NieuwsController extends Controller
      */
     public function index(Request $request)
     {
-        
-        $query = $request->json()->all()['term'];
-        //$zoek = Nieuwspost::find($query);
-        $posts = Nieuwspost::
-                where('title', 'like', '%'.$query.'%')
-                ->get();
-        return $posts;
+        if (!empty($request->json()->all()['term'])){
+            $query = $request->json()->all()['term'];  
+            $postquery = Nieuwspost::where('title', 'like', '%'.$query.'%')->get();
+                    
+            return view('nieuwspage/nieuws')->with('nieuws', $postquery);
+        }else{
         $post = Nieuwspost::paginate(6);
         return view('nieuwspage/nieuws')->with('nieuws', $post);
-                                        
+        }                                
     }
     /**
      * Show the form for creating a new resource.
