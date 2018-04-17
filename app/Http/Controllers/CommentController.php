@@ -28,4 +28,12 @@ class CommentController extends Controller
         
         return redirect('nieuwsposts/'.$post_id)->with('post', $post)->with('success', 'Comment geplaatst');
     }
+    
+       public function destroy($id)
+    {
+        $comment = Comment::find($id);
+        $comment->delete();
+        return redirect('nieuwsposts/'.$post_id)->with('post', $post)->with('success', 'Comment verwijderd');
+    }
+    
 }

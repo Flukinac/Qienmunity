@@ -20,9 +20,6 @@ class ProfileController extends Controller
     {
         $profiles = Profile::orderBy('username','asc')->paginate(20);
         return view('profiles.index')->with('profiles', $profiles);
-                                     
-        
-        
     }
     
         public function myProfile()
@@ -30,7 +27,6 @@ class ProfileController extends Controller
         $user_id = auth()->user()->id;
         $user = User::find($user_id);
         return view('profiles.myprofile')->with('profile', $user->profile);
-        
     }
 
     /**
@@ -118,7 +114,6 @@ class ProfileController extends Controller
      */
     public function edit($id)
     {
-  
         $profile = Profile::find($id);
         return view('profiles.edit')->with('profile', $profile);
     }

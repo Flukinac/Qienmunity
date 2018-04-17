@@ -1,10 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-        
-
-
-<a href="/nieuwsposts" class="btn btn-default">< Ga terug</a><br/><br/>
+        <a href="/nieuwsposts" class="btn btn-default">< Ga terug</a><br/><br/>
 
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
@@ -21,6 +18,20 @@
 			@foreach($post->comments as $comment)
 				<div class="comment">
 					<p>{{$comment->content}}</p>
+                                        
+                                        
+                                        
+                                        
+                        @if (auth()->user()->rol == 0||(auth()->user()->id == $post->id))
+                        {!!Form::open(['action' => ['CommentController@destroy', $comment->id], 'method' => 'POST', 'class' => 'pull-right'])!!}
+                            {{Form::hidden('_method', 'DELETE')}}
+                            {{Form::submit('Delete', ['class' => 'btn btn-danger'])}}
+                        {!!Form::close()!!}
+                    @endif
+                    
+                    
+                    
+                    
                                         <small>Geschreven door {{$comment->user->name}}</small>
                                         <hr>
 				</div>
@@ -41,14 +52,6 @@
                         </div>
 
                 {{ Form::close() }}
-        </div>
-      
-
-<a href="/nieuwsposts" class="btn btn-default"> Ga terug</a><br/><br/>
-  
-        {{print_r($post)}}
-        
-
-        
+        </div>        
         
 @endsection
