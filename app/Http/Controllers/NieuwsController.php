@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
+use DB;
 use App\Nieuwspost;
 use App\Http\Requests;
 use Illuminate\Pagination\PaginationServiceProvider;
@@ -14,6 +15,7 @@ class NieuwsController extends Controller
      */
     public function index(Request $request)
     {
+<<<<<<< HEAD
         if (!empty($request->json()->all()['term'])){
             $query = $request->json()->all()['term'];  
             $postquery = Nieuwspost::where('title', 'like', '%'.$query.'%')->get();
@@ -23,6 +25,12 @@ class NieuwsController extends Controller
         $post = Nieuwspost::paginate(6);
         return view('nieuwspage/nieuws')->with('nieuws', $post);
         }                                
+=======
+        $pinned = DB::table('nieuwsposts')->where('pinned', 1)->get();
+        $post =  DB::table('nieuwsposts')->where('pinned', 0)->paginate(6);
+        return view('nieuwspage/nieuws')->with('nieuws', $post)->with('pinned', $pinned);
+                                        
+>>>>>>> test
     }
     /**
      * Show the form for creating a new resource.
@@ -88,19 +96,37 @@ class NieuwsController extends Controller
 
     public function update(Request $request, $id)
     {
-        $this->validate($request,[
-            'titel' => 'required',
-            'content' =>  'required',
-        ]);
-        $post = Nieuwspost::find($id);
-        $post->title = $request->input('titel');
-        $post->content = $request->input('content');
+        if((!$request->pinned) && (!$request->unpin)){
+            $this->validate($request,[
+                'titel' => 'required',
+                'content' =>  'required',
+            ]);
+            $post = Nieuwspost::find($id);
+            $post->title = $request->input('titel');
+            $post->content = $request->input('content');
+        }elseif(!$request->unpin){
+            $post = Nieuwspost::find($id);
+            $post->pinned = 1;
+        }else{
+            $post = Nieuwspost::find($id);
+            $post->pinned = 0;
+        }
+            
         $post->save();
         
+<<<<<<< HEAD
         return redirect('/nieuwsposts');
 
 
+=======
+        if(!$request->pinned){
+            return redirect('/nieuwsposts')->with('success', 'Post succesvol gewijzigd');
+        }else{
+             return redirect('/nieuwsposts')->with('success', 'Post succesvol vastgepint');
+        }
+>>>>>>> test
     }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -111,7 +137,7 @@ class NieuwsController extends Controller
     {
         $post = Nieuwspost::find($id);
         $post->delete();
-        return redirect('/nieuwsposts');
+        return redirect('/nieuwsposts')->with('success', 'Post is verwijderd');
     }
     
 }
