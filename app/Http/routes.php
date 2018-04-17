@@ -1,9 +1,8 @@
 <?php
 
 use Illuminate\Http\Request;
-
-
-
+use App\User;
+use App\Profile;
 
 Route::auth();
 Route::get('/', 'HomeController@index');
@@ -37,12 +36,12 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::post('/contactMail', 'ContactController@sendContact');
 
-    Route::post('/search', 'NieuwsController@searching');
-
+    Route::post('/zoek', 'NieuwsController@update');
 
     Route::get('/home','HomeController@index');
     
     Route::post('comments/{post_id}', ['uses' => 'CommentController@store', 'as' => 'comments.store']);
+
 
     Route::resource('nieuwsposts','NieuwsController');
 
