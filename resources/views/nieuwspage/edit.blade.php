@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-@if (auth()->user()->id == $post->user_id)
+@if (auth()->user()->id == $post->user_id||auth()->user()->rol == 0)
 
 
         <h1>Nieuws Post Bewerken</h1>
