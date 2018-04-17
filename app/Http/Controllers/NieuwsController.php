@@ -76,9 +76,11 @@ class NieuwsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
+    public function update(Request $request)
+    {   
+        $query = $request->json()->all()['term'];
+        $posts = Nieuwspost::find($query);
+        return view ('nieuwspage/show')->with('post', $posts);
     }
     /**
      * Remove the specified resource from storage.
@@ -91,10 +93,4 @@ class NieuwsController extends Controller
         //
     }
     
-    public function searching(Request $request){
-        $query = $request;
-        $posts = $query ? Nieuwspost::find($query)->orderBy('id', 'desc') : Nieuwspost::all();
-        return view ('nieuwspage/show')->with('post', $posts)->paginate(6);
-        
-    }
 }
