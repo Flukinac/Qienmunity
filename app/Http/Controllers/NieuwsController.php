@@ -16,7 +16,7 @@ class NieuwsController extends Controller
     public function index()
     {
         $pinned = DB::table('nieuwsposts')->where('pinned', 1)->get();
-        $post =  DB::table('nieuwsposts')->where('pinned', 0)->paginate(6);
+        $post = Nieuwspost::orderBy('id','desc')->where('pinned', 0)->paginate(6);
         return view('nieuwspage/nieuws')->with('nieuws', $post)->with('pinned', $pinned);
                                         
     }
