@@ -1,11 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
+<div class="spacer"></div>
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Nieuwe user</div>
+                <div class="panel-heading" id="qien--background-colour">Nieuwe user</div>
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
                         {{ csrf_field() }}
@@ -86,10 +87,10 @@
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-primary" id="qien--background-colour">
                                     <i class="fa fa-btn fa-user"></i> Maak nieuwe user
                                 </button>
-                                <a href="/home" class="btn btn-primary"> Terug </a>
+                                <a href="/home" class="btn btn-primary" id="qien--background-colour"> Terug </a>
                             </div>
                         </div>
                     </form>

@@ -16,7 +16,8 @@
     <!-- Styles -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
-    {{ HTML::style('css/app.layout.css'); }}
+    <link rel="stylesheet" href="{{ URL::asset('css/layout.css') }}" />
+
    
 
     <style>
@@ -42,7 +43,7 @@
                 </button>
 
                 <!-- Branding Image -->
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand" href="{{ url('/') }}" id="qien--colour">
                     QienMunity  
                 </a>
             </div>
@@ -64,7 +65,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->
                     @if (Auth::guest())
-                        <li><a href="{{ url('/login') }}">Login</a></li>
+                        <li><a href="{{ url('/login') }}"id="qien--colour">Login</a></li>
                         
                     @else
                         <li class="dropdown">

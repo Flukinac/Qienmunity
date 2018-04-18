@@ -15,7 +15,7 @@ class NieuwsController extends Controller
      */
     public function index()
     {
-        $pinned = DB::table('nieuwsposts')->where('pinned', 1)->get();
+        $pinned = Nieuwspost::orderBy('id','asc')->where('pinned', 1)->take(3)->paginate(3);
         $post = Nieuwspost::orderBy('id','desc')->where('pinned', 0)->paginate(6);
         return view('nieuwspage/nieuws')->with('nieuws', $post)->with('pinned', $pinned);
                                         
@@ -91,8 +91,13 @@ class NieuwsController extends Controller
             $post->title = $request->input('titel');
             $post->content = $request->input('content');
         }elseif(!$request->unpin){
+            $pinned = Nieuwspost::all()->where('pinned', 1);
+            if(count($pinned)<3){
             $post = Nieuwspost::find($id);
             $post->pinned = 1;
+            }else{
+                return redirect('/nieuwsposts')->with('error', 'Er kunnen maximaal 3 post worden gepind');
+            }
         }else{
             $post = Nieuwspost::find($id);
             $post->pinned = 0;
