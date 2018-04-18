@@ -7,6 +7,8 @@ and open the template in the editor.
     Created on : Apr 18, 2018, 11:52:12 AM
     Author     : rikaikman
 */
+
+/*============================  GENERAL CSS ================================*/
 #qien--background-colour{
     background-color:#9d3ff391;
     border:#9d3ff3
@@ -25,24 +27,27 @@ and open the template in the editor.
     height:50px;
 }
 
-#navbar{
-    
+hr{
+    float:none;
 }
 
+/*============================  NAVBAR CSS  ================================*/
+
 #Qienbrand{
-    color:#9d3ff3;
-    
+    color:#9d3ff3;   
 }
+
+/*===========================   =NIEUWSPAGINA CSS   =========================*/
 .well{
+    
     background-color: #fff;
 }
+
 .card-group{
     display: flex;
     justify-content: center;
 }
-hr{
-    float:none;
-}
+
 .card{
     width:  30%;
     float: left;
@@ -53,6 +58,7 @@ hr{
 .card-body{
     padding:3.5%;
 }
+
 .card-img-top{
     height:100px;
     width:100%;
