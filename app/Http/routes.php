@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use App\Controllers\CommentControllers;
 use App\User;
 use App\Profile;
 
@@ -9,6 +10,8 @@ Route::get('/', 'HomeController@index');
 
 Route::group(['middleware' => 'auth'], function () {
 
+    //Standaard views routes
+    
     Route::get('/community', function () {
         return view('community');
     });
@@ -32,32 +35,49 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/nieuwegebruiker', function () {
         return view('auth/register');
     });
+    
+    Route::get('/myprofile',[
+    'uses'=>'ProfileController@myProfile'] );
 
+    
+    //Resource routes
+    
+    Route::resource('nieuwsposts','NieuwsController');
 
+    Route::resource('profiles', 'ProfileController');
+    
+    Route::resource('post','PostIdController');
+
+    Route::resource('communitypost','CommunityController');
+
+    Route::resource('profiles', 'ProfileController');
+    
+    
+    //Methode routes
+    
     Route::post('/contactMail', 'ContactController@sendContact');
 
     Route::post('/zoek', 'NieuwsController@search');
     
     Route::get('/home','HomeController@index');
     
-    Route::post('comments/{post_id}', ['uses' => 'CommentController@store', 'as' => 'comments.store']);
+    Route::post('nieuwscomment/{post_id}', ['uses' => 'NieuwsCommentController@store', 'as' => 'nieuwscomment.store']);
+    
+    Route::delete('nieuwscommentdelete/{comment_id}', ['uses' => 'NieuwsCommentController@destroy', 'as' => 'nieuwscomment.destroy']);
    
     Route::post('bookmark/{post_id}', ['uses' => 'NieuwsController@bookmark', 'as' => 'nieuws.bookmark']);
 
-    Route::resource('nieuwsposts','NieuwsController');
 
-    Route::resource('profiles', 'ProfileController');
 
     Route::get('/myprofile','ProfileController@myProfile' );
 
-    Route::resource('post','PostIdController');
 
-    Route::resource('communitypost','CommunityController');
 
-    Route::resource('profiles', 'ProfileController');
+
+    
+    
 
     Route::get('testauth', 'testController@auth');  
-
 
     Route::get('/munityimage/{filename}', [
         'uses' => 'CommunityController@getUserImage',
