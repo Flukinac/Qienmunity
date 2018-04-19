@@ -44,17 +44,23 @@ function query(jsondata){
             }
         },
         data: jsondata,
+            
         
         success:function(data){
-            alert(data);
+            $(".well").html(data["gender"] + "<br />JSON: " + data["json"]
+        );
+          //return this.responseText;
         },error:function(){ 
-            alert("error!!!!");
+            //alert("error!!!!");
         }
+        
     }); 
+    
 }
 
     
-    
+
+
 
     
     

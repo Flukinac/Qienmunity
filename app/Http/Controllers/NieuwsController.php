@@ -15,22 +15,11 @@ class NieuwsController extends Controller
      */
     public function index(Request $request)
     {
-<<<<<<< HEAD
-        if (!empty($request->json()->all()['term'])){
-            $query = $request->json()->all()['term'];  
-            $postquery = Nieuwspost::where('title', 'like', '%'.$query.'%')->get();
-                    
-            return view('nieuwspage/nieuws')->with('nieuws', $postquery);
-        }else{
-        $post = Nieuwspost::paginate(6);
-        return view('nieuwspage/nieuws')->with('nieuws', $post);
-        }                                
-=======
-        $pinned = DB::table('nieuwsposts')->where('pinned', 1)->get();
-        $post =  DB::table('nieuwsposts')->where('pinned', 0)->paginate(6);
-        return view('nieuwspage/nieuws')->with('nieuws', $post)->with('pinned', $pinned);
-                                        
->>>>>>> test
+
+            $pinned = DB::table('nieuwsposts')->where('pinned', 1)->get();
+            $post = DB::table('nieuwsposts')->where('pinned', 0)->paginate(6);
+            return view('nieuwspage/nieuws')->with('nieuws', $post)->with('pinned', $pinned);
+
     }
     /**
      * Show the form for creating a new resource.
@@ -114,17 +103,17 @@ class NieuwsController extends Controller
             
         $post->save();
         
-<<<<<<< HEAD
+
         return redirect('/nieuwsposts');
 
 
-=======
+
         if(!$request->pinned){
             return redirect('/nieuwsposts')->with('success', 'Post succesvol gewijzigd');
         }else{
              return redirect('/nieuwsposts')->with('success', 'Post succesvol vastgepint');
         }
->>>>>>> test
+
     }
 
     /**
@@ -139,5 +128,12 @@ class NieuwsController extends Controller
         $post->delete();
         return redirect('/nieuwsposts')->with('success', 'Post is verwijderd');
     }
-    
+    public function search(Request $request){
+     
+            $query = $request->json()->all()['term'];  
+            $postquery = Nieuwspost::where('title', 'like', '%'.$query.'%')->get();
+            //print_r($postquery);      
+           return view('/nieuwspage.post')->with('post', $postquery);
+        
+    }
 }
