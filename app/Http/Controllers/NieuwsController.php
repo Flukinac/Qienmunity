@@ -112,17 +112,10 @@ class NieuwsController extends Controller
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         $post = Nieuwspost::find($id);
         $post->delete();
         return redirect('/nieuwsposts')->with('success', 'Post is verwijderd');
     }
-    
 }
