@@ -26,7 +26,6 @@ function zoeken(){
     };
     
     var jsondata = JSON.stringify(data);
-    
     query(jsondata);
 }
     
@@ -34,8 +33,11 @@ function query(jsondata){
     var url = $(".form-control").attr("data-link");
     
     $.ajax({
-        url: "/zoek",
+        url:"/zoek",
+        data: jsondata,
+        datatype:"json",
         type:"POST",
+        
         beforeSend: function (xhr) {
             var token = $('meta[name="csrf_token"]').attr('content');
 
@@ -43,13 +45,14 @@ function query(jsondata){
                   return xhr.setRequestHeader('X-CSRF-TOKEN', token);
             }
         },
-        data: jsondata,
+        
             
         
-        success:function(data){
-            $(".well").html(data["gender"] + "<br />JSON: " + data["json"]
-        );
-          //return this.responseText;
+        success:function(data){ 
+            console.log(data[0]['title']);
+            $(".testdiv1").html(data[0]['title']);
+            $(".testdiv2").text(data["content"]);
+            $(".testdiv3").text(data["created_at"]);
         },error:function(){ 
             //alert("error!!!!");
         }

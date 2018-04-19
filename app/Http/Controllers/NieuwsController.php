@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use DB;
 use App\Nieuwspost;
 use App\Http\Requests;
+use Illuminate\Http\Response;
 use Illuminate\Pagination\PaginationServiceProvider;
 
 class NieuwsController extends Controller
@@ -134,12 +135,16 @@ class NieuwsController extends Controller
         $post->delete();
         return redirect('/nieuwsposts')->with('success', 'Post is verwijderd');
     }
+    
     public function search(Request $request){
      
-            $query = $request->json()->all()['term'];  
+            $query = $request->suggestion;  
+            //echo $query;
+            print_r($query);
             $postquery = Nieuwspost::where('title', 'like', '%'.$query.'%')->get();
             //print_r($postquery);      
-           return view('/nieuwspage.post')->with('post', $postquery);
+            //echo "succes";
+           return new Response($postquery);
         
     }
 }
