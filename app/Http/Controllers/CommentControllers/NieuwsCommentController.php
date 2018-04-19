@@ -9,7 +9,7 @@ use App\Nieuwspost;
 
 use App\Http\Requests;
 
-class CommentController extends Controller
+class NieuwsCommentController extends Controller
 {
      public function store(Request $request, $post_id)
     {
@@ -26,14 +26,15 @@ class CommentController extends Controller
         $comment->save();
         
         
-        return redirect('nieuwsposts/'.$post_id)->with('post', $post)->with('success', 'Comment geplaatst');
+        return redirect('/nieuwsposts/'.$post_id)->with('post', $post)->with('success', 'Comment geplaatst');
     }
     
        public function destroy($id)
     {
         $comment = Comment::find($id);
+        $npid = $comment->nieuwspost_id;
         $comment->delete();
-        return redirect('nieuwsposts/'.$post_id)->with('post', $post)->with('success', 'Comment verwijderd');
+        return redirect('/nieuwsposts/'.$npid)->with('success', 'Comment succesvol verwijderd');
     }
     
 }

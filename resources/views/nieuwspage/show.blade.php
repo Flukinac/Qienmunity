@@ -18,19 +18,13 @@
 			@foreach($post->comments as $comment)
 				<div class="comment">
 					<p>{{$comment->content}}</p>
-                                        
-                                        
-                                        
-                                        
-                        @if (auth()->user()->rol == 0||(auth()->user()->id == $post->id))
-                        {!!Form::open(['action' => ['CommentController@destroy', $comment->id], 'method' => 'POST', 'class' => 'pull-right'])!!}
-                            {{Form::hidden('_method', 'DELETE')}}
-                            {{Form::submit('Delete', ['class' => 'btn btn-danger'])}}
-                        {!!Form::close()!!}
-                    @endif
-                    
-                    
-                    
+
+                                @if (auth()->user()->rol == 0||(auth()->user()->id == $comment->user_id))
+                                    {{ Form::open(['route' => ['nieuwscomment.destroy', $comment->id], 'method' => 'POST']) }}
+                                        {{Form::hidden('_method', 'DELETE')}}
+                                        {{Form::submit('Delete comment', ['class' => 'btn btn-danger'])}}
+                                    {{Form::close()}}  
+                                @endif
                     
                                         <small>Geschreven door {{$comment->user->name}}</small>
                                         <hr>
@@ -40,13 +34,12 @@
 	</div>
         <div class="row">
         <div id="comment-form" class="col-md-8 col-md-offset-2" style="margin-top: 50px;">
-                {{ Form::open(['route' => ['comments.store', $post->id], 'method' => 'POST']) }}
+                {{ Form::open(['route' => ['nieuwscomment.store', $post->id], 'method' => 'POST']) }}
 
                         <div class="row">
                                 <div class="col-md-12">
                                         {{ Form::label('comments', "Comment:") }}
                                         {{ Form::textarea('comment', null, ['class' => 'form-control', 'rows' => '5']) }}
-
                                         {{ Form::submit('Add Comment', ['class' => 'btn btn-success btn-block', 'style' => 'margin-top:15px;']) }}
                                 </div>
                         </div>
