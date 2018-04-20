@@ -1,0 +1,91 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Apr 18, 2018, 11:52:12 AM
+    Author     : rikaikman
+*/
+
+/*============================  GENERAL CSS ================================*/
+#qien--background-colour{
+    background-color:#9d3ff391;
+    border:#9d3ff3
+}
+
+#qien--background-colour:hover{
+    background-color:#9d3ff3;
+
+}
+
+#qien--colour, h2, h1{
+    color:#9d3ff3;
+}
+
+.spacer{
+    height:50px;
+}
+
+hr{
+    float:none;
+}
+
+/*============================  NAVBAR CSS  ================================*/
+
+#Qienbrand{
+    color:#9d3ff3;   
+}
+
+/*===========================   NIEUWSPAGINA CSS   =========================*/
+
+                            /*  INDEX NEWSPAGINA */
+.well{
+    
+    background-color: #fff;
+}
+
+.card-group{
+    display: flex;
+    justify-content: center;
+}
+
+.card{
+    width:  30%;
+    float: left;
+    margin:2%;
+    box-shadow: 10px 10px 5px #aaaaaa;
+    
+}
+
+.card-body{
+    padding:3.5%;
+}
+
+.card-img-top{
+    height:100px;
+    width:100%;
+}
+
+                            /*  SHOW NIEUWSPAGINA */
+                         
+#showNewsPost{
+    width:  100%;
+    justify-content: center;
+}
+
+.card-header{
+    height:40px;
+    text-align: center;
+}
+
+.card-text-nieuws{
+    max-height: 400px;
+    overflow: scroll;
+    
+}
+                            
+                            
+                            
+                            
+/*===========================   COMMUNITYPAGINA CSS   ========================*/

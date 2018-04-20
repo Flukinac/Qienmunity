@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
+    
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="csrf_token" content="{{ csrf_token() }}" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
     <title>QienMunity</title>
@@ -15,6 +16,9 @@
     <!-- Styles -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
+    <link rel="stylesheet" href="{{ URL::asset('css/layout.css') }}" />
+
+   
 
     <style>
         body {
@@ -26,7 +30,7 @@
     </style>
 </head>
 <body id="app-layout">
-    <nav class="navbar navbar-default navbar-static-top">
+    <nav class="navbar navbar-default navbar-static-top" id="navbar">
         <div class="container">
             <div class="navbar-header">
 
@@ -39,7 +43,7 @@
                 </button>
 
                 <!-- Branding Image -->
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand" href="{{ url('/') }}" id="qien--colour">
                     QienMunity  
                 </a>
             </div>
@@ -61,7 +65,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->
                     @if (Auth::guest())
-                        <li><a href="{{ url('/login') }}">Login</a></li>
+                        <li><a href="{{ url('/login') }}"id="qien--colour">Login</a></li>
                         
                     @else
                         <li class="dropdown">
@@ -69,7 +73,7 @@
 
                                 @if (Storage::disk('local')->has(auth()->user()->name . '-' . auth()->user()->id . '.jpg'))
 
-                                <li><a href="/myprofile"><img width=30px src="{{ route('profile.image', ['filename' => auth()->user()->name . '-' . auth()->user()->id . '.jpg']) }}" alt="" class="img-responsive"></a></li>
+                                <li><a href="/myprofile"><img width=25px src="{{ route('profile.image', ['filename' => auth()->user()->name . '-' . auth()->user()->id . '.jpg']) }}" alt="" class="img-responsive"></a></li>
    
                                 @endif
                         <li class="dropdown">
@@ -79,13 +83,14 @@
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
-                                
+                                @if (auth()->user()->rol == 0)
+                                <li><a href="{{ url('/register') }}"><i class="fa fa-btn"></i>Nieuwe user aanmaken</a></li>
+                                @endif
                                 <li><a href="{{ url('/myprofile') }}"><i class="fa fa-btn"></i>Mijn profiel</a></li>
                                 <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
+                                
                             </ul>
-                        </li>    
-    
-                        <li><a href="{{ url('/register') }}">Nieuwe user aanmaken</a></li>
+                        </li> 
 
                     @endif
                 </ul>

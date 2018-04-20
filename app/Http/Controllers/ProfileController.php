@@ -20,9 +20,6 @@ class ProfileController extends Controller
     {
         $profiles = Profile::orderBy('username','asc')->paginate(20);
         return view('profiles.index')->with('profiles', $profiles);
-                                     
-        
-        
     }
     
         public function myProfile()
@@ -30,7 +27,6 @@ class ProfileController extends Controller
         $user_id = auth()->user()->id;
         $user = User::find($user_id);
         return view('profiles.myprofile')->with('profile', $user->profile);
-        
     }
 
     /**
@@ -60,7 +56,7 @@ class ProfileController extends Controller
         
         $old_name = auth()->user()->name;
         $file = $request->file('image');
-        $filename = $request['username'] . '-' . auth()->user()->id . '.jpg';
+        $filename = auth()->user()->name . '-' . auth()->user()->id . '.jpg';
         $update = false;
         
         if (Storage::disk('local')->has($filename)) {
@@ -73,7 +69,7 @@ class ProfileController extends Controller
             Storage::disk('local')->put($filename, File::get($file));
         }
         
-        //Nieuw profiel aanmaken
+//        ==========-----PROFIEL AANMAKEN================
         
         $profile = new Profile;
         $profile->username = $request->input('username');
@@ -136,32 +132,31 @@ class ProfileController extends Controller
         ]);
         
         //        ==========-----FOTO UPDATE================
-        
+        if($request->file('image')){
         $old_name = auth()->user()->name;
-        $old_filename = $old_name . '-' . auth()->user()->id . '.jpg';
-//        DELETE FILE FROM STORAGE.
-        Storage::delete($old_filename);
-//        ADD FILE TO STORAGE
-        $file = $request->file('image');
-        $filename = $old_name . '-' . auth()->user()->id . '.jpg';
+            $old_filename = $old_name . '-' . auth()->user()->id . '.jpg';
+    //        DELETE FILE FROM STORAGE.
+            Storage::delete($old_filename);
+    //        ADD FILE TO STORAGE
+            $file = $request->file('image');
+            $filename = $old_name . '-' . auth()->user()->id . '.jpg';
 
-        Storage::disk('local')->put($filename, File::get($file));
+            Storage::disk('local')->put($filename, File::get($file));
 
-        
+        }
         //Profiel wijzigen
         
         $profile = Profile::find($id);
-        $profile->username = $request->input('username');
         $profile->email = $request->input('email');
         $profile->dateofbirth = $request->input('dateofbirth');
         $profile->position = $request->input('position');
         $profile->biography = $request->input('biography');
-        if($request->input('image')){
+        if($request->file('image')){
         $profile->image = $request->input('image');
         }
         $profile->save();
         
-        return redirect('/profiles/'.$id)->with('success', 'Profiel succesvol gewijzigd');
+        return redirect('/myprofile')->with('success', 'Profiel succesvol gewijzigd');
     }
 
     /**

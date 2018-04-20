@@ -6,6 +6,8 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'AddNewsidToComments' => $baseDir . '/database/migrations/2018_04_16_131927_add_newsid_to_comments.php',
+    'AddPinnedpostToNieuwspostsTable' => $baseDir . '/database/migrations/2018_04_17_135823_add_pinnedpost_to_nieuwsposts_table.php',
     'AddUserIdComments' => $baseDir . '/database/migrations/2018_04_06_133705_add_user_id_comments.php',
     'AddUserIdCommunity' => $baseDir . '/database/migrations/2018_04_06_133842_add_user_id_community.php',
     'AddUserIdNieuwspost' => $baseDir . '/database/migrations/2018_04_06_133856_add_user_id_nieuwspost.php',
@@ -21,6 +23,7 @@ return array(
     'App\\Http\\Controllers\\ContactController' => $baseDir . '/app/Http/Controllers/ContactController.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
     'App\\Http\\Controllers\\HomeController' => $baseDir . '/app/Http/Controllers/HomeController.php',
+    'App\\Http\\Controllers\\NieuwsCommentController' => $baseDir . '/app/Http/Controllers/CommentControllers/NieuwsCommentController.php',
     'App\\Http\\Controllers\\NieuwsController' => $baseDir . '/app/Http/Controllers/NieuwsController.php',
     'App\\Http\\Controllers\\PostIdController' => $baseDir . '/app/Http/Controllers/PostIdController.php',
     'App\\Http\\Controllers\\ProfileController' => $baseDir . '/app/Http/Controllers/ProfileController.php',
@@ -32,7 +35,6 @@ return array(
     'App\\Http\\Middleware\\VerifyCsrfToken' => $baseDir . '/app/Http/Middleware/VerifyCsrfToken.php',
     'App\\Http\\Requests\\Request' => $baseDir . '/app/Http/Requests/Request.php',
     'App\\Jobs\\Job' => $baseDir . '/app/Jobs/Job.php',
-    'App\\Nieuwspost' => $baseDir . '/app/Nieuwspost.php',
     'App\\Profile' => $baseDir . '/app/Profile.php',
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',
     'App\\Providers\\AuthServiceProvider' => $baseDir . '/app/Providers/AuthServiceProvider.php',
@@ -41,6 +43,7 @@ return array(
     'App\\User' => $baseDir . '/app/User.php',
     'App\\comment' => $baseDir . '/app/Comment.php',
     'App\\communitypost' => $baseDir . '/app/Communitypost.php',
+    'App\\nieuwspost' => $baseDir . '/app/Nieuwspost.php',
     'App\\resourcepost' => $baseDir . '/app/Resourcepost.php',
     'Carbon\\Carbon' => $vendorDir . '/nesbot/carbon/src/Carbon/Carbon.php',
     'Carbon\\CarbonInterval' => $vendorDir . '/nesbot/carbon/src/Carbon/CarbonInterval.php',
@@ -72,7 +75,6 @@ return array(
     'CreateCommunitypostsTable' => $baseDir . '/database/migrations/2018_04_03_183404_create_communityposts_table.php',
     'CreateNieuwspostsTable' => $baseDir . '/database/migrations/2018_04_03_183319_create_nieuwsposts_table.php',
     'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
-    'CreateProfielsTable' => $baseDir . '/database/migrations/2018_04_08_191424_create_profiels_table.php',
     'CreateProfileTable' => $baseDir . '/database/migrations/2018_04_04_130926_create_profile_table.php',
     'CreateResourcepostsTable' => $baseDir . '/database/migrations/2018_04_03_183116_create_resourceposts_table.php',
     'CreateUsersTable' => $baseDir . '/database/migrations/2014_10_12_000000_create_users_table.php',
@@ -1165,6 +1167,7 @@ return array(
     'JakubOnderka\\PhpConsoleColor\\ConsoleColor' => $vendorDir . '/jakub-onderka/php-console-color/src/JakubOnderka/PhpConsoleColor/ConsoleColor.php',
     'JakubOnderka\\PhpConsoleColor\\InvalidStyleException' => $vendorDir . '/jakub-onderka/php-console-color/src/JakubOnderka/PhpConsoleColor/InvalidStyleException.php',
     'JakubOnderka\\PhpConsoleHighlighter\\Highlighter' => $vendorDir . '/jakub-onderka/php-console-highlighter/src/JakubOnderka/PhpConsoleHighlighter/Highlighter.php',
+    'JsonSerializable' => $vendorDir . '/nesbot/carbon/src/JsonSerializable.php',
     'League\\Flysystem\\AdapterInterface' => $vendorDir . '/league/flysystem/src/AdapterInterface.php',
     'League\\Flysystem\\Adapter\\AbstractAdapter' => $vendorDir . '/league/flysystem/src/Adapter/AbstractAdapter.php',
     'League\\Flysystem\\Adapter\\AbstractFtpAdapter' => $vendorDir . '/league/flysystem/src/Adapter/AbstractFtpAdapter.php',

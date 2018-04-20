@@ -1,15 +1,17 @@
 <?php
 
 use Illuminate\Http\Request;
-
-
-
+use App\Controllers\CommentControllers;
+use App\User;
+use App\Profile;
 
 Route::auth();
 Route::get('/', 'HomeController@index');
 
 Route::group(['middleware' => 'auth'], function () {
 
+    //Standaard views routes
+    
     Route::get('/community', function () {
         return view('community');
     });
@@ -33,32 +35,44 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/nieuwegebruiker', function () {
         return view('auth/register');
     });
+    
+    Route::get('/myprofile',[
+    'uses'=>'ProfileController@myProfile'] );
 
-
-    Route::post('/contactMail', 'ContactController@sendContact');
-
-    Route::post('/search', 'NieuwsController@searching');
-
-
-    Route::get('/home', [
-        'uses'=>'HomeController@index']
-            );
-
+    
+    //Resource routes
+    
     Route::resource('nieuwsposts','NieuwsController');
 
     Route::resource('profiles', 'ProfileController');
-
-    Route::get('/myprofile',[
-        'uses'=>'ProfileController@myProfile'] );
-
+    
     Route::resource('post','PostIdController');
 
     Route::resource('communitypost','CommunityController');
 
     Route::resource('profiles', 'ProfileController');
+    
+    
+    //Methode routes
+    
+    Route::post('/contactMail', 'ContactController@sendContact');
+
+    Route::post('/zoek', 'NieuwsController@update');
+
+    Route::get('/home','HomeController@index');
+    
+    Route::post('nieuwscomment/{post_id}', ['uses' => 'NieuwsCommentController@store', 'as' => 'nieuwscomment.store']);
+    
+    Route::delete('nieuwscommentdelete/{comment_id}', ['uses' => 'NieuwsCommentController@destroy', 'as' => 'nieuwscomment.destroy']);
+   
+    Route::post('bookmark/{post_id}', ['uses' => 'NieuwsController@bookmark', 'as' => 'nieuws.bookmark']);
+
+
+
+    
+    
 
     Route::get('testauth', 'testController@auth');  
-
 
     Route::get('/munityimage/{filename}', [
         'uses' => 'CommunityController@getUserImage',

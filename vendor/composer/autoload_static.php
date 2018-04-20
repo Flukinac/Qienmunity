@@ -84,7 +84,6 @@ class ComposerStaticInit6d643484cedaa02e7d1304e937782957
             'Cron\\' => 5,
             'Collective\\Html\\' => 16,
             'ClassPreloader\\' => 15,
-            'Carbon\\' => 7,
         ),
         'A' => 
         array (
@@ -223,14 +222,14 @@ class ComposerStaticInit6d643484cedaa02e7d1304e937782957
         array (
             0 => __DIR__ . '/..' . '/classpreloader/classpreloader/src',
         ),
-        'Carbon\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon',
-        ),
         'App\\' => 
         array (
             0 => __DIR__ . '/../..' . '/app',
         ),
+    );
+
+    public static $fallbackDirsPsr4 = array (
+        0 => __DIR__ . '/..' . '/nesbot/carbon/src',
     );
 
     public static $prefixesPsr0 = array (
@@ -269,6 +268,8 @@ class ComposerStaticInit6d643484cedaa02e7d1304e937782957
     );
 
     public static $classMap = array (
+        'AddNewsidToComments' => __DIR__ . '/../..' . '/database/migrations/2018_04_16_131927_add_newsid_to_comments.php',
+        'AddPinnedpostToNieuwspostsTable' => __DIR__ . '/../..' . '/database/migrations/2018_04_17_135823_add_pinnedpost_to_nieuwsposts_table.php',
         'AddUserIdComments' => __DIR__ . '/../..' . '/database/migrations/2018_04_06_133705_add_user_id_comments.php',
         'AddUserIdCommunity' => __DIR__ . '/../..' . '/database/migrations/2018_04_06_133842_add_user_id_community.php',
         'AddUserIdNieuwspost' => __DIR__ . '/../..' . '/database/migrations/2018_04_06_133856_add_user_id_nieuwspost.php',
@@ -284,6 +285,7 @@ class ComposerStaticInit6d643484cedaa02e7d1304e937782957
         'App\\Http\\Controllers\\ContactController' => __DIR__ . '/../..' . '/app/Http/Controllers/ContactController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
+        'App\\Http\\Controllers\\NieuwsCommentController' => __DIR__ . '/../..' . '/app/Http/Controllers/CommentControllers/NieuwsCommentController.php',
         'App\\Http\\Controllers\\NieuwsController' => __DIR__ . '/../..' . '/app/Http/Controllers/NieuwsController.php',
         'App\\Http\\Controllers\\PostIdController' => __DIR__ . '/../..' . '/app/Http/Controllers/PostIdController.php',
         'App\\Http\\Controllers\\ProfileController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProfileController.php',
@@ -295,7 +297,6 @@ class ComposerStaticInit6d643484cedaa02e7d1304e937782957
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'App\\Http\\Requests\\Request' => __DIR__ . '/../..' . '/app/Http/Requests/Request.php',
         'App\\Jobs\\Job' => __DIR__ . '/../..' . '/app/Jobs/Job.php',
-        'App\\Nieuwspost' => __DIR__ . '/../..' . '/app/Nieuwspost.php',
         'App\\Profile' => __DIR__ . '/../..' . '/app/Profile.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
@@ -304,6 +305,7 @@ class ComposerStaticInit6d643484cedaa02e7d1304e937782957
         'App\\User' => __DIR__ . '/../..' . '/app/User.php',
         'App\\comment' => __DIR__ . '/../..' . '/app/Comment.php',
         'App\\communitypost' => __DIR__ . '/../..' . '/app/Communitypost.php',
+        'App\\nieuwspost' => __DIR__ . '/../..' . '/app/Nieuwspost.php',
         'App\\resourcepost' => __DIR__ . '/../..' . '/app/Resourcepost.php',
         'Carbon\\Carbon' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Carbon.php',
         'Carbon\\CarbonInterval' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/CarbonInterval.php',
@@ -335,7 +337,6 @@ class ComposerStaticInit6d643484cedaa02e7d1304e937782957
         'CreateCommunitypostsTable' => __DIR__ . '/../..' . '/database/migrations/2018_04_03_183404_create_communityposts_table.php',
         'CreateNieuwspostsTable' => __DIR__ . '/../..' . '/database/migrations/2018_04_03_183319_create_nieuwsposts_table.php',
         'CreatePasswordResetsTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
-        'CreateProfielsTable' => __DIR__ . '/../..' . '/database/migrations/2018_04_08_191424_create_profiels_table.php',
         'CreateProfileTable' => __DIR__ . '/../..' . '/database/migrations/2018_04_04_130926_create_profile_table.php',
         'CreateResourcepostsTable' => __DIR__ . '/../..' . '/database/migrations/2018_04_03_183116_create_resourceposts_table.php',
         'CreateUsersTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_000000_create_users_table.php',
@@ -1428,6 +1429,7 @@ class ComposerStaticInit6d643484cedaa02e7d1304e937782957
         'JakubOnderka\\PhpConsoleColor\\ConsoleColor' => __DIR__ . '/..' . '/jakub-onderka/php-console-color/src/JakubOnderka/PhpConsoleColor/ConsoleColor.php',
         'JakubOnderka\\PhpConsoleColor\\InvalidStyleException' => __DIR__ . '/..' . '/jakub-onderka/php-console-color/src/JakubOnderka/PhpConsoleColor/InvalidStyleException.php',
         'JakubOnderka\\PhpConsoleHighlighter\\Highlighter' => __DIR__ . '/..' . '/jakub-onderka/php-console-highlighter/src/JakubOnderka/PhpConsoleHighlighter/Highlighter.php',
+        'JsonSerializable' => __DIR__ . '/..' . '/nesbot/carbon/src/JsonSerializable.php',
         'League\\Flysystem\\AdapterInterface' => __DIR__ . '/..' . '/league/flysystem/src/AdapterInterface.php',
         'League\\Flysystem\\Adapter\\AbstractAdapter' => __DIR__ . '/..' . '/league/flysystem/src/Adapter/AbstractAdapter.php',
         'League\\Flysystem\\Adapter\\AbstractFtpAdapter' => __DIR__ . '/..' . '/league/flysystem/src/Adapter/AbstractFtpAdapter.php',
@@ -3068,6 +3070,7 @@ class ComposerStaticInit6d643484cedaa02e7d1304e937782957
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInit6d643484cedaa02e7d1304e937782957::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInit6d643484cedaa02e7d1304e937782957::$prefixDirsPsr4;
+            $loader->fallbackDirsPsr4 = ComposerStaticInit6d643484cedaa02e7d1304e937782957::$fallbackDirsPsr4;
             $loader->prefixesPsr0 = ComposerStaticInit6d643484cedaa02e7d1304e937782957::$prefixesPsr0;
             $loader->classMap = ComposerStaticInit6d643484cedaa02e7d1304e937782957::$classMap;
 

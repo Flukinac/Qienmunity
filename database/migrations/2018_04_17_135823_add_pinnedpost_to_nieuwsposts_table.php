@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateProfielsTable extends Migration
+class AddPinnedpostToNieuwspostsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,9 +12,8 @@ class CreateProfielsTable extends Migration
      */
     public function up()
     {
-        Schema::create('profiels', function (Blueprint $table) {
-            $table->increments('id');
-            $table->timestamps();
+        Schema::table('nieuwsposts', function($table){
+            $table->integer('pinned');
         });
     }
 
@@ -25,6 +24,6 @@ class CreateProfielsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('profiels');
+        //
     }
 }

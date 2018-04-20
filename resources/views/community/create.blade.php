@@ -5,7 +5,6 @@
 
         <a href="/communitypost" class="btn btn-default">< Ga terug</a><br/><br/>
 
-        
         {!! Form::open(['action' => 'CommunityController@store', 'method' => 'POST', 'enctype' => 'multipart/form-data','files'=>true]) !!}
             {{Form::Label('titel')}}
                 {{Form::text('titel','',['class'=>'form-control', 'placeholder' => 'Titel'])}}

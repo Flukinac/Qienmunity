@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
+use DB;
 use App\Nieuwspost;
 use App\Http\Requests;
 use Illuminate\Pagination\PaginationServiceProvider;
@@ -14,9 +15,9 @@ class NieuwsController extends Controller
      */
     public function index()
     {
-        
-        $post = Nieuwspost::paginate(6);
-        return view('nieuwspage/nieuws')->with('nieuws', $post);
+        $pinned = Nieuwspost::orderBy('id','asc')->where('pinned', 1)->take(3)->paginate(3);
+        $post = Nieuwspost::orderBy('id','desc')->where('pinned', 0)->paginate(6);
+        return view('nieuwspage/nieuws')->with('nieuws', $post)->with('pinned', $pinned);
                                         
     }
     /**
@@ -65,9 +66,11 @@ class NieuwsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    
     public function edit($id)
     {
-        //
+        $post = Nieuwspost::find($id);
+        return view('nieuwspage.edit')->with('post', $post); 
     }
     /**
      * Update the specified resource in storage.
@@ -76,25 +79,43 @@ class NieuwsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function update(Request $request, $id)
     {
-        //
+        if((!$request->pinned) && (!$request->unpin)){
+            $this->validate($request,[
+                'titel' => 'required',
+                'content' =>  'required',
+            ]);
+            $post = Nieuwspost::find($id);
+            $post->title = $request->input('titel');
+            $post->content = $request->input('content');
+        }elseif(!$request->unpin){
+            $pinned = Nieuwspost::all()->where('pinned', 1);
+            if(count($pinned)<3){
+            $post = Nieuwspost::find($id);
+            $post->pinned = 1;
+            }else{
+                return redirect('/nieuwsposts')->with('error', 'Er kunnen maximaal 3 post worden gepind');
+            }
+        }else{
+            $post = Nieuwspost::find($id);
+            $post->pinned = 0;
+        }
+            
+        $post->save();
+        
+        if(!$request->pinned){
+            return redirect('/nieuwsposts')->with('success', 'Post succesvol gewijzigd');
+        }else{
+             return redirect('/nieuwsposts')->with('success', 'Post succesvol vastgepint');
+        }
     }
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy($id)
     {
-        //
-    }
-    
-    public function searching(Request $request){
-        $query = $request;
-        $posts = $query ? Nieuwspost::find($query)->orderBy('id', 'desc') : Nieuwspost::all();
-        return view ('nieuwspage/show')->with('post', $posts)->paginate(6);
-        
+        $post = Nieuwspost::find($id);
+        $post->delete();
+        return redirect('/nieuwsposts')->with('success', 'Post is verwijderd');
     }
 }
