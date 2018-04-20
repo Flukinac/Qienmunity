@@ -1,16 +1,11 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use App\Communitypost;
-
 use App\Http\Requests;
-
-
 class CommunityController extends Controller
 {
     /**
@@ -25,7 +20,6 @@ class CommunityController extends Controller
         return view('community.newsfeed')->with('nieuws',$post);
                                          
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -35,7 +29,6 @@ class CommunityController extends Controller
     {
         return view('community.create');
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -73,7 +66,7 @@ class CommunityController extends Controller
         $post->save();
         
 //        ==========-----VIEW================
-        return view('community');
+        return redirect('/communitypost')->with('success', 'Nieuwe post aangemaakt');
     }
     public function getUserImage($filename)
     {
@@ -92,11 +85,8 @@ class CommunityController extends Controller
         $userPost = $getPost->user;
         
         
-
         return view('community.show',['user' => auth()->user()])->with('post', $getPost);
-
     }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -105,21 +95,43 @@ class CommunityController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post = Communitypost::find($id);
+        return view('community.edit')->with('post', $post);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+        public function update(Request $request, $id)
     {
-        //
+        //        ==========-----DATA VALIDATION================
+        $this->validate($request,[
+            'titel' => 'required',
+            'content' =>  'required',
+        ]);
+//        ==========-----FOTO UPLOAD================
+        $old_name = auth()->user()->name;
+        $file = $request->file('image');
+        $filename = $request['titel'] . '-' . auth()->user()->id . '.jpg';
+        $update = false;
+        
+        if (Storage::disk('local')->has($filename)) {
+            $old_file = Storage::disk('local')->get($filename);
+            Storage::disk('local')->put($filename, $old_file);
+            $update = true;
+        }
+        if ($file) {
+            Storage::disk('local')->put($filename, File::get($file));
+            
+        }
+ //        ==========-----DATABASE SAVING================               
+        $post = Communitypost::find($id);
+        $post->title = $request->input('titel');
+        $post->content = $request->input('content');
+        $post->user_id = auth()->user()->id;
+        $post->image = $filename;
+        $post->save();
+        
+//        ==========-----VIEW================
+        return redirect('/communitypost/'.$post->id)->with('success', 'Post succesvol gewijzigd');
     }
-
     /**
      * Remove the specified resource from storage.
      *
