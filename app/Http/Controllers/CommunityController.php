@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use App\Communitypost;
 use App\Http\Requests;
+
 class CommunityController extends Controller
 {
     /**
@@ -106,27 +107,35 @@ class CommunityController extends Controller
             'titel' => 'required',
             'content' =>  'required',
         ]);
-//        ==========-----FOTO UPLOAD================
-        $old_name = auth()->user()->name;
-        $file = $request->file('image');
-        $filename = $request['titel'] . '-' . auth()->user()->id . '.jpg';
-        $update = false;
         
-        if (Storage::disk('local')->has($filename)) {
-            $old_file = Storage::disk('local')->get($filename);
-            Storage::disk('local')->put($filename, $old_file);
-            $update = true;
-        }
-        if ($file) {
+//        ==========-----FOTO UPDATE================
+        if($request->file('image')){
+            $old_filename = $request['title'] . '-' . auth()->user()->id . '.jpg';
+//        DELETE FILE FROM STORAGE.
+            Storage::delete($old_filename);
+//        ADD FILE TO STORAGE
+            $file = $request->file('image');
+            $filename = $request['title'] . '-' . auth()->user()->id . '.jpg';
+
             Storage::disk('local')->put($filename, File::get($file));
-            
+
         }
+        
+//        if (Storage::disk('local')->has($filename)) {
+//            $old_file = Storage::disk('local')->get($filename);
+//            Storage::disk('local')->put($filename, $old_file);
+//            $update = true;
+//        }
+//        if ($file) {
+//            Storage::disk('local')->put($filename, File::get($file));
+//            
+//        }
  //        ==========-----DATABASE SAVING================               
         $post = Communitypost::find($id);
         $post->title = $request->input('titel');
         $post->content = $request->input('content');
         $post->user_id = auth()->user()->id;
-        $post->image = $filename;
+        $post->image = $request->input('image');
         $post->save();
         
 //        ==========-----VIEW================
@@ -140,6 +149,9 @@ class CommunityController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post = Communitypost::find($id);
+        $post->delete();
+        return redirect('/communitypost')->with('success', 'Post succesvol gewijzigd');
     }
+    
 }

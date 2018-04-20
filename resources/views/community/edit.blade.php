@@ -17,7 +17,7 @@
                 {{Form::textarea('content', $post->content ,['class'=>'form-control', 'placeholder'=> $post->content])}}
             </div>
             <div class='form-group'>
-                {{Form::label('image', 'Communityfoto')}}
+                {{Form::label('image', 'Foto bewerken')}}
                 {{Form::file('image',['class'=>'form-control'])}}
             </div>
             {{Form::hidden('_method','PUT')}}
