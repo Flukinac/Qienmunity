@@ -1,16 +1,23 @@
 @extends('layouts.app')
 
 @section('content')
-        <a href="/nieuwsposts" class="btn btn-default">< Ga terug</a><br/><br/>
+
+        
+<a href="/nieuwsposts" class="btn btn-default">Ga terug</a><br/><br/>
+
 
         <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <div id="showNewsPost" style=background-color:gray>
-                    <h1>{{$post->title}}</h1><br>
-                    <p>{{$post->content}}</p>
-                    <small>Geschreven op {{$post->created_at}} door {{$post->user->name}}</small>
-                    <hr>
-                </div>
+            <div class="col-md-10 col-md-offset-1">
+                <div class="card" id="showNewsPost">
+                    <div class="card-header" id="qien--background-colour">
+                        <h3>{{$post->title}}</h3>
+                    </div>
+                    <div class="card-body">
+                      
+                      <p class="card-text-nieuws" id="card-text-nieuws">{{$post->content}}</p>
+                      <small>Geschreven op {{$post->created_at}} door {{$post->user->name}}</small>
+                    </div>
+                  </div>
             </div>
 	</div>
         <div class="row">
@@ -33,6 +40,7 @@
 		</div>
 	</div>
         <div class="row">
+
         <div id="comment-form" class="col-md-8 col-md-offset-2" style="margin-top: 50px;">
                 {{ Form::open(['route' => ['nieuwscomment.store', $post->id], 'method' => 'POST']) }}
 
@@ -48,5 +56,5 @@
 
         </div>
 
-        
+
 @endsection
