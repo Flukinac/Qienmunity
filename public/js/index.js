@@ -49,10 +49,11 @@ function query(jsondata){
             
         
         success:function(data){ 
-            console.log(data[0]['title']);
-            $(".testdiv1").html(data[0]['title']);
-            $(".testdiv2").text(data["content"]);
-            $(".testdiv3").text(data["created_at"]);
+            //console.log(data[0]['title']);
+           console.log(data);
+//            $(".testdiv1").html(data[0]['title']);
+//            $(".testdiv2").text(data["content"]);
+//            $(".testdiv3").text(data["created_at"]);
         },error:function(){ 
             //alert("error!!!!");
         }

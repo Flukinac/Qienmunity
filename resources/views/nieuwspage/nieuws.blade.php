@@ -1,9 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="testdiv1"></div> 
-            <div class="testdiv2"></div> 
-            <div class="testdiv3"></div>
+ 
+           
         <h1>Nieuws</h1>
             <div class='well'>
             @if (auth()->user()->rol == 0)
@@ -17,11 +16,11 @@
         
         @if(!empty($postquery) && count($postquery) >= 1)
             @foreach($postquery as $post)
-                <div class="card-body">
+                
                     <h3><a href="/nieuwsposts/{{$post->id}}" id="qien--colour">{{$post->title}}</a></h3>
-                    <div><h4>{{str_limit($post->content, 50)}}</h4></div><br>
-                    <div><h5>Gepost op: {{$post->created_at}}</h5></div>
-                </div>
+                    <h4>{{str_limit($post->content, 50)}}</h4><br>
+                    <h5>Gepost op: {{$post->created_at}}</h5>
+                
             @endforeach
         @else
                 <h2>Gepind Nieuws</h2>   

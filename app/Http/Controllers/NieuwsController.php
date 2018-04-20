@@ -135,7 +135,7 @@ class NieuwsController extends Controller
      
             $query = $request->suggestion;  
             //echo $query;
-            print_r($query);
+            //print_r($query);
             $postquery = Nieuwspost::where('title', 'like', '%'.$query.'%')->get();
             //print_r($postquery);      
             //echo "succes";
