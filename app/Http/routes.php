@@ -57,8 +57,6 @@ Route::group(['middleware' => 'auth'], function () {
     
     Route::post('/contactMail', 'ContactController@sendContact');
 
-    Route::post('/zoek', 'NieuwsController@update');
-
     Route::get('/home','HomeController@index');
     
     Route::post('nieuwscomment/{post_id}', ['uses' => 'NieuwsCommentController@store', 'as' => 'nieuwscomment.store']);
