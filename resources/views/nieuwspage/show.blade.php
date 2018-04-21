@@ -6,12 +6,12 @@
             <div class="col-md-10 col-md-offset-1">
                 <div class="card" id="showNewsPost">
                     <div class="card-header" id="qien--background-colour">
-                        <h3>{{$post->title}}</h3>
+                        <h3>Nieuws: {{$post->title}}</h3>
                     </div>
                     <div class="card-body">
                       
                       <p class="card-text-nieuws" id="card-text-nieuws">{{$post->content}}</p>
-                      <small>Geschreven op {{$post->created_at}} door <a href='/profiles/{{$post->user->id}}'>{{$post->user->name}}</a></small>
+                      <small>Geschreven op {{$post->created_at}} door <a href='/profiles/{{$post->user->profile->id}}'>{{$post->user->name}}</a></small>
                     </div>
                   </div>
             </div>
@@ -29,7 +29,7 @@
                                     {{Form::close()}}  
                                 @endif
                     
-                                <small>Geschreven door <a href='/profiles/{{$comment->user->id}}'>{{$comment->user->name}}</a></small>
+                                <small>Geschreven door <a href='/profiles/{{$comment->user->profile->id}}'>{{$comment->user->name}}</a></small>
                                         <hr>
 				</div>
 			@endforeach

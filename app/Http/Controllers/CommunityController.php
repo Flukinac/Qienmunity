@@ -118,18 +118,8 @@ class CommunityController extends Controller
             $filename = $request['title'] . '-' . auth()->user()->id . '.jpg';
 
             Storage::disk('local')->put($filename, File::get($file));
-
         }
-        
-//        if (Storage::disk('local')->has($filename)) {
-//            $old_file = Storage::disk('local')->get($filename);
-//            Storage::disk('local')->put($filename, $old_file);
-//            $update = true;
-//        }
-//        if ($file) {
-//            Storage::disk('local')->put($filename, File::get($file));
-//            
-//        }
+
  //        ==========-----DATABASE SAVING================               
         $post = Communitypost::find($id);
         $post->title = $request->input('titel');

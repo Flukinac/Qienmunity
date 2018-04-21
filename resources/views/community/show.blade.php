@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-        <h1>Community - {{$post->title}}</h1><br>
+        <h1>Community: {{$post->title}}</h1><br>
         <a href="/communitypost" class="btn btn-default">< Ga terug</a><br/><br/>
         @if (Storage::disk('local')->has($post->title . '-' . $post->user_id . '.jpg'))
             <section class="row new-post">
@@ -15,7 +15,7 @@
         @endif
         
         <p>{{$post->content}}</p>
-        <small>Geschreven op {{$post->created_at}} door <a href='/profiles/{{$post->user->id}}'>{{$post->user->name}}</a></small><br>
+        <small>Geschreven op {{$post->created_at}} door <a href='/profiles/{{$post->user->profile->id}}'>{{$post->user->name}}</a></small><br>
         @if (auth()->user()->id == $post->user_id)
         <a href ='/communitypost/{{$post->id}}/edit' class='btn btn-default'>Bericht bewerken ></a>
         @endif
@@ -39,7 +39,7 @@
                                                 {{Form::close()}}  
                                             @endif   
                                         
-                                            <small>Geschreven door <a href='/profiles/{{$comment->user->id}}'>{{$comment->user->name}}</a></small>
+                                            <small>Geschreven door <a href='/profiles/{{$comment->user->profile->id}}'>{{$comment->user->name}}</a></small>
                                         <hr>
 				</div>
 			@endforeach
