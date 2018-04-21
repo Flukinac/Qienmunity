@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
-use App\Controllers\CommentControllers;
+use App\Http\Controllers;
 use App\User;
 use App\Profile;
 
@@ -58,14 +58,21 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/contactMail', 'ContactController@sendContact');
 
     Route::get('/home','HomeController@index');
+   
+    Route::post('bookmark/{post_id}', ['uses' => 'NieuwsController@bookmark', 'as' => 'nieuws.bookmark']);
     
+    //Comments plaatsen en deleten vanuit namespace CommentControllers
+    
+    Route::group(['namespace'=>'CommentControllers', 'prefix'=>'CommentControllers'], function(){
     Route::post('nieuwscomment/{post_id}', ['uses' => 'NieuwsCommentController@store', 'as' => 'nieuwscomment.store']);
     
     Route::delete('nieuwscommentdelete/{comment_id}', ['uses' => 'NieuwsCommentController@destroy', 'as' => 'nieuwscomment.destroy']);
-   
-    Route::post('bookmark/{post_id}', ['uses' => 'NieuwsController@bookmark', 'as' => 'nieuws.bookmark']);
-
     
+    Route::post('communitycomment/{post_id}', ['uses' => 'CommunityCommentController@store', 'as' => 'communitycomment.store']);
+    
+    Route::delete('communitycommentdelete/{comment_id}', ['uses' => 'CommunityCommentController@destroy', 'as' => 'communitycomment.destroy']);
+
+    });
     
     
 

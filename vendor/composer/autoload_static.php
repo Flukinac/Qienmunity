@@ -78,6 +78,7 @@ class ComposerStaticInit6d643484cedaa02e7d1304e937782957
         array (
             'Dotenv\\' => 7,
             'Doctrine\\Instantiator\\' => 22,
+            'Doctrine\\Common\\Inflector\\' => 26,
         ),
         'C' => 
         array (
@@ -210,6 +211,10 @@ class ComposerStaticInit6d643484cedaa02e7d1304e937782957
         array (
             0 => __DIR__ . '/..' . '/doctrine/instantiator/src/Doctrine/Instantiator',
         ),
+        'Doctrine\\Common\\Inflector\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/doctrine/inflector/lib/Doctrine/Common/Inflector',
+        ),
         'Cron\\' => 
         array (
             0 => __DIR__ . '/..' . '/mtdowling/cron-expression/src/Cron',
@@ -258,16 +263,10 @@ class ComposerStaticInit6d643484cedaa02e7d1304e937782957
                 0 => __DIR__ . '/..' . '/jakub-onderka/php-console-color/src',
             ),
         ),
-        'D' => 
-        array (
-            'Doctrine\\Common\\Inflector\\' => 
-            array (
-                0 => __DIR__ . '/..' . '/doctrine/inflector/lib',
-            ),
-        ),
     );
 
     public static $classMap = array (
+        'AddCommunitypostIdToComments' => __DIR__ . '/../..' . '/database/migrations/2018_04_21_133446_add_communitypost_id_to_comments.php',
         'AddNewsidToComments' => __DIR__ . '/../..' . '/database/migrations/2018_04_16_131927_add_newsid_to_comments.php',
         'AddPinnedpostToNieuwspostsTable' => __DIR__ . '/../..' . '/database/migrations/2018_04_17_135823_add_pinnedpost_to_nieuwsposts_table.php',
         'AddUserIdComments' => __DIR__ . '/../..' . '/database/migrations/2018_04_06_133705_add_user_id_comments.php',
@@ -285,7 +284,7 @@ class ComposerStaticInit6d643484cedaa02e7d1304e937782957
         'App\\Http\\Controllers\\ContactController' => __DIR__ . '/../..' . '/app/Http/Controllers/ContactController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
-        'App\\Http\\Controllers\\NieuwsCommentController' => __DIR__ . '/../..' . '/app/Http/Controllers/CommentControllers/NieuwsCommentController.php',
+        'App\\Http\\Controllers\\NieuwsCommentController' => __DIR__ . '/../..' . '/app/Http/Controllers/CommentControllers/CommunityCommentController.php',
         'App\\Http\\Controllers\\NieuwsController' => __DIR__ . '/../..' . '/app/Http/Controllers/NieuwsController.php',
         'App\\Http\\Controllers\\PostIdController' => __DIR__ . '/../..' . '/app/Http/Controllers/PostIdController.php',
         'App\\Http\\Controllers\\ProfileController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProfileController.php',
@@ -1429,7 +1428,6 @@ class ComposerStaticInit6d643484cedaa02e7d1304e937782957
         'JakubOnderka\\PhpConsoleColor\\ConsoleColor' => __DIR__ . '/..' . '/jakub-onderka/php-console-color/src/JakubOnderka/PhpConsoleColor/ConsoleColor.php',
         'JakubOnderka\\PhpConsoleColor\\InvalidStyleException' => __DIR__ . '/..' . '/jakub-onderka/php-console-color/src/JakubOnderka/PhpConsoleColor/InvalidStyleException.php',
         'JakubOnderka\\PhpConsoleHighlighter\\Highlighter' => __DIR__ . '/..' . '/jakub-onderka/php-console-highlighter/src/JakubOnderka/PhpConsoleHighlighter/Highlighter.php',
-        'JsonSerializable' => __DIR__ . '/..' . '/nesbot/carbon/src/JsonSerializable.php',
         'League\\Flysystem\\AdapterInterface' => __DIR__ . '/..' . '/league/flysystem/src/AdapterInterface.php',
         'League\\Flysystem\\Adapter\\AbstractAdapter' => __DIR__ . '/..' . '/league/flysystem/src/Adapter/AbstractAdapter.php',
         'League\\Flysystem\\Adapter\\AbstractFtpAdapter' => __DIR__ . '/..' . '/league/flysystem/src/Adapter/AbstractFtpAdapter.php',

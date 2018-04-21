@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'AddCommunitypostIdToComments' => $baseDir . '/database/migrations/2018_04_21_133446_add_communitypost_id_to_comments.php',
     'AddNewsidToComments' => $baseDir . '/database/migrations/2018_04_16_131927_add_newsid_to_comments.php',
     'AddPinnedpostToNieuwspostsTable' => $baseDir . '/database/migrations/2018_04_17_135823_add_pinnedpost_to_nieuwsposts_table.php',
     'AddUserIdComments' => $baseDir . '/database/migrations/2018_04_06_133705_add_user_id_comments.php',
@@ -23,7 +24,7 @@ return array(
     'App\\Http\\Controllers\\ContactController' => $baseDir . '/app/Http/Controllers/ContactController.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
     'App\\Http\\Controllers\\HomeController' => $baseDir . '/app/Http/Controllers/HomeController.php',
-    'App\\Http\\Controllers\\NieuwsCommentController' => $baseDir . '/app/Http/Controllers/CommentControllers/NieuwsCommentController.php',
+    'App\\Http\\Controllers\\NieuwsCommentController' => $baseDir . '/app/Http/Controllers/CommentControllers/CommunityCommentController.php',
     'App\\Http\\Controllers\\NieuwsController' => $baseDir . '/app/Http/Controllers/NieuwsController.php',
     'App\\Http\\Controllers\\PostIdController' => $baseDir . '/app/Http/Controllers/PostIdController.php',
     'App\\Http\\Controllers\\ProfileController' => $baseDir . '/app/Http/Controllers/ProfileController.php',
@@ -1167,7 +1168,6 @@ return array(
     'JakubOnderka\\PhpConsoleColor\\ConsoleColor' => $vendorDir . '/jakub-onderka/php-console-color/src/JakubOnderka/PhpConsoleColor/ConsoleColor.php',
     'JakubOnderka\\PhpConsoleColor\\InvalidStyleException' => $vendorDir . '/jakub-onderka/php-console-color/src/JakubOnderka/PhpConsoleColor/InvalidStyleException.php',
     'JakubOnderka\\PhpConsoleHighlighter\\Highlighter' => $vendorDir . '/jakub-onderka/php-console-highlighter/src/JakubOnderka/PhpConsoleHighlighter/Highlighter.php',
-    'JsonSerializable' => $vendorDir . '/nesbot/carbon/src/JsonSerializable.php',
     'League\\Flysystem\\AdapterInterface' => $vendorDir . '/league/flysystem/src/AdapterInterface.php',
     'League\\Flysystem\\Adapter\\AbstractAdapter' => $vendorDir . '/league/flysystem/src/Adapter/AbstractAdapter.php',
     'League\\Flysystem\\Adapter\\AbstractFtpAdapter' => $vendorDir . '/league/flysystem/src/Adapter/AbstractFtpAdapter.php',
