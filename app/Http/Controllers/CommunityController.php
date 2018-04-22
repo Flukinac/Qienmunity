@@ -50,9 +50,8 @@ class CommunityController extends Controller
             'content' =>  'required',
         ]);
 //        ==========-----FOTO UPLOAD================
-        $old_name = auth()->user()->name;
         $file = $request->file('image');
-        $filename = $request['titel'] . '-' . auth()->user()->id . '.jpg';
+        $filename = 'communityimages/'.$request['titel'] . '-' . auth()->user()->id . '.jpg';
         $update = false;
         
         if (Storage::disk('local')->has($filename)) {
