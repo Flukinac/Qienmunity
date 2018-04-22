@@ -1,3 +1,10 @@
+# QienMunity
+
+QienMunity is een sociaal platform om mensen met elkaar te verbinden binnen Qien. Het doel is om het contact tussen medewerkers, trainees, docenten en alumni levend te houden.
+
+- Het is gebouwd met Laravel, een PHP Framework, als backend framework en met Bootstrap als frontend framework. 
+
+
 # Laravel PHP Framework
 
 [![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
