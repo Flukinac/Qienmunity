@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
-use App\Controllers\CommentControllers;
+use App\Http\Controllers;
 use App\User;
 use App\Profile;
 
@@ -55,37 +55,33 @@ Route::group(['middleware' => 'auth'], function () {
     
     //Methode routes
     
+    Route::get('/profileimage/{filename}', ['uses' => 'ProfileController@getUserImage', 'as' => 'profile.image']);
+
+    Route::get('/munityimage/{filename}', ['uses' => 'CommunityController@getUserImage', 'as' => 'community.image']);
+    
     Route::post('/contactMail', 'ContactController@sendContact');
 
-    Route::post('/zoek', 'NieuwsController@update');
-
     Route::get('/home','HomeController@index');
-    
-    Route::post('nieuwscomment/{post_id}', ['uses' => 'NieuwsCommentController@store', 'as' => 'nieuwscomment.store']);
-    
-    Route::delete('nieuwscommentdelete/{comment_id}', ['uses' => 'NieuwsCommentController@destroy', 'as' => 'nieuwscomment.destroy']);
    
     Route::post('bookmark/{post_id}', ['uses' => 'NieuwsController@bookmark', 'as' => 'nieuws.bookmark']);
-
-
-
     
-    
-
     Route::get('testauth', 'testController@auth');  
 
-    Route::get('/munityimage/{filename}', [
-        'uses' => 'CommunityController@getUserImage',
-        'as' => 'community.image'
-    ]);
+    Route::get('/auth/success', ['uses' => 'Auth\AuthController@success', 'as'   => 'auth.success']);
+    
+    
+    //Comments plaatsen en deleten op Nieuws en Communitypagina vanuit namespace CommentControllers
+    
+    Route::group(['namespace'=>'CommentControllers', 'prefix'=>'CommentControllers'], function(){
+        
+        Route::post('nieuwscomment/{post_id}', ['uses' => 'NieuwsCommentController@store', 'as' => 'nieuwscomment.store']);
 
-    Route::get('/profileimage/{filename}', [
-        'uses' => 'ProfileController@getUserImage',
-        'as' => 'profile.image'
-    ]);
+        Route::delete('nieuwscommentdelete/{comment_id}', ['uses' => 'NieuwsCommentController@destroy', 'as' => 'nieuwscomment.destroy']);
 
-    Route::get('/auth/success', [
-        'uses' => 'Auth\AuthController@success',
-        'as'   => 'auth.success'
-    ]);
+        Route::post('communitycomment/{post_id}', ['uses' => 'CommunityCommentController@store', 'as' => 'communitycomment.store']);
+
+        Route::delete('communitycommentdelete/{comment_id}', ['uses' => 'CommunityCommentController@destroy', 'as' => 'communitycomment.destroy']);
+
+    });   
+   
 });
