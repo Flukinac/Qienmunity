@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddNewsidToComments extends Migration
+class AddCommunitypostIdToComments extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class AddNewsidToComments extends Migration
     public function up()
     {
         Schema::table('comments', function($table){
-            $table->integer('nieuwspost_id')->nullable()->unsigned();
+            $table->integer('communitypost_id')->nullable()->unsigned();
         });
         Schema::table('comments', function ($table){
-            $table->foreign('nieuwspost_id')->references('id')->on('nieuwsposts')->onDelete('cascade');
+            $table->foreign('communitypost_id')->references('id')->on('communityposts')->onDelete('cascade');
         });
     }
-
     /**
      * Reverse the migrations.
      *
@@ -27,6 +26,8 @@ class AddNewsidToComments extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('comments', function (Blueprint $table) {
+            //
+        });
     }
 }

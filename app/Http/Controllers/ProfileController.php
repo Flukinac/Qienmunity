@@ -11,40 +11,27 @@ use App\User;
 
 class ProfileController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         $profiles = Profile::orderBy('username','asc')->paginate(20);
         return view('profiles.index')->with('profiles', $profiles);
     }
     
-        public function myProfile()
+    public function myProfile()
     {
         $user_id = auth()->user()->id;
         $user = User::find($user_id);
         return view('profiles.myprofile')->with('profile', $user->profile);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
         return view('profiles.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
         $this->validate($request,[
@@ -102,7 +89,7 @@ class ProfileController extends Controller
     public function show($id)
     {
         $profile = Profile::find($id);
-        return view('profiles.show',['user' => auth()->user()])->with('profile', $profile);
+        return view('profiles.show')->with('profile', $profile);
                                     
     }
 

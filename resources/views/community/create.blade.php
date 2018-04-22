@@ -9,11 +9,10 @@
             {{Form::Label('titel')}}
                 {{Form::text('titel','',['class'=>'form-control', 'placeholder' => 'Titel'])}}
                 <br>
-                {{Form::file('image')}}
+                Foto toevoegen:{{Form::file('image')}}
                 <br>
                 {{Form::textarea('content','',['class'=>'form-control', 'placeholder' => 'Content'])}}
-                {{Form::submit('Submit')}}
+                {{Form::submit('Post versturen >', ['class' => 'btn btn-default'])}}
         {!! Form::close() !!}
 
 @endsection
-    
