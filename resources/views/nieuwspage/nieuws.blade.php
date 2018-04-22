@@ -2,8 +2,8 @@
 
 @section('content')
  
-           
         <h1>Nieuws</h1>
+            
             <div class='well'>
             @if (auth()->user()->rol == 0)
                 <a href="/nieuwsposts/create" class="btn btn-default">Nieuw bericht ></a>
@@ -12,23 +12,16 @@
             <input id="zoek" type="text" name='search' onkeyup="zoeken()" data-token="{{ csrf_token() }}" data-link="{{ url('/zoek') }}" class="form-control" placeholder="zoek">
             
             </div>
+            
             <br/>
-        
-        @if(!empty($postquery) && count($postquery) >= 1)
-            @foreach($postquery as $post)
-                
-                    <h3><a href="/nieuwsposts/{{$post->id}}" id="qien--colour">{{$post->title}}</a></h3>
-                    <h4>{{str_limit($post->content, 50)}}</h4><br>
-                    <h5>Gepost op: {{$post->created_at}}</h5>
-                
-            @endforeach
-        @else
+            <div id="tabelZoekResultaat"></div>
+            <div id='tabelzoek'>
                 <h2>Gepind Nieuws</h2>   
 
             @if(count($pinned) >= 1)
 
             <div class="card-group">
-
+                    
                     @foreach($pinned as $post)
                             <div class="card">
 
@@ -62,6 +55,7 @@
 
 
                     @endforeach
+                   
                 </div>
 
 
@@ -73,10 +67,8 @@
             <hr>
 
             <h2>Nieuws Posts</h2>
-            <div class="testdiv1"></div> 
-            <div class="testdiv2"></div> 
-            <div class="testdiv3"></div> 
-
+            
+            
             @if(count($nieuws) >= 1)
                 @foreach($nieuws as $post)
                     <div class='well'>
@@ -111,5 +103,5 @@
             @else
                 <p> Geen Nieuws Posts</p>
             @endif
-        @endif    
+</div>            
 @endsection

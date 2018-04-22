@@ -39,6 +39,7 @@ function query(jsondata){
         type:"POST",
         
         beforeSend: function (xhr) {
+            //alert(jsondata);
             var token = $('meta[name="csrf_token"]').attr('content');
 
             if (token) {
@@ -46,22 +47,36 @@ function query(jsondata){
             }
         },
         
-            
-        
         success:function(data){ 
-            //console.log(data[0]['title']);
-           console.log(data);
-//            $(".testdiv1").html(data[0]['title']);
-//            $(".testdiv2").text(data["content"]);
-//            $(".testdiv3").text(data["created_at"]);
+            if (data.length !== 0){
+                paginaData(data);
+            }else{
+                $("#tabelZoekResultaat").html(" ");
+                $("#tabelzoek").show();
+            }
         },error:function(){ 
-            //alert("error!!!!");
+            alert("HTTP error");
         }
-        
     }); 
-    
 }
 
+function paginaData(data){
+    var i;
+    $("#tabelzoek").hide();
+    $("#tabelZoekResultaat").html(" ");
+    for(i = 0; i < data.length; i++){
+        
+        $( "#tabelZoekResultaat" ).append(  
+            '<div class="well">'+
+            '<div class="card-body">'+
+            '<h3 class="card-title" id="qien--colour">'+data[i]['title']+'</h3>'+
+            '<p class="card-text">'+data[i]['content']+'</p>'+
+            '<p class="card-text"><small class="text-muted">Gepost op:'+data[i]['created_at']+'</small></p>'+
+            '<a href="/nieuwsposts/'+data[i]['id']+' class="btn btn-default">Lees Verder</a>'+
+            '</div>');
+
+    }
+}
     
 
 

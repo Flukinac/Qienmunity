@@ -132,15 +132,15 @@ class NieuwsController extends Controller
 
     
     public function search(Request $request){
-     
-            $query = $request->suggestion;  
-            //echo $query;
-            //print_r($query);
-            $postquery = Nieuwspost::where('title', 'like', '%'.$query.'%')->get();
-            //print_r($postquery);      
-            //echo "succes";
-           return new Response($postquery);
-        
+            //error_log("yipiypiyo");
+            $query = $request->json()->all()["term"];  
+            if(!empty($query)){
+                $postquery = Nieuwspost::where('title', 'like', '%'.$query.'%')
+                                               //->orderByRaw('created_at DESC')
+                                               ->get();
+
+                return new Response($postquery, 200);
+            }
     }
 }
 
