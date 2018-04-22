@@ -268,6 +268,7 @@ class ComposerStaticInit6d643484cedaa02e7d1304e937782957
     );
 
     public static $classMap = array (
+        'AddCommunitypostIdToComments' => __DIR__ . '/../..' . '/database/migrations/2018_04_21_133446_add_communitypost_id_to_comments.php',
         'AddNewsidToComments' => __DIR__ . '/../..' . '/database/migrations/2018_04_16_131927_add_newsid_to_comments.php',
         'AddPinnedpostToNieuwspostsTable' => __DIR__ . '/../..' . '/database/migrations/2018_04_17_135823_add_pinnedpost_to_nieuwsposts_table.php',
         'AddUserIdComments' => __DIR__ . '/../..' . '/database/migrations/2018_04_06_133705_add_user_id_comments.php',
@@ -285,7 +286,7 @@ class ComposerStaticInit6d643484cedaa02e7d1304e937782957
         'App\\Http\\Controllers\\ContactController' => __DIR__ . '/../..' . '/app/Http/Controllers/ContactController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
-        'App\\Http\\Controllers\\NieuwsCommentController' => __DIR__ . '/../..' . '/app/Http/Controllers/CommentControllers/NieuwsCommentController.php',
+        'App\\Http\\Controllers\\NieuwsCommentController' => __DIR__ . '/../..' . '/app/Http/Controllers/CommentControllers/CommunityCommentController.php',
         'App\\Http\\Controllers\\NieuwsController' => __DIR__ . '/../..' . '/app/Http/Controllers/NieuwsController.php',
         'App\\Http\\Controllers\\PostIdController' => __DIR__ . '/../..' . '/app/Http/Controllers/PostIdController.php',
         'App\\Http\\Controllers\\ProfileController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProfileController.php',

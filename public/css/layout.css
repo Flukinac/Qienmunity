@@ -37,7 +37,9 @@ hr{
     color:#9d3ff3;   
 }
 
-/*===========================   =NIEUWSPAGINA CSS   =========================*/
+/*===========================   NIEUWSPAGINA CSS   =========================*/
+
+                            /*  INDEX NEWSPAGINA */
 .well{
     
     background-color: #fff;
@@ -53,6 +55,7 @@ hr{
     float: left;
     margin:2%;
     box-shadow: 10px 10px 5px #aaaaaa;
+    
 }
 
 .card-body{
@@ -63,3 +66,26 @@ hr{
     height:100px;
     width:100%;
 }
+
+                            /*  SHOW NIEUWSPAGINA */
+                         
+#showNewsPost{
+    width:  100%;
+    justify-content: center;
+}
+
+.card-header{
+    height:40px;
+    text-align: center;
+}
+
+.card-text-nieuws{
+    max-height: 400px;
+    overflow: scroll;
+    
+}
+                            
+                            
+                            
+                            
+/*===========================   COMMUNITYPAGINA CSS   ========================*/

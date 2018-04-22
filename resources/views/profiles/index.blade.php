@@ -6,7 +6,7 @@
             @foreach($profiles as $profile)
             <div class ='well'>
                 <b><a href ="/profiles/{{$profile->id}}"> {{$profile->username}}</a></b>
-                <small>Laatst geüpdate op {{$profile->updated_at}}</small>
+                <small>Gebruiker sinds {{$profile->created_at}}</small>
             </div>
             @endforeach
             {{$profiles->links()}}

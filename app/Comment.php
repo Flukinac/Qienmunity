@@ -1,11 +1,15 @@
 <?php
 
 namespace App;
+use App\Communitypost;
+use App\Nieuwspost;
 
 use Illuminate\Database\Eloquent\Model;
 
 class comment extends Model
 {
+    protected $guarded = [];
+    
     public function user(){
         return $this->belongsTo('App\User');
     }
