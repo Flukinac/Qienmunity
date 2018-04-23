@@ -3,8 +3,19 @@
 @section('content')
     <a href="/nieuwsposts" class="btn btn-default">< Ga terug</a><br/><br/>
         <div class="row">
+            @if (Storage::disk('local')->has($post->title . '' . $post->user_id . 'news.jpg'))
+            <section class="row new-post">
+                <div class="col-md-6 col-md-offset-3">
+                    <img src="{{route('news.image', ['filename' => $post->image]) }}" alt="" class="img-responsive">
+                </div>
+            </section>
+
+            <br>
+            <h2>Content</h2>
+        @endif
             <div class="col-md-10 col-md-offset-1">
                 <div class="card" id="showNewsPost">
+                    
                     <div class="card-header" id="qien--background-colour">
                         <h3>Nieuws: {{$post->title}}</h3>
                     </div>
@@ -16,8 +27,9 @@
                   </div>
             </div>
 	</div>
-       
-	
+
+    <h2>Comments</h2>
+    
         @foreach($post->comments as $comment)
          <div class="well">
                         <div class="accordion" id="accordion">

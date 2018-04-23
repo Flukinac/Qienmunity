@@ -63,6 +63,8 @@ Route::group(['middleware' => 'auth'], function () {
     
     Route::get('/munityimage/{filename}', ['uses' => 'CommunityController@getUserImage', 'as' => 'community.image']);
     
+    Route::get('/newsimage/{filename}', ['uses' => 'NieuwsController@getUserImage', 'as' => 'news.image']);
+    
     Route::post('/contactMail', 'ContactController@sendContact');
 
     Route::get('/home','HomeController@index');
