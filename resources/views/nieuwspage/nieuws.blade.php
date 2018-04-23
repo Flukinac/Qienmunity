@@ -32,7 +32,6 @@
                               <p class="card-text">{{str_limit($post->content)}}</p>
                               <p class="card-text"><small class="text-muted">Gepost op: {{$post->created_at}}</small></p>
                               <a href="/nieuwsposts/{{$post->id}}" class="btn btn-default">Lees Verder</a>
-                               {{ $post->links() }}
                               @if(auth()->user()->rol == 0)
                                     <hr>    
                                     {!! Form::open(['action' => ['NieuwsController@update', $post->id], 'method' => 'POST'])!!}
@@ -54,42 +53,6 @@
                             </div>
                         </div>
                 
-            
-
-            
-                    
-                    
-                            <div class="card">
-
-                            <img class="card-img-top" src="{{ URL::asset('css/images/qien-color.jpg') }}" alt="Card image cap">
-                            <div class="card-body">
-                                  <h3 class="card-title" id="qien--colour">{{$post->title}}</h3>
-                                  <p class="card-text">{{$post->content}}</p>
-                                  <p class="card-text"><small class="text-muted">Gepost op: {{$post->created_at}}</small></p>
-                                  <a href="/nieuwsposts/{{$post->id}}" class="btn btn-default">Lees Verder</a>
-
-                                  @if(auth()->user()->rol == 0)
-                                        <hr>    
-                                        {!! Form::open(['action' => ['NieuwsController@update', $post->id], 'method' => 'POST'])!!}
-                                            {{Form::hidden('_method', 'PUT')}}
-                                            {{Form::hidden('unpin', 'unpin')}}
-                                            {{Form::submit('Unpin', ['class' => 'btn btn-default'])}}
-                                        {!!Form::close()!!}  
-
-                                    @endif
-
-                                    @if (auth()->user()->rol == 0||(auth()->user()->id == $post->id))
-                                        <hr>
-                                        <a href ="/nieuwsposts/{{$post->id}}/edit" class="btn btn-sm btn-primary"> Wijzig Nieuwspost</a>
-                                        {!!Form::open(['action' => ['NieuwsController@destroy', $post->id], 'method' => 'POST', 'class' => 'pull-right'])!!}
-                                            {{Form::hidden('_method', 'DELETE')}}
-                                            {{Form::submit('Delete', ['class' => 'btnbtn-sm btn-danger'])}}
-                                        {!!Form::close()!!}  
-                                    @endif
-                                </div>
-                            </div>
-
-
                     @endforeach
                    
                 </div>
