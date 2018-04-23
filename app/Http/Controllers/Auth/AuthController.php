@@ -8,6 +8,7 @@ use App\Profile;
 use Validator;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\ContactController;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
@@ -81,14 +82,16 @@ class AuthController extends Controller
             'rol'=> $data['rol'],
             'password' => bcrypt($data['password'])
         ]); 
-        
-        $user = DB::table('users')->where('email', $data['email'])->first();
-
         Profile::create ([
             'username' => $user->name,
             'email' => $user->email,
             'user_id' => $user->id
         ]);
+        $user = DB::table('users')->where('email', $data['email'])->first();
+        
+
+       
+        ContactController::sendMailNewUser($data);
     }
      
     public function register(Request $request)
