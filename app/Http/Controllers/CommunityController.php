@@ -60,14 +60,14 @@ class CommunityController extends Controller
             Storage::disk('local')->put($filename, File::get($file));
         }
         
- //        ==========-----DATABASE SAVING================               
+//        ==========-----DATABASE SAVING================               
         $post = new Communitypost;
         $post->title = $request->input('titel');
         $post->content = $request->input('content');
         $post->user_id = auth()->user()->id;
         $post->image = $filename;
         $post->save();
-        
+        ContactController::notifyMail($post->user_id, "comm"); //voor notificatie mail van aanmaak nieuwe post
 //        ==========-----VIEW================
         return redirect('/communitypost')->with('success', 'Nieuwe post aangemaakt');
     }
@@ -104,13 +104,13 @@ class CommunityController extends Controller
     
     public function update(Request $request, $id)
     {
-        //        ==========-----DATA VALIDATION================
+//      ==========-----DATA VALIDATION================
         $this->validate($request,[
             'titel' => 'required',
             'content' =>  'required',
         ]);
         
-//        ==========-----FOTO UPDATE================
+//      ==========-----FOTO UPDATE================
         $file = $request->file('image');
        
         $title = trim($request->input('titel'));
@@ -125,7 +125,7 @@ class CommunityController extends Controller
             $update = true;
         }
         
- //        ==========-----DATABASE SAVING================               
+//        ==========-----DATABASE SAVING================               
         $post = Communitypost::find($id);
         $post->title = $request->input('titel');
         $post->content = $request->input('content');

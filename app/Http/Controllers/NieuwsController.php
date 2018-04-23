@@ -69,7 +69,7 @@ class NieuwsController extends Controller
         $post->title = $request->input('titel');
         $post->content = $request->input('content');
         $post->save();
-        
+        ContactController::notifyMail($post->user_id, "nieuws"); //voor notificatie mail van aanmaak nieuwe post
         return redirect('/nieuwsposts')->with('success', 'Nieuwspost succesvol gemaakt');
     }
     
