@@ -8,7 +8,7 @@
             {{Form::Label('titel')}}
                 {{Form::text('titel','',['class'=>'form-control', 'placeholder' => 'Titel'])}}
                 <br>
-                {{Form::textarea('content','',['class'=>'form-control', 'placeholder' => 'Content'])}}
+                {{Form::textarea('content','',['id'=>'article-ckeditor', 'class'=>'form-control', 'placeholder' => 'Content'])}}
                 {{Form::submit('Submit')}}
         {!! Form::close() !!}
 

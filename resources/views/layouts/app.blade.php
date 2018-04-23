@@ -52,12 +52,10 @@
                 <!-- Left Side Of Navbar -->
                 @if (auth()->user())
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ url('/') }}">Home</a></li>
-                    <li><a href="{{ url('/dashboard') }}">Dashboard</a></li>
+                    <li><a href="{{ url('/') }}">Dashboard</a></li>
                     <li><a href="{{ url('/profiles') }}">Profielen</a></li>
                     <li><a href="{{ url('/nieuwsposts') }}">Nieuws</a></li>
                     <li><a href="{{ url('/communitypost') }}">Community</a></li>
-                    <li><a href="{{ url('/resources') }}">Resources</a></li>
                     <li><a href="{{ url('/contact') }}">Contact</a></li>
                 </ul>
                 @endif
@@ -110,5 +108,9 @@
 
     <script src="{{URL::asset('js/index.js')}}"></script>
 
+    <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace( 'article-ckeditor' );
+    </script>
 </body>
 </html>

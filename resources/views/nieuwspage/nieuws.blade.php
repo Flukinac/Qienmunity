@@ -29,7 +29,7 @@
                         <img class="card-img-top" src="{{ URL::asset('css/images/qien-color.jpg') }}" alt="Card image cap">
                         <div class="card-body">
                               <h3 class="card-title" id="qien--colour">{{$post->title}}</h3>
-                              <p class="card-text">{{str_limit($post->content)}}</p>
+                              <p class="card-text">{!!str_limit($post->content, 300)!!}</p>
                               <p class="card-text"><small class="text-muted">Gepost op: {{$post->created_at}}</small></p>
                               <a href="/nieuwsposts/{{$post->id}}" class="btn btn-default">Lees Verder</a>
                               @if(auth()->user()->rol == 0)
@@ -69,7 +69,7 @@
                 @foreach($nieuws as $post)
                     <div class='well'>
                         <h3><a href="/nieuwsposts/{{$post->id}}" id="qien--colour">{{$post->title}}</a></h3>
-                        <div><h4>{{str_limit($post->content, 50)}}</h4></div><br>
+                        <div><h4>{!!str_limit($post->content, 300)!!}</h4></div><br>
                         <div><h5>Gepost op: {{$post->created_at}}</h5></div>
 
                         @if (auth()->user()->rol == 0)
