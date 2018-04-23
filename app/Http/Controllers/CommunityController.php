@@ -45,18 +45,19 @@ class CommunityController extends Controller
         ]);
 //        ==========-----FOTO UPLOAD================
         $file = $request->file('image');
-        $filename = 'communityimages/'.$request['titel'] . '-' . auth()->user()->id . '.jpg';
+        $filename = $request->input('titel').'-'. auth()->user()->id.'commu.jpg';
         $update = false;
         
         if (Storage::disk('local')->has($filename)) {
             $old_file = Storage::disk('local')->get($filename);
-            Storage::disk('local')->put($filename, $old_file);
+            Storage::delete($old_file);
+            Storage::disk('local')->put($filename, File::get($file));
             $update = true;
         }
-        if ($file) {
+        else if ($file) {
             Storage::disk('local')->put($filename, File::get($file));
-            
         }
+        
  //        ==========-----DATABASE SAVING================               
         $post = new Communitypost;
         $post->title = $request->input('titel');
@@ -108,14 +109,17 @@ class CommunityController extends Controller
         ]);
         
 //        ==========-----FOTO UPDATE================
-        if($request->file('image')){
-            $old_filename = 'communityimages/'.$request['titel'] . '-' . auth()->user()->id . '.jpg';
-//        DELETE FILE FROM STORAGE.
-            Storage::delete($old_filename);
-//        ADD FILE TO STORAGE
-            $file = $request->file('image');
-            $filename = 'communityimages/'.$request['titel'] . '-' . auth()->user()->id . '.jpg';
-
+        $file = $request->file('image');
+        $filename = $request->input('titel').'-'. auth()->user()->id.'commu.jpg';
+        $update = false;
+        
+        if (Storage::disk('local')->has($filename)) {
+            $old_file = Storage::disk('local')->get($filename);
+            Storage::delete($old_file);
+            Storage::disk('local')->put($filename, File::get($file));
+            $update = true;
+        }
+        else if ($file) {
             Storage::disk('local')->put($filename, File::get($file));
         }
 
@@ -124,7 +128,9 @@ class CommunityController extends Controller
         $post->title = $request->input('titel');
         $post->content = $request->input('content');
         $post->user_id = auth()->user()->id;
+        if($request->file('image')){
         $post->image = $request->input('image');
+        }
         $post->save();
         
 //        ==========-----VIEW================
