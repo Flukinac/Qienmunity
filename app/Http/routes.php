@@ -59,6 +59,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::post('/zoek', 'NieuwsController@search');
     
+    Route::post('/zoekComm', 'CommunityController@searchComm');
+    
     Route::get('/munityimage/{filename}', ['uses' => 'CommunityController@getUserImage', 'as' => 'community.image']);
     
     Route::post('/contactMail', 'ContactController@sendContact');
