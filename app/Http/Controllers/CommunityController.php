@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use App\Communitypost;
 use App\Http\Requests;
+use App\User;
 
 class CommunityController extends Controller
 {
@@ -143,15 +144,17 @@ class CommunityController extends Controller
         $post->delete();
         return redirect('/communitypost')->with('success', 'Post succesvol gewijzigd');
     }
+    
     public function searchComm(Request $request){
         $data = $request->json()->all();  
         if(!empty($data["term"])){
-            if($data["diff"] == true){
-                $postquery = Communitypost::where('user', 'like', '%'.$data["term"].'%')->get();
+            if($data["diff"] == 1){
+                $postqueryUserId = User::where('name', 'like', '%'.$data["term"].'%')->select('id')->get();
+                $postquery = Communitypost::whereIn('user_id', $postqueryUserId)->get();
             }else{
                 $postquery = Communitypost::where('title', 'like', '%'.$data["term"].'%')->get();
             }
-            return new Response($data, 200);
-        }
+            return new Response($postquery, 200);  
+        } 
     }       
 }

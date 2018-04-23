@@ -16,7 +16,7 @@
             <br/>
 
             <div id="tabelZoekResultaat"></div>
-            <div id='tabelzoek'>
+            <div id='tabelZoek'>
 
             <h2>Gepind Nieuws</h2>   
         @if(count($pinned) >= 1)
