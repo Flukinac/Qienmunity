@@ -148,9 +148,9 @@ function paginaDataComm(data){                  //voor nieuwspagina
             '<div class="well">'+
             '<div class="card-body">'+
             '<h3 class="card-title" id="qien--colour">'+data[i]['title']+'</h3>'+
-            '<p class="card-text">'+data[i]['content']+'</p>'+
+            '<p class="card-text">'+data[i]['content'].substr(0, 100)+'</p>'+
             '<p class="card-text"><small class="text-muted">Gepost op:'+data[i]['created_at']+'</small></p>'+
-            '<a href="/nieuwsposts/'+data[i]['id']+' class="btn btn-default">Lees Verder</a>'+
+            '<a href="/communitypost/'+data[i]['id']+' class="btn btn-default">Lees Verder</a>'+
             '</div>');
 
     }
