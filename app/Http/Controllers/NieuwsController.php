@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use DB;
 use App\Nieuwspost;
 use App\Http\Requests;
+use Illuminate\Http\Response;
 use Illuminate\Pagination\PaginationServiceProvider;
 
 class NieuwsController extends Controller
@@ -13,12 +14,14 @@ class NieuwsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+
         $pinned = Nieuwspost::orderBy('id','asc')->where('pinned', 1)->take(3)->paginate(3);
         $post = Nieuwspost::orderBy('id','desc')->where('pinned', 0)->paginate(6);
         return view('nieuwspage/nieuws')->with('nieuws', $post)->with('pinned', $pinned);
                                         
+
     }
     /**
      * Show the form for creating a new resource.
@@ -80,6 +83,8 @@ class NieuwsController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+  
+
     public function update(Request $request, $id)
     {
         if((!$request->pinned) && (!$request->unpin)){
@@ -105,11 +110,17 @@ class NieuwsController extends Controller
             
         $post->save();
         
+
+        return redirect('/nieuwsposts');
+
+
+
         if(!$request->pinned){
             return redirect('/nieuwsposts')->with('success', 'Post succesvol gewijzigd');
         }else{
              return redirect('/nieuwsposts')->with('success', 'Post succesvol vastgepint');
         }
+
     }
 
     public function destroy($id)
@@ -118,4 +129,20 @@ class NieuwsController extends Controller
         $post->delete();
         return redirect('/nieuwsposts')->with('success', 'Post is verwijderd');
     }
+
+    
+    public function search(Request $request){
+            //error_log("yipiypiyo");
+            $query = $request->json()->all()["term"];  
+            if(!empty($query)){
+                $postquery = Nieuwspost::where('title', 'like', '%'.$query.'%')
+                                               //->orderByRaw('created_at DESC')
+                                               ->get();
+
+                return new Response($postquery, 200);
+            }
+    }
 }
+
+
+
