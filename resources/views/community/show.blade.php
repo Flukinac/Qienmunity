@@ -26,6 +26,8 @@
         {!!Form::close()!!}
         @endif
         
+        <h2>Comments</h2>
+        
         <div class="row">
 		<div class="col-md-8 col-md-offset-2">
 			@foreach($post->comments as $comment)

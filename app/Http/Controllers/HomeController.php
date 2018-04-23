@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\gebruikerModel;
+use App\Nieuwspost;
+use App\Communitypost;
 
 class HomeController extends Controller
 {
@@ -25,6 +27,9 @@ class HomeController extends Controller
      */
     public function index()
     {   
-        return view('home');
+        $commpost = Communitypost::orderBy('id','desc')->paginate(3);
+        $pinnedpost = Nieuwspost::orderBy('id','desc')->where('pinned', 1)->paginate(3);
+        $nieuwspost = Nieuwspost::orderBy('id','desc')->where('pinned', 0)->paginate(3);
+        return view('home')->with('commpost',$commpost)->with('pinnedpost',$pinnedpost)->with('nieuwspost',$nieuwspost);
     }
 }

@@ -27,8 +27,9 @@
                   </div>
             </div>
 	</div>
-       
-	
+
+    <h2>Comments</h2>
+    
         @foreach($post->comments as $comment)
          <div class="well">
                         <div class="accordion" id="accordion">

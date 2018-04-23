@@ -14,7 +14,7 @@
             </div>
             <div class='form-group'>
                 {{Form::label('content', 'Content')}}
-                {{Form::textarea('content', $post->content ,['class'=>'form-control', 'placeholder'=> $post->content])}}
+                {{Form::textarea('content', $post->content ,['id'=>'article-ckeditor', 'class'=>'form-control', 'placeholder'=> $post->content])}}
             </div>
             <div class='form-group'>
                 {{Form::label('image', 'Foto bewerken')}}
