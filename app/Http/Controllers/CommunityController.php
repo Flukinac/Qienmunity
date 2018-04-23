@@ -45,10 +45,11 @@ class CommunityController extends Controller
         ]);
 //        ==========-----FOTO UPLOAD================
         $file = $request->file('image');
-        $filename = $request->input('titel').'-'. auth()->user()->id.'commu.jpg';
+        $title = trim($request->input('titel'));
+        $filename = $title.''.auth()->user()->id.'commu.jpg';
         $update = false;
         
-        if (Storage::disk('local')->has($filename)) {
+        if (Storage::disk('local')->exists($filename)) {
             $old_file = Storage::disk('local')->get($filename);
             Storage::delete($old_file);
             Storage::disk('local')->put($filename, File::get($file));
@@ -84,8 +85,7 @@ class CommunityController extends Controller
     {
         $getPost = Communitypost::find($id);
         $userPost = $getPost->user;
-        
-        
+                
         return view('community.show',['user' => auth()->user()])->with('post', $getPost);
     }
     /**
@@ -111,28 +111,27 @@ class CommunityController extends Controller
         
 //        ==========-----FOTO UPDATE================
         $file = $request->file('image');
-        error_log($file);
-        $filename = $request->input('titel').'-'. auth()->user()->id.'commu.jpg';
+       
+        $title = trim($request->input('titel'));
+     
+        $filename = $title.''.auth()->user()->id.'commu.jpg';
+        
         $update = false;
         
-        if (Storage::disk('local')->has($filename)) {
-            $old_file = Storage::disk('local')->get($filename);
-            Storage::delete($old_file);
+        if (Storage::disk('local')->exists($filename)) {
+
             Storage::disk('local')->put($filename, File::get($file));
             $update = true;
         }
-        else if ($file) {
-            Storage::disk('local')->put($filename, File::get($file));
-        }
-
+        
  //        ==========-----DATABASE SAVING================               
         $post = Communitypost::find($id);
         $post->title = $request->input('titel');
         $post->content = $request->input('content');
         $post->user_id = auth()->user()->id;
-        if($request->file('image')){
-        $post->image = $request->input('image');
-        }
+        
+        $post->image = $filename;
+        
         $post->save();
         
 //        ==========-----VIEW================
