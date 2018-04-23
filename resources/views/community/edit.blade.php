@@ -7,7 +7,7 @@
         <h1>Communitypost bewerken</h1>
         <h3>{{$post->user->name}}</h3>
         <a href="/communitypost" class="btn btn-default">< Ga terug</a><br/><br/>
-        {!! Form::open(['action' => ['CommunityController@update', $post->id], 'method' => 'POST'])!!}
+        {!! Form::open(['action' => ['CommunityController@update', $post->id], 'method' => 'POST', 'enctype' => 'multipart/form-data', 'files' => true])!!}
             <div class='form-group'>
                 {{Form::label('titel', 'Titel')}}
                 {{Form::text('titel', $post->title ,['class'=>'form-control', 'placeholder'=>$post->title])}}
