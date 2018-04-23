@@ -25,5 +25,6 @@
         @else
             <p> No Community Posts Yet</p>
         @endif
-        
+        {{ $nieuws->links() }}
+
 @endsection

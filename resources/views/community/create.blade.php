@@ -11,7 +11,7 @@
                 <br>
                 Foto toevoegen:{{Form::file('image')}}
                 <br>
-                {{Form::textarea('content','',['id'=>'article-ckeditor', class'=>'form-control', 'placeholder' => 'Content'])}}
+                {{Form::textarea('content','',['id'=>'article-ckeditor', 'class'=>'form-control', 'placeholder' => 'Content'])}}
                 {{Form::submit('Post versturen >', ['class' => 'btn btn-default'])}}
         {!! Form::close() !!}
 
