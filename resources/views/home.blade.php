@@ -2,7 +2,7 @@
 
 @section('content')
 
-<h1>Home</h1>
+<h1>Dashboard</h1>
 
 <div class="container">
     <div class="row">
@@ -25,4 +25,3 @@
     @endif
     <div style="background-color: blue; color: yellow;" >student</div>
 @endsection
-

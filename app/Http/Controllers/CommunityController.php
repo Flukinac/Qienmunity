@@ -16,7 +16,7 @@ class CommunityController extends Controller
      */
     public function index()
     {
-         $post = Communitypost::orderBy('id','desc')->get();
+         $post = Communitypost::orderBy('id','desc')->paginate(10);;
          
         return view('community.newsfeed')->with('nieuws',$post);
                                          

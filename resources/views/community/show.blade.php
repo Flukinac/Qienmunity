@@ -14,7 +14,7 @@
             <h2>Content</h2>
         @endif
         
-        <p>{{$post->content}}</p>
+        <p>{!!$post->content!!}</p>
         <small>Geschreven op {{$post->created_at}} door <a href='/profiles/{{$post->user->profile->id}}'>{{$post->user->name}}</a></small><br>
         @if (auth()->user()->id == $post->user_id)
         <a href ='/communitypost/{{$post->id}}/edit' class='btn btn-default'>Bericht bewerken ></a>

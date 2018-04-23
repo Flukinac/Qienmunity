@@ -10,7 +10,7 @@
                     </div>
                     <div class="card-body">
                       
-                      <p class="card-text-nieuws" id="card-text-nieuws">{{$post->content}}</p>
+                      <p class="card-text-nieuws" id="card-text-nieuws">{!!$post->content!!}</p>
                       <small>Geschreven op {{$post->created_at}} door <a href='/profiles/{{$post->user->profile->id}}'>{{$post->user->name}}</a></small>
                     </div>
                   </div>
