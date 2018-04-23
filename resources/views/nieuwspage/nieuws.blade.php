@@ -32,7 +32,7 @@
                               <p class="card-text">{{str_limit($post->content)}}</p>
                               <p class="card-text"><small class="text-muted">Gepost op: {{$post->created_at}}</small></p>
                               <a href="/nieuwsposts/{{$post->id}}" class="btn btn-default">Lees Verder</a>
-
+                               {{ $post->links() }}
                               @if(auth()->user()->rol == 0)
                                     <hr>    
                                     {!! Form::open(['action' => ['NieuwsController@update', $post->id], 'method' => 'POST'])!!}
@@ -53,13 +53,12 @@
                                 @endif
                             </div>
                         </div>
+                
+            
 
-
-            @if(count($pinned) >= 1)
-
-            <div class="card-group">
+            
                     
-                    @foreach($pinned as $post)
+                    
                             <div class="card">
 
                             <img class="card-img-top" src="{{ URL::asset('css/images/qien-color.jpg') }}" alt="Card image cap">
@@ -95,16 +94,13 @@
                    
                 </div>
 
-
             @else
                 <p> Geen Pinned Posts</p>
             @endif
 
-
             <hr>
 
             <h2>Nieuws Posts</h2>
-            
             
             @if(count($nieuws) >= 1)
                 @foreach($nieuws as $post)
@@ -134,9 +130,7 @@
                         @endif
 
                     </div>              
-
                 @endforeach
-
             @else
                 <p> Geen Nieuws Posts</p>
             @endif

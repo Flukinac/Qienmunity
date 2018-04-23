@@ -1,11 +1,11 @@
-function contactPost(){
+function contactPost(){                 //voor contactmail pagina
     var subject = $(".subject").val();
     var text = $(".text").val();
     
     objectify(subject, text);
 }
 
-function objectify(subject, text){
+function objectify(subject, text){      //voor contactmail pagina
     var mail = {};
     mail.subject = subject;
     mail.text = text;
@@ -19,7 +19,7 @@ function objectify(subject, text){
     xhttp.send(mailjson);
 }
     
-function zoeken(){
+function zoeken(){                      //voor nieuwspagina
     var data = {
     term:$(".form-control").val(),
     _token:$(".form-control").data('token')
@@ -29,7 +29,7 @@ function zoeken(){
     query(jsondata);
 }
     
-function query(jsondata){
+function query(jsondata){               //voor nieuwspagina
     var url = $(".form-control").attr("data-link");
     
     $.ajax({
@@ -60,7 +60,7 @@ function query(jsondata){
     }); 
 }
 
-function paginaData(data){
+function paginaData(data){                  //voor nieuwspagina
     var i;
     $("#tabelzoek").hide();
     $("#tabelZoekResultaat").html(" ");
