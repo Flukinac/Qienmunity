@@ -7,7 +7,7 @@
         <h1>Nieuws Post Bewerken</h1>
         <h3>{{$post->user->name}}</h3>
         <a href="/nieuwsposts" class="btn btn-default">< Ga terug</a><br/><br/>
-        {!! Form::open(['action' => ['NieuwsController@update', $post->id], 'method' => 'POST'])!!}
+        {!! Form::open(['action' => ['NieuwsController@update', $post->id], 'method' => 'POST', 'enctype' => 'multipart/form-data', 'files' => true])!!}
             <div class='form-group'>
                 {{Form::label('titel', 'Titel')}}
                 {{Form::text('titel', $post->title ,['class'=>'form-control', 'placeholder'=>$post->title])}}
@@ -15,6 +15,10 @@
             <div class='form-group'>
                 {{Form::label('content', 'Content')}}
                 {{Form::textarea('content', $post->content ,['class'=>'form-control', 'placeholder'=> $post->content])}}
+            </div>
+            <div class='form-group'>
+                   {{Form::label('image', 'Foto bewerken')}}
+                {{Form::file('image',['class'=>'form-control'])}}
             </div>
 
             {{Form::hidden('_method','PUT')}}
