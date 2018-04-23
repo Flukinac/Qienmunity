@@ -38,6 +38,7 @@ class ContactController extends Controller
         
        	ContactController::notifyMailTo($mail, $AllMail, $subject); 
     }
+    
     public static function notifyMailTo($mail, $AllMail, $subject){
         foreach($AllMail as $email){
           $emailCurrent = $email['email'];
@@ -51,6 +52,26 @@ class ContactController extends Controller
                 });
             }
         }
+    }
+    
+    public static function sendMailNewUser($data){
+        if($data['rol'] == 0){
+           $data['rol'] = "Admin";
+        }elseif($data['rol'] == 1){
+           $data['rol'] = "Trainee";
+        }elseif($data['rol'] == 2){
+           $data['rol'] = "Docent";
+        }
+        $subject = "Inloggegevens Qienmunity";
+        $emailCurrent = $data['email'];
+        
+                mail::send('mailRegister',['content' => $data,'sendFrom' => "Qienmunity", 'replyTo' => " "] ,function($message) use ($subject, $emailCurrent){
+
+                    $message->subject($subject);
+                    $message->from('qiencommunity@gmail.com');
+                    $message->to($emailCurrent);
+
+                });
     }
 }
 
