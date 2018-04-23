@@ -3,10 +3,10 @@
 @section('content')
         <h1>Community: {{$post->title}}</h1><br>
         <a href="/communitypost" class="btn btn-default">< Ga terug</a><br/><br/>
-        @if (Storage::disk('local')->has($post->title . '-' . $post->user_id . '.jpg'))
+        @if (Storage::disk('local')->has($post->title . '-' . $post->user_id . 'commu.jpg'))
             <section class="row new-post">
                 <div class="col-md-6 col-md-offset-3">
-                    <img src="{{route('community.image', ['filename' => $post->title . '-commu' . $post->user_id . '.jpg']) }}" alt="" class="img-responsive">
+                    <img src="{{route('community.image', ['filename' => $post->title . '-' . $post->user_id . 'commu.jpg']) }}" alt="" class="img-responsive">
                 </div>
             </section>
 

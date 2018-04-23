@@ -100,7 +100,8 @@ class CommunityController extends Controller
         return view('community.edit')->with('post', $post);
     }
 
-        public function update(Request $request, $id)
+    
+    public function update(Request $request, $id)
     {
         //        ==========-----DATA VALIDATION================
         $this->validate($request,[
@@ -110,6 +111,7 @@ class CommunityController extends Controller
         
 //        ==========-----FOTO UPDATE================
         $file = $request->file('image');
+        error_log($file);
         $filename = $request->input('titel').'-'. auth()->user()->id.'commu.jpg';
         $update = false;
         
