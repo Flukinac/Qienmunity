@@ -45,20 +45,21 @@ class CommunityController extends Controller
             'content' =>  'required',
         ]);
 //        ==========-----FOTO UPLOAD================
-        $old_name = auth()->user()->name;
         $file = $request->file('image');
-        $filename = $request['titel'] . '-' . auth()->user()->id . '.jpg';
+        $title = trim($request->input('titel'));
+        $filename = $title.''.auth()->user()->id.'commu.jpg';
         $update = false;
         
-        if (Storage::disk('local')->has($filename)) {
+        if (Storage::disk('local')->exists($filename)) {
             $old_file = Storage::disk('local')->get($filename);
-            Storage::disk('local')->put($filename, $old_file);
+            Storage::delete($old_file);
+            Storage::disk('local')->put($filename, File::get($file));
             $update = true;
         }
-        if ($file) {
+        else if ($file) {
             Storage::disk('local')->put($filename, File::get($file));
-            
         }
+        
  //        ==========-----DATABASE SAVING================               
         $post = new Communitypost;
         $post->title = $request->input('titel');
@@ -85,8 +86,7 @@ class CommunityController extends Controller
     {
         $getPost = Communitypost::find($id);
         $userPost = $getPost->user;
-        
-        
+                
         return view('community.show',['user' => auth()->user()])->with('post', $getPost);
     }
     /**
@@ -101,7 +101,8 @@ class CommunityController extends Controller
         return view('community.edit')->with('post', $post);
     }
 
-        public function update(Request $request, $id)
+    
+    public function update(Request $request, $id)
     {
         //        ==========-----DATA VALIDATION================
         $this->validate($request,[
@@ -110,23 +111,28 @@ class CommunityController extends Controller
         ]);
         
 //        ==========-----FOTO UPDATE================
-        if($request->file('image')){
-            $old_filename = $request['title'] . '-' . auth()->user()->id . '.jpg';
-//        DELETE FILE FROM STORAGE.
-            Storage::delete($old_filename);
-//        ADD FILE TO STORAGE
-            $file = $request->file('image');
-            $filename = $request['title'] . '-' . auth()->user()->id . '.jpg';
+        $file = $request->file('image');
+       
+        $title = trim($request->input('titel'));
+     
+        $filename = $title.''.auth()->user()->id.'commu.jpg';
+        
+        $update = false;
+        
+        if (Storage::disk('local')->exists($filename)) {
 
             Storage::disk('local')->put($filename, File::get($file));
+            $update = true;
         }
-
+        
  //        ==========-----DATABASE SAVING================               
         $post = Communitypost::find($id);
         $post->title = $request->input('titel');
         $post->content = $request->input('content');
         $post->user_id = auth()->user()->id;
-        $post->image = $request->input('image');
+        
+        $post->image = $filename;
+        
         $post->save();
         
 //        ==========-----VIEW================
