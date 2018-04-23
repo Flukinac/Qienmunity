@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\gebruikerModel;
+use App\Nieuwspost;
+use App\Communitypost;
 
 class HomeController extends Controller
 {
