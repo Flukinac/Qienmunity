@@ -57,7 +57,6 @@ Route::group(['middleware' => 'auth'], function () {
     
     Route::get('/profileimage/{filename}', ['uses' => 'ProfileController@getUserImage', 'as' => 'profile.image']);
 
-
     Route::get('/munityimage/{filename}', ['uses' => 'CommunityController@getUserImage', 'as' => 'community.image']);
     
     Route::post('/contactMail', 'ContactController@sendContact');
