@@ -17,7 +17,7 @@
                 {{Form::submit('Post verwijderen', ['class' => 'btn btn-danger'])}}
             {!!Form::close()!!}
         @endif
-        <p>{{str_limit($post->content, 50)}}</p>
+        <p>{!!str_limit($post->content, 300)!!}</p>
         <small>Geschreven op {{$post->updated_at}} door <a href='/profiles/{{$post->user->profile->id}}'>{{$post->user->name}}</a></small>
 
                 </div>
