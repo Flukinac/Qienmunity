@@ -77,9 +77,52 @@ function paginaData(data){                  //voor nieuwspagina
 
     }
 }
-    
 
-
-
+function zoekComm(){                      //voor communitypagina
     
+    var dropDownKeuze = $("#dropDownKeuze").val();
+    var invoerData = $("#zoekComm").val();
+    if(dropDownKeuze == "gebruiker"){
+       zoekCommDiff(true, invoerData);
+    }else{
+       zoekCommDiff(false, invoerData); 
+   }
+}
+function zoekCommDiff(Diff, invoerdata){
+ var dataComm = {
+     diff:Diff,
+     term:invoerdata,
+     _token:$(".form-control").data('token')
+     };
     
+     var jsondataComm = JSON.stringify(dataComm);
+     queryComm(jsondataComm);
+}
+
+   
+function queryComm(jsondataComm){               //voor communitypagina
+    var url = $(".form-control").attr("data-link");
+    
+    $.ajax({
+        url:"/zoekComm",
+        data: jsondataComm,
+        datatype:"json",
+        type:"POST",
+        
+        beforeSend: function (xhr) {
+            var token = $('meta[name="csrf_token"]').attr('content');
+
+            if (token) {
+                  return xhr.setRequestHeader('X-CSRF-TOKEN', token);
+            }
+        },
+        
+        success:function(data){
+            console.log(data);
+            
+        },error:function(){ 
+            alert("HTTP error");
+        }
+    }); 
+}
+

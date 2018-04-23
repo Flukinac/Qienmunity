@@ -143,5 +143,15 @@ class CommunityController extends Controller
         $post->delete();
         return redirect('/communitypost')->with('success', 'Post succesvol gewijzigd');
     }
-    
+    public function searchComm(Request $request){
+        $data = $request->json()->all();  
+        if(!empty($data["term"])){
+            if($data["diff"] == true){
+                $postquery = Communitypost::where('user', 'like', '%'.$data["term"].'%')->get();
+            }else{
+                $postquery = Communitypost::where('title', 'like', '%'.$data["term"].'%')->get();
+            }
+            return new Response($data, 200);
+        }
+    }       
 }
