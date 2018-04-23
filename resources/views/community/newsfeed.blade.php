@@ -2,8 +2,14 @@
 
 @section('content')
         <h1>Community</h1><br>
-        <input id="zoek" type="text" name='search' onkeyup="zoekenComm()" data-token="{{ csrf_token() }}" data-link="{{ url('/zoek') }}" class="form-control" placeholder="zoek">
-            
+        <input id="zoekComm" type="text" name='search' onkeyup="zoekComm()" data-token="{{ csrf_token() }}" data-link="{{ url('/zoekCommUser') }}" class="form-control" placeholder="Zoeken...">
+        <div>Zoek op: <select id='dropDownKeuze' onchange="zoekComm()">
+            <option value='gebruiker'>Gebruikersnaam</option>
+            <option value='titel'>Titel</option>
+        </select></div>
+        <div id="tabelZoekResultaatComm"></div>
+        <div id="tabelZoekResultaatCommNull"></div>
+        <div id='tabelZoekComm'>  
 <a href="/communitypost/create" class="btn btn-default">Nieuw bericht ></a><br/><br/>
 
 
@@ -25,6 +31,10 @@
         @else
             <p> No Community Posts Yet</p>
         @endif
+
+        
+
         {{ $nieuws->links() }}
+        </div> 
 
 @endsection
