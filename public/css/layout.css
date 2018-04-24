@@ -91,4 +91,8 @@ hr{
     text-align: center;
 }
              
-/*===========================   COMMUNITYPAGINA CSS   ========================*/
+/*===========================   SHOW COMMUNITYPAGINA   ========================*/
+
+#card-body--comment{
+    padding:1%;
+}
