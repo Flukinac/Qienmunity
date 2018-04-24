@@ -6,7 +6,6 @@ use Mail;
 use App\User;
 use App\Profile;
 use Illuminate\Http\Request;
-//use Illuminate\Support\Facades\Mail;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -43,7 +42,7 @@ class ContactController extends Controller
         foreach($AllMail as $email){
           $emailCurrent = $email['email'];
             if(!empty($emailCurrent)){
-                mail::send('mailTemplate', ['content' => $mail,'sendFrom' => "Qienmunity", 'replyTo' => " "] ,function($message) use ($subject, $emailCurrent){
+                mail::send('mailTemplateNotify', ['content' => $mail,'sendFrom' => "Qienmunity", 'replyTo' => " "] ,function($message) use ($subject, $emailCurrent){
 
                     $message->subject($subject);
                     $message->from('qiencommunity@gmail.com');

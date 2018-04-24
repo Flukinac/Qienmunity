@@ -80,14 +80,18 @@ class AuthController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'rol'=> $data['rol'],
-            'password' => bcrypt($data['password'])
+            'password' => bcrypt($data['password']),
+            'notificatie' => 1
         ]); 
+        
+        $user = DB::table('users')->where('email', $data['email'])->first();
+        
         Profile::create ([
             'username' => $user->name,
             'email' => $user->email,
             'user_id' => $user->id
         ]);
-        $user = DB::table('users')->where('email', $data['email'])->first();
+        
         
 
        
@@ -112,5 +116,10 @@ class AuthController extends Controller
     public function success()
     {
         return view('auth/register');
+    }
+    public function notify(Request $request){
+        Profile::table('notificatie')
+            ->where('email', $request)
+            ->update(['notificatie' => 0]);
     }
 }
