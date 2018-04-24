@@ -1,16 +1,40 @@
 @extends('layouts.app')
 
 @section('content')
-        <h1>Community</h1><br>
-        <input id="zoekComm" type="text" name='search' onkeyup="zoekComm()" data-token="{{ csrf_token() }}" data-link="{{ url('/zoekCommUser') }}" class="form-control" placeholder="Zoeken...">
-        <div>Zoek op: <select id='dropDownKeuze' onchange="zoekComm()">
-            <option value='gebruiker'>Gebruikersnaam</option>
-            <option value='titel'>Titel</option>
-        </select></div>
-        <div id="tabelZoekResultaatComm"></div>
-        <div id="tabelZoekResultaatCommNull"></div>
-        <div id='tabelZoekComm'>  
-<a href="/communitypost/create" class="btn btn-default">Nieuw bericht ></a><br/><br/>
+        <h1>Community</h1>
+        <div class="container">
+            <div class='row'>
+                <div class="col-lg-5"></div>
+                <div class="col-lg-2"></div>
+               <div class="col-lg-5">
+                   <div>
+                       <p>Zoek op: </p>   <select id='dropDownKeuze' onchange="zoekComm()">
+                           <option value='gebruiker'>Gebruikersnaam</option>
+                           <option value='titel'>Titel</option>
+                       </select>
+                   </div>
+               </div>
+            </div>
+        
+            <br>
+          
+            <div class='row'>
+                    <div class="col-lg-5">
+                    <a href="/communitypost/create" class="btn btn-default">Nieuw bericht ></a><br/><br/>
+                    </div>
+                    <div class="col-lg-2"></div>
+                    <div class="col-lg-5">
+                        <input id="zoekComm" type="text" name='search' onkeyup="zoekComm()" data-token="{{ csrf_token() }}" data-link="{{ url('/zoekCommUser') }}" class="form-control" placeholder="Zoeken...">
+                    </div>
+                    
+
+            </div>
+       </div> 
+        <br>
+                <div id="tabelZoekResultaatComm"></div>
+                <div id="tabelZoekResultaatCommNull"></div>
+                <div id='tabelZoekComm'>
+                    
 
 
         @if(count($nieuws) >= 1)
