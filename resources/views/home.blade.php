@@ -3,7 +3,7 @@
 @section('content')
 
 <h1>Dashboard</h1>
-<p>Welkom, {{auth()->user()->name}}</p>
+
 
 
 <div class="container">

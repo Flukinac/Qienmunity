@@ -42,12 +42,11 @@ class ContactController extends Controller
         foreach($AllMail as $email){
           $emailCurrent = $email['email'];
             if(!empty($emailCurrent)){
-                mail::send('mailTemplateNotify', ['content' => $mail,'sendFrom' => "Qienmunity", 'replyTo' => " "] ,function($message) use ($subject, $emailCurrent){
+                mail::send('mailTemplateNotify', ['content' => $mail,'sendFrom' => "Qienmunity", 'replyTo' => " ",'user' => $emailCurrent] ,function($message) use ($subject, $emailCurrent){
 
                     $message->subject($subject);
                     $message->from('qiencommunity@gmail.com');
                     $message->to($emailCurrent);
-
                 });
             }
         }
@@ -69,7 +68,6 @@ class ContactController extends Controller
                     $message->subject($subject);
                     $message->from('qiencommunity@gmail.com');
                     $message->to($emailCurrent);
-
                 });
     }
 }
