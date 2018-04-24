@@ -14,7 +14,11 @@ class ProfileController extends Controller
 
     public function index()
     {
-        $profiles = Profile::orderBy('username','asc')->paginate(20);
+        if(auth()->user()->rol == 0){
+            $profiles = Profile::orderBy('id','asc')->paginate(20);
+        }else{
+            $profiles = Profile::orderBy('username','asc')->paginate(20);
+        }
         return view('profiles.index')->with('profiles', $profiles);
     }
     
