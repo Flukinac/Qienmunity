@@ -117,9 +117,7 @@ class AuthController extends Controller
     {
         return view('auth/register');
     }
-    public function notify(Request $request){
-        Profile::table('notificatie')
-            ->where('email', $request)
-            ->update(['notificatie' => 0]);
+    public static function notify(Request $request, $mail){
+        User::where('email', $mail)->update(['notificatie' => 0]);
     }
 }

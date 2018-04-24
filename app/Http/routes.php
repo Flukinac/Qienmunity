@@ -79,8 +79,10 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/auth/success', ['uses' => 'Auth\AuthController@success', 'as'   => 'auth.success']);
                 
-    Route::get('/unsign/{mail}', ['uses' => 'Auth\AuthController@notify', 'as'   => 'auth.notify'] );    
+    Route::get('/unsign/{mail}', 'Auth\AuthController@notify' );  
     
+   
+ 
     //Comments plaatsen en deleten op Nieuws en Communitypagina vanuit namespace CommentControllers
     
     Route::group(['namespace'=>'CommentControllers', 'prefix'=>'CommentControllers'], function(){

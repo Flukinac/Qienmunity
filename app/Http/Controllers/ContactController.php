@@ -23,7 +23,7 @@ class ContactController extends Controller
             
             $message->subject($title);
             $message->from('sevisser1@gmail.com','Qienmunity');
-            $message->to('sevisser1@gmail.com');
+            $message->to('paul.veen@qien.nl');
    
         });
         
@@ -37,18 +37,19 @@ class ContactController extends Controller
         
        	ContactController::notifyMailTo($mail, $AllMail, $subject); 
     }
-    
+   
     public static function notifyMailTo($mail, $AllMail, $subject){
         foreach($AllMail as $email){
           $emailCurrent = $email['email'];
-            if(!empty($emailCurrent)){
+          $auth = User::select('notificatie')->where('email', $emailCurrent)->get();
+            if(!empty($emailCurrent && $auth == '[{"notificatie":1}]')){
                 mail::send('mailTemplateNotify', ['content' => $mail,'sendFrom' => "Qienmunity", 'replyTo' => " ",'user' => $emailCurrent] ,function($message) use ($subject, $emailCurrent){
 
                     $message->subject($subject);
                     $message->from('qiencommunity@gmail.com');
                     $message->to($emailCurrent);
                 });
-            }
+            }           
         }
     }
     
