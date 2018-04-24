@@ -3,10 +3,10 @@
 @section('content')
 <h1>Mijn profiel</h1>
         <h2> {{Auth::user()->profile->username}}</h2>
-        <ul>
+        <ul class="profielul">
 
             @if (Storage::disk('local')->has(auth()->user()->name . '-' . auth()->user()->id . '.jpg'))
-            <li><img width=250px src="{{ route('profile.image', ['filename' => auth()->user()->name . '-' . auth()->user()->id . '.jpg']) }}" alt=""></li>
+            <li><img width=350px src="{{ route('profile.image', ['filename' => auth()->user()->name . '-' . auth()->user()->id . '.jpg']) }}" alt=""></li>
             @endif
 
             <li><b>Geboortedatum: </b>{{Auth::user()->profile->dateofbirth}}</li>
