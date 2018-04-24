@@ -66,7 +66,7 @@
         
         <div class="col-lg-6">
             <h2>Featured video</h2>
-            <div class="well">
+            <div class="well" style="box-shadow: 10px 10px 5px #aaaaaa;">
                 <div class="videoWrapper">
                 <iframe width="560" height="315" src="https://www.youtube.com/embed/9cKsq14Kfsw" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                 </div>
