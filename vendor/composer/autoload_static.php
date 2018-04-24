@@ -32,6 +32,10 @@ class ComposerStaticInit6d643484cedaa02e7d1304e937782957
         array (
             'Webmozart\\Assert\\' => 17,
         ),
+        'U' => 
+        array (
+            'Unisharp\\Ckeditor\\' => 18,
+        ),
         'S' => 
         array (
             'Symfony\\Polyfill\\Util\\' => 22,
@@ -106,6 +110,10 @@ class ComposerStaticInit6d643484cedaa02e7d1304e937782957
         'Webmozart\\Assert\\' => 
         array (
             0 => __DIR__ . '/..' . '/webmozart/assert/src',
+        ),
+        'Unisharp\\Ckeditor\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/unisharp/laravel-ckeditor',
         ),
         'Symfony\\Polyfill\\Util\\' => 
         array (
@@ -280,11 +288,12 @@ class ComposerStaticInit6d643484cedaa02e7d1304e937782957
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\Auth\\AuthController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/AuthController.php',
         'App\\Http\\Controllers\\Auth\\PasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/PasswordController.php',
+        'App\\Http\\Controllers\\CommentControllers\\CommunityCommentController' => __DIR__ . '/../..' . '/app/Http/Controllers/CommentControllers/CommunityCommentController.php',
+        'App\\Http\\Controllers\\CommentControllers\\NieuwsCommentController' => __DIR__ . '/../..' . '/app/Http/Controllers/CommentControllers/NieuwsCommentController.php',
         'App\\Http\\Controllers\\CommunityController' => __DIR__ . '/../..' . '/app/Http/Controllers/CommunityController.php',
         'App\\Http\\Controllers\\ContactController' => __DIR__ . '/../..' . '/app/Http/Controllers/ContactController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
-        'App\\Http\\Controllers\\NieuwsCommentController' => __DIR__ . '/../..' . '/app/Http/Controllers/CommentControllers/CommunityCommentController.php',
         'App\\Http\\Controllers\\NieuwsController' => __DIR__ . '/../..' . '/app/Http/Controllers/NieuwsController.php',
         'App\\Http\\Controllers\\PostIdController' => __DIR__ . '/../..' . '/app/Http/Controllers/PostIdController.php',
         'App\\Http\\Controllers\\ProfileController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProfileController.php',
@@ -2991,6 +3000,7 @@ class ComposerStaticInit6d643484cedaa02e7d1304e937782957
         'Symfony\\Polyfill\\Util\\TestListenerTrait' => __DIR__ . '/..' . '/symfony/polyfill-util/TestListenerTrait.php',
         'TestCase' => __DIR__ . '/../..' . '/tests/TestCase.php',
         'Text_Template' => __DIR__ . '/..' . '/phpunit/php-text-template/src/Template.php',
+        'Unisharp\\Ckeditor\\ServiceProvider' => __DIR__ . '/..' . '/unisharp/laravel-ckeditor/ServiceProvider.php',
         'Webmozart\\Assert\\Assert' => __DIR__ . '/..' . '/webmozart/assert/src/Assert.php',
         'XdgBaseDir\\Xdg' => __DIR__ . '/..' . '/dnoegel/php-xdg-base-dir/src/Xdg.php',
         'phpDocumentor\\Reflection\\DocBlock' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlock.php',

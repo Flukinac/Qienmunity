@@ -41,7 +41,6 @@ class ProfileController extends Controller
 
 //        ==========-----FOTO UPLOAD================
         
-        $old_name = auth()->user()->name;
         $file = $request->file('image');
         $filename = auth()->user()->name . '-' . auth()->user()->id . '.jpg';
         $update = false;
@@ -120,7 +119,7 @@ class ProfileController extends Controller
         
         //        ==========-----FOTO UPDATE================
         if($request->file('image')){
-        $old_name = auth()->user()->name;
+            $old_name = auth()->user()->name;
             $old_filename = $old_name . '-' . auth()->user()->id . '.jpg';
     //        DELETE FILE FROM STORAGE.
             Storage::delete($old_filename);

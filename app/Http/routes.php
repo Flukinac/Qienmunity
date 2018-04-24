@@ -57,9 +57,17 @@ Route::group(['middleware' => 'auth'], function () {
     
     Route::get('/profileimage/{filename}', ['uses' => 'ProfileController@getUserImage', 'as' => 'profile.image']);
 
+    Route::post('/zoek', 'NieuwsController@search');
+    
+    Route::post('/zoekComm', 'CommunityController@searchComm');
+    
     Route::get('/munityimage/{filename}', ['uses' => 'CommunityController@getUserImage', 'as' => 'community.image']);
     
+    Route::get('/newsimage/{filename}', ['uses' => 'NieuwsController@getUserImage', 'as' => 'news.image']);
+    
     Route::post('/contactMail', 'ContactController@sendContact');
+    
+    //Route::post('/notify', 'ContactController@notifyMail');
 
     Route::get('/home','HomeController@index');
    
@@ -67,8 +75,10 @@ Route::group(['middleware' => 'auth'], function () {
     
     Route::get('testauth', 'testController@auth');  
 
+    Route::get('/myprofile','ProfileController@myProfile' );
+
     Route::get('/auth/success', ['uses' => 'Auth\AuthController@success', 'as'   => 'auth.success']);
-    
+        
     
     //Comments plaatsen en deleten op Nieuws en Communitypagina vanuit namespace CommentControllers
     

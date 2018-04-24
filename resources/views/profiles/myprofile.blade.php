@@ -6,7 +6,7 @@
         <ul>
 
             @if (Storage::disk('local')->has(auth()->user()->name . '-' . auth()->user()->id . '.jpg'))
-            <li><img width=250px src="{{ route('profile.image', ['filename' => auth()->user()->name . '-' . auth()->user()->id . '.jpg']) }}" alt="" class="img-responsive"></li>
+            <li><img width=250px src="{{ route('profile.image', ['filename' => auth()->user()->name . '-' . auth()->user()->id . '.jpg']) }}" alt=""></li>
             @endif
 
             <li><b>Geboortedatum: </b>{{Auth::user()->profile->dateofbirth}}</li>

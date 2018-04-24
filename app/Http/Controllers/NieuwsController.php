@@ -4,7 +4,10 @@ use Illuminate\Http\Request;
 use DB;
 use App\Nieuwspost;
 use App\Http\Requests;
+use Illuminate\Http\Response;
 use Illuminate\Pagination\PaginationServiceProvider;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 
 class NieuwsController extends Controller
 {
@@ -13,12 +16,14 @@ class NieuwsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+
         $pinned = Nieuwspost::orderBy('id','asc')->where('pinned', 1)->take(3)->paginate(3);
-        $post = Nieuwspost::orderBy('id','desc')->where('pinned', 0)->paginate(6);
+        $post = Nieuwspost::orderBy('id','desc')->where('pinned', 0)->paginate(10);
         return view('nieuwspage/nieuws')->with('nieuws', $post)->with('pinned', $pinned);
                                         
+
     }
     /**
      * Show the form for creating a new resource.
@@ -37,17 +42,42 @@ class NieuwsController extends Controller
      */
     public function store(Request $request)
     {
+//        ==========-----DATA VALIDATION================
         $this->validate($request,[
             'titel' => 'required',
             'content' =>  'required',
         ]);
+//        ==========-----FOTO UPLOAD================
+        $file = $request->file('image');
+        $title = trim($request->input('titel'));
+        $filename = $title.''.auth()->user()->id.'news.jpg';
+        $update = false;
+        
+        if (Storage::disk('local')->exists($filename)) {
+            $old_file = Storage::disk('local')->get($filename);
+            
+            Storage::disk('local')->put($filename, File::get($file));
+            $update = true;
+        }
+        else if ($file) {
+            Storage::disk('local')->put($filename, File::get($file));
+        }
+        
         $post = new Nieuwspost;
         $post->user_id = auth()->user()->id;
+        $post->image = $filename;
         $post->title = $request->input('titel');
         $post->content = $request->input('content');
         $post->save();
-        
-        return redirect('/nieuwsposts');
+        ContactController::notifyMail($post->user_id, "nieuws"); //voor notificatie mail van aanmaak nieuwe post
+        return redirect('/nieuwsposts')->with('success', 'Nieuwspost succesvol gemaakt');
+    }
+    
+   
+    public function getUserImage($filename)
+    {
+        $file = Storage::disk('local')->get($filename);
+        return new Response($file, 200);
     }
     /**
      * Display the specified resource.
@@ -80,6 +110,8 @@ class NieuwsController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+  
+
     public function update(Request $request, $id)
     {
         if((!$request->pinned) && (!$request->unpin)){
@@ -87,7 +119,22 @@ class NieuwsController extends Controller
                 'titel' => 'required',
                 'content' =>  'required',
             ]);
+//        ==========-----FOTO UPDATE================
+        $file = $request->file('image');
+       
+        $title = trim($request->input('titel'));
+     
+        $filename = $title.''.auth()->user()->id.'news.jpg';
+        
+        
+        if (Storage::disk('local')->exists($filename)) {
+
+            Storage::disk('local')->put($filename, File::get($file));
+  
+        }
+        
             $post = Nieuwspost::find($id);
+            $post->image = $filename;
             $post->title = $request->input('titel');
             $post->content = $request->input('content');
         }elseif(!$request->unpin){
@@ -104,12 +151,15 @@ class NieuwsController extends Controller
         }
             
         $post->save();
-        
+       
+        return redirect('/nieuwsposts');
+
         if(!$request->pinned){
             return redirect('/nieuwsposts')->with('success', 'Post succesvol gewijzigd');
         }else{
              return redirect('/nieuwsposts')->with('success', 'Post succesvol vastgepint');
         }
+
     }
 
     public function destroy($id)
@@ -118,4 +168,20 @@ class NieuwsController extends Controller
         $post->delete();
         return redirect('/nieuwsposts')->with('success', 'Post is verwijderd');
     }
+
+    
+    public function search(Request $request){
+            //error_log("yipiypiyo");
+            $query = $request->json()->all()["term"];  
+            if(!empty($query)){
+                $postquery = Nieuwspost::where('title', 'like', '%'.$query.'%')
+                                               //->orderByRaw('created_at DESC')
+                                               ->get();
+
+                return new Response($postquery, 200);
+            }
+    }
 }
+
+
+

@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use App\Communitypost;
 use App\Http\Requests;
+use App\User;
 
 class CommunityController extends Controller
 {
@@ -16,7 +17,7 @@ class CommunityController extends Controller
      */
     public function index()
     {
-         $post = Communitypost::orderBy('id','desc')->get();
+         $post = Communitypost::orderBy('id','desc')->paginate(10);
          
         return view('community.newsfeed')->with('nieuws',$post);
                                          
@@ -44,28 +45,29 @@ class CommunityController extends Controller
             'content' =>  'required',
         ]);
 //        ==========-----FOTO UPLOAD================
-        $old_name = auth()->user()->name;
         $file = $request->file('image');
-        $filename = $request['titel'] . '-' . auth()->user()->id . '.jpg';
+        $title = trim($request->input('titel'));
+        $filename = $title.''.auth()->user()->id.'commu.jpg';
         $update = false;
         
-        if (Storage::disk('local')->has($filename)) {
+        if (Storage::disk('local')->exists($filename)) {
             $old_file = Storage::disk('local')->get($filename);
-            Storage::disk('local')->put($filename, $old_file);
+            Storage::delete($old_file);
+            Storage::disk('local')->put($filename, File::get($file));
             $update = true;
         }
-        if ($file) {
+        else if ($file) {
             Storage::disk('local')->put($filename, File::get($file));
-            
         }
- //        ==========-----DATABASE SAVING================               
+        
+//        ==========-----DATABASE SAVING================               
         $post = new Communitypost;
         $post->title = $request->input('titel');
         $post->content = $request->input('content');
         $post->user_id = auth()->user()->id;
         $post->image = $filename;
         $post->save();
-        
+        ContactController::notifyMail($post->user_id, "comm"); //voor notificatie mail van aanmaak nieuwe post
 //        ==========-----VIEW================
         return redirect('/communitypost')->with('success', 'Nieuwe post aangemaakt');
     }
@@ -84,8 +86,7 @@ class CommunityController extends Controller
     {
         $getPost = Communitypost::find($id);
         $userPost = $getPost->user;
-        
-        
+                
         return view('community.show',['user' => auth()->user()])->with('post', $getPost);
     }
     /**
@@ -100,32 +101,38 @@ class CommunityController extends Controller
         return view('community.edit')->with('post', $post);
     }
 
-        public function update(Request $request, $id)
+    
+    public function update(Request $request, $id)
     {
-        //        ==========-----DATA VALIDATION================
+//      ==========-----DATA VALIDATION================
         $this->validate($request,[
             'titel' => 'required',
             'content' =>  'required',
         ]);
         
-//        ==========-----FOTO UPDATE================
-        if($request->file('image')){
-            $old_filename = $request['title'] . '-' . auth()->user()->id . '.jpg';
-//        DELETE FILE FROM STORAGE.
-            Storage::delete($old_filename);
-//        ADD FILE TO STORAGE
-            $file = $request->file('image');
-            $filename = $request['title'] . '-' . auth()->user()->id . '.jpg';
+//      ==========-----FOTO UPDATE================
+        $file = $request->file('image');
+       
+        $title = trim($request->input('titel'));
+     
+        $filename = $title.''.auth()->user()->id.'commu.jpg';
+        
+        $update = false;
+        
+        if (Storage::disk('local')->exists($filename)) {
 
             Storage::disk('local')->put($filename, File::get($file));
+            $update = true;
         }
-
- //        ==========-----DATABASE SAVING================               
+        
+//        ==========-----DATABASE SAVING================               
         $post = Communitypost::find($id);
         $post->title = $request->input('titel');
         $post->content = $request->input('content');
         $post->user_id = auth()->user()->id;
-        $post->image = $request->input('image');
+        
+        $post->image = $filename;
+        
         $post->save();
         
 //        ==========-----VIEW================
@@ -144,4 +151,16 @@ class CommunityController extends Controller
         return redirect('/communitypost')->with('success', 'Post succesvol gewijzigd');
     }
     
+    public function searchComm(Request $request){
+        $data = $request->json()->all();  
+        if(!empty($data["term"])){
+            if($data["diff"] == 1){
+                $postqueryUserId = User::where('name', 'like', '%'.$data["term"].'%')->select('id')->get();
+                $postquery = Communitypost::whereIn('user_id', $postqueryUserId)->get();
+            }else{
+                $postquery = Communitypost::where('title', 'like', '%'.$data["term"].'%')->get();
+            }
+            return new Response($postquery, 200);  
+        } 
+    }       
 }
