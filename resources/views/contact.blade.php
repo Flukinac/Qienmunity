@@ -4,17 +4,18 @@
 
         <h1>Contact</h1>
 
+<form>
+  <div class="form-group" id="mailSucces">
+    <label for="exampleFormControlInput1">Email address</label>
+    <input type="text" class="form-control" id="subject" placeholder="Onderwerp" name="contactName">
+  </div>
 
-        <center>
-                <input type="text" class="subject" placeholder="onderwerp" name="contactName"><br><br>
-                <textarea rows="10" class="text" cols="50" placeholder="text invoer mail" name="contactText"></textarea><br><br>
-                <input type="button" onclick="contactPost()" class="btn btn-primary" value="verzend"><br><br>
-                <div id="mailSucces"></div>
-        </center>
-            
-        
-    </body>
-</html>
+  <div class="form-group">
+    <label for="exampleFormControlTextarea1">Example textarea</label>
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="10" name="contactText" placeholder="Text Invoer Mail"></textarea>
+  </div>
+    <input type="button" onclick="contactPost()" class="btn btn-primary" value="Verzend">
+</form>
 
 
 @endsection

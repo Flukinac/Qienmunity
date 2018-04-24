@@ -83,8 +83,7 @@ hr{
 }
 .card-text-nieuws{
     max-height: 400px;
-    overflow: scroll;
-   
+
 }
 
 #delete-news{
