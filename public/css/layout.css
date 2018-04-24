@@ -51,7 +51,7 @@ hr{
 }
 
 .card{
-    width:  30%;
+    width:  100vw;
     float: left;
     margin:2%;
     box-shadow: 10px 10px 5px #aaaaaa;
@@ -63,7 +63,7 @@ hr{
 }
 
 .card-img-top{
-    height:100px;
+    height:60px;
     width:100%;
 }
 
@@ -78,12 +78,21 @@ hr{
     height:40px;
     text-align: center;
 }
-
+.img-responsive{   
+    width:100%;    
+}
 .card-text-nieuws{
     max-height: 400px;
     overflow: scroll;
-    
+   
 }
-                            
+
+#delete-news{
+    text-align: center;
+}
              
-/*===========================   COMMUNITYPAGINA CSS   ========================*/
+/*===========================   SHOW COMMUNITYPAGINA   ========================*/
+
+#card-body--comment{
+    padding:1%;
+}
