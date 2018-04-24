@@ -1,25 +1,33 @@
 @extends('layouts.app')
 
 @section('content')
-    <a href="/nieuwsposts" class="btn btn-default">< Ga terug</a><br/><br/>
-        <div class="row">
-            @if (Storage::disk('local')->has($post->title . '' . $post->user_id . 'news.jpg'))
-            <section class="row new-post">
-                <div class="col-md-6 col-md-offset-3">
-                    <img src="{{route('news.image', ['filename' => $post->image]) }}" alt="" class="img-responsive">
-                </div>
-            </section>
+    <div class="row">
+        <a href="/nieuwsposts" class="btn btn-default">< Ga terug</a><br/><br/>
 
-            <br>
-            <h2>Content</h2>
+        @if(auth()->user()->id == $post->user_id)
+            <a href ="/nieuwsposts/{{$post->id}}/edit" class="btn btn-sm btn-primary"> Wijzig Nieuwspost</a>
         @endif
+    </div>
+        <div class="row">
+            
             <div class="col-md-10 col-md-offset-1">
                 <div class="card" id="showNewsPost">
                     
                     <div class="card-header" id="qien--background-colour">
                         <h3>Nieuws: {{$post->title}}</h3>
+                    
                     </div>
+                    <div class="col-md-12 col-md-offset-0">
+                    @if (Storage::disk('local')->has($post->title . '' . $post->user_id . 'news.jpg'))
+                       
+                                <img class="img-responsive" src="{{route('news.image', ['filename' => $post->image]) }}" alt="">
+                        <br>
+                        <h2>Content</h2>
+                    @endif
+                    </div>
+                    <div class="col-md-12 col-md-offset-0">
                     <div class="card-body">
+                        
                       
                       <p class="card-text-nieuws" id="card-text-nieuws">{!!$post->content!!}</p>
                       <small>Geschreven op {{$post->created_at}} door <a href='/profiles/{{$post->user->profile->id}}'>{{$post->user->name}}</a></small>
