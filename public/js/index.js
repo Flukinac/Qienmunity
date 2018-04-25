@@ -39,7 +39,6 @@ function query(jsondata){               //voor nieuwspagina
         type:"POST",
         
         beforeSend: function (xhr) {
-            //alert(jsondata);
             var token = $('meta[name="csrf_token"]').attr('content');
 
             if (token) {
@@ -55,7 +54,7 @@ function query(jsondata){               //voor nieuwspagina
                 $("#tabelZoek").show();
             }
         },error:function(){ 
-            alert("HTTP error");
+            console.log("HTTP error");
         }
     }); 
 }
@@ -133,7 +132,7 @@ function queryComm(jsondataComm){               //voor communitypagina
                 $("#tabelZoekComm").show();
             }
         },error:function(){ 
-            alert("HTTP error");
+            console.log("HTTP error");
         }
     }); 
 }

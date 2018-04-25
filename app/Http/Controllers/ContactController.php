@@ -28,12 +28,10 @@ class ContactController extends Controller
         });
         
     }
-    public static function notifyMail($id, $afzenderControl){
-        $afzenderControl == "comm" ? $afzender = "communitypost" : $afzender = "nieuwspost";
+    public static function notifyMail($id, $subject){
         $user = User::where('id', $id)->get();
         $AllMail = Profile::select('email')->get();
-        $mail = "Er is zojuist een ".$afzender." gedaan door ".$user[0]['name'];
-        $subject = $afzender;
+        $mail = "Er is zojuist iets gepost op de ".$subject."pagina door ".$user[0]['name'];
         
        	ContactController::notifyMailTo($mail, $AllMail, $subject); 
     }
@@ -43,7 +41,7 @@ class ContactController extends Controller
           $emailCurrent = $email['email'];
           $auth = User::select('notificatie')->where('email', $emailCurrent)->get();
             if(!empty($emailCurrent && $auth == '[{"notificatie":1}]')){
-                mail::send('mailTemplateNotify', ['content' => $mail,'sendFrom' => "Qienmunity", 'replyTo' => " ",'user' => $emailCurrent] ,function($message) use ($subject, $emailCurrent){
+                mail::send('mailTemplateNotify', ['content' => $mail,'sendFrom' => "Qienmunity",'user' => $emailCurrent, 'link'=>$subject] ,function($message) use ($subject, $emailCurrent){
 
                     $message->subject($subject);
                     $message->from('qiencommunity@gmail.com');
