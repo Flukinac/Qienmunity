@@ -3,8 +3,8 @@
 @section('content')
 
 <h1>Dashboard</h1>
-<h4>Welkom bij jouw Qienmunity, {{auth()->user()->name}}!</h4>
 
+<h4>Welkom bij jouw Qienmunity, {{auth()->user()->name}}!</h4>
 
 <div class="container">
     <div class="row">
