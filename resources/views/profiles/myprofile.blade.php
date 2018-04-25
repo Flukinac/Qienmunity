@@ -3,7 +3,7 @@
 @section('content')
     <h1>Mijn profiel</h1>
     
-        <a href="/profiles" class="btn btn-default">< Terug naar alle profielen</a>
+        <a href="/profiles" class="btn btn-default">< Alle profielen</a>
 
         <br>
         <div id="container-profile">
@@ -11,8 +11,8 @@
             <div class="card text-center" id="prof-card" style="width: 50vw;">
                 <div class="spacer" id="prof-spacer"></div>
                 <br>
-                @if (Storage::disk('local')->has($profile->username . '-' . $profile->id . '.jpg'))
-                    <img class="img-circle profile-img" width="250px" src="{{ route('profile.image', ['filename' => $profile->username . '-' . $profile->user_id . '.jpg']) }}" alt="Profiel Foto">
+                @if (Storage::disk('local')->has($profile->username . '-' . $profile->user->id . '.jpg'))
+                <img class="img-circle profile-img" width="250px" src="{{ route('profile.image', ['filename' => $profile->username . '-' . $profile->user->id . '.jpg']) }}" alt="Profiel Foto">
                 @endif
                 <div class="card-body">
                 <h5 class="card-title"><b>{{Auth::user()->profile->username}}</b></h5>
