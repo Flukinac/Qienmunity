@@ -10,7 +10,7 @@
             @endif
             <th scope="col">Naam</th>            
             <th scope="col">Geboortedatum</th>
-            <th scope="col">E-mailadres</th>
+            <th scope="col">Toegevoegd op</th>
           </tr>
         </thead>
         <tbody>
