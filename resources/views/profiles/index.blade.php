@@ -22,7 +22,7 @@
                               @if(auth()->user()->rol == 0)
                                 <th scope="row">{{$profile->id}}</th>
                               @endif
-                              <td>{{$profile->username}}</td>                              
+                              <td><a href='/profiles/{{$profile->id}}'>{{$profile->username}}</a></td>                              
                               <td>{{$profile->dateofbirth}}</td>
                               <td>{{$profile->created_at}}</td>
                               @if(auth()->user()->rol == 0)
