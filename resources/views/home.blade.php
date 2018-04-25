@@ -26,25 +26,25 @@
                 
             </div>
         
-                <!--Toon 2 nieuwste gebruikers-->
+                
+                <!--Toon 3 nieuwste gebruikers-->
         
-            <div class="col-lg-6">
-                <a href='/profiles'><h2>Nieuwste gebruikers</h2></a>
-                       <div class="well" style="box-shadow: 0 7px 7px 3px #aaaaaa;">
-                    @foreach($profiles as $profile)
-                            <a href="/profiles/{{$profile->id}}"><img style="vertical-align: middle;" class="img-circle" height=40px width=40px src="{{ route('profile.image', ['filename' => $profile->username . '-' . $profile->user_id . '.jpg']) }}" alt="" class="img-responsive"></a>
-                            <h3 style="display: inline-block; padding-left: 20px;"><a href="/profiles/{{$profile->id}}">{{$profile->username}}</a></h3>
-                            <p style="display: inline-block; padding-left: 100px;">{!!str_limit($profile->biography, 100)!!}</p>
-                            <hr>
-                    @endforeach
-                    <a href="/profiles">Bekijk alle profielen ></a>
-                </div>
+        <div class="col-lg-6">
+            <a href='/profiles'><h2>Nieuwste gebruikers</h2></a>
+                   <div class="well" style="box-shadow: 0 7px 7px 3px #aaaaaa;">
+                @foreach($profiles as $profile)
+                        <a href="/profiles/{{$profile->id}}"><img style="vertical-align: middle;" class="img-circle" height=50px width=50px src="{{ route('profile.image', ['filename' => $profile->username . '-' . $profile->user_id . '.jpg']) }}" alt="" class="img-responsive"></a>
+                        <h3 style="display: inline-block; padding-left: 20px;"><a href="/profiles/{{$profile->id}}">{{$profile->username}}</a></h3>
+                        <p style="display: inline-block; padding-left: 100px;">{!!str_limit($profile->biography, 100)!!}</p>
+                        <hr>
+                @endforeach
+                <a href="/profiles">Bekijk alle profielen ></a>
             </div>
+        </div>
         
     </div>
     <div class="row">
-        
-        <!--Communitypost tonen-->
+                <!--Communitypost tonen-->
         
         <div class="col-lg-6">
             <a href='/communitypost'><h2>Community</h2></a>
@@ -59,18 +59,28 @@
                 <a href="/communitypost">Bekijk alle communityposts ></a>
           </div>
         </div>
-        
+                
         <!--Video-->
         
         <div class="col-lg-6">
             <h2>Featured video</h2>
             <div class="well" style="box-shadow: 0 7px 7px 3px #aaaaaa;">
-                <div class="videoWrapper">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/9cKsq14Kfsw" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                <div class="videoWrapper">   
+                {!!$videolink!!}
                 </div>
             </div>
+            @if(auth()->user()->rol == 0)
+                <h4>Vervang video</h4>
+                {!! Form::open(['action'=>'HomeController@updatevideo', 'method'=>'POST']) !!}
+                <div class='form-group'>
+                    {{Form::text('video_embed_code', '', ['class'=>'form-control', 'placeholder'=>'YouTube embed link, beginnend met de iframe tag'])}}
+                </div>
+                    {{Form::hidden('_method','PUT')}}
+                    {{Form::submit('Submit', ['class'=>'btn btn-primary'])}}
+                {!! Form::close() !!}
+            @endif
         </div>
-        
+     
     </div>
 </div>
 

@@ -55,6 +55,8 @@ Route::group(['middleware' => 'auth'], function () {
     
     //Methode routes
     
+    Route::put('/videoupdate', 'HomeController@updatevideo');
+    
     Route::get('/profileimage/{filename}', ['uses' => 'ProfileController@getUserImage', 'as' => 'profile.image']);
 
     Route::post('/zoek', 'NieuwsController@search');
