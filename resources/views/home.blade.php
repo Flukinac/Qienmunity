@@ -35,7 +35,8 @@
                 @foreach($profiles as $profile)
                         <a href="/profiles/{{$profile->id}}"><img style="vertical-align: middle;" class="img-circle" height=50px width=50px src="{{ route('profile.image', ['filename' => $profile->username . '-' . $profile->user_id . '.jpg']) }}" alt="" class="img-responsive"></a>
                         <h3 style="display: inline-block; padding-left: 20px;"><a href="/profiles/{{$profile->id}}">{{$profile->username}}</a></h3>
-                        <p style="display: inline-block; padding-left: 100px;">{!!str_limit($profile->biography, 100)!!}</p>
+                        <br>
+                        <p style="display: inline-block; padding-left: 75px;">{!!str_limit($profile->position, 100)!!}</p>
                         <hr>
                 @endforeach
                 <a href="/profiles">Bekijk alle profielen ></a>
