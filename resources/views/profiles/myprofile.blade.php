@@ -11,8 +11,10 @@
             <div class="card text-center" id="prof-card" style="width: 50vw;">
                 <div class="spacer" id="prof-spacer"></div>
                 <br>
+
                 @if (Storage::disk('local')->has($profile->user->name . '-' . $profile->user->id . '.jpg'))
                 <img class="img-circle profile-img" width="250px" src="{{ route('profile.image', ['filename' => $profile->user->name . '-' . $profile->user->id . '.jpg']) }}" alt="Profiel Foto">
+
                 @endif
                 <div class="card-body">
                 <h5 class="card-title"><b>{{Auth::user()->profile->username}}</b></h5>
