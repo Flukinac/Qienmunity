@@ -91,10 +91,7 @@ class AuthController extends Controller
             'email' => $user->email,
             'user_id' => $user->id
         ]);
-        
-        
 
-       
         ContactController::sendMailNewUser($data);
     }
      

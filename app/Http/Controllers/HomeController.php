@@ -28,10 +28,10 @@ class HomeController extends Controller
      */
     public function index()
     {   
-        $commpost = Communitypost::orderBy('id','desc')->paginate(1);
+        $commpost = Communitypost::orderBy('id','desc')->paginate(2);
         $pinnedpost = Nieuwspost::orderBy('id','desc')->where('pinned', 1)->paginate(2);
         $nieuwspost = Nieuwspost::orderBy('id','desc')->where('pinned', 0)->paginate(2);
-        $profile = Profile::orderBy('id', 'desc')->paginate(2);
-        return view('home')->with('commpost',$commpost)->with('pinnedpost',$pinnedpost)->with('nieuwspost',$nieuwspost)->with('profile',$profile);
+        $profiles = Profile::orderBy('id', 'desc')->paginate(2);
+        return view('home')->with('commpost',$commpost)->with('pinnedpost',$pinnedpost)->with('nieuwspost',$nieuwspost)->with('profiles',$profiles);
     }
 }
