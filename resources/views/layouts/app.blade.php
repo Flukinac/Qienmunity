@@ -71,7 +71,7 @@
 
                                 @if (Storage::disk('local')->has(auth()->user()->name . '-' . auth()->user()->id . '.jpg'))
 
-                                <li><a href="/myprofile"><img class="img-circle" width=30px src="{{ route('profile.image', ['filename' => auth()->user()->name . '-' . auth()->user()->id . '.jpg']) }}" alt="" class="img-responsive"></a></li>
+                                <li><a href="/myprofile"><img class="img-circle" width=30px height=30px src="{{ route('profile.image', ['filename' => auth()->user()->name . '-' . auth()->user()->id . '.jpg']) }}" alt="" class="img-responsive"></a></li>
    
                                 @endif
                         <li class="dropdown">

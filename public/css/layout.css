@@ -54,8 +54,7 @@ hr{
     width:  100vw;
     float: left;
     margin:2%;
-    box-shadow: 10px 10px 5px #aaaaaa;
-    
+    box-shadow: 0 10px 10px 5px #aaaaaa;
 }
 
 .card-body{
@@ -117,4 +116,10 @@ hr{
     margin:2%;
     box-shadow: 10px 10px 5px #aaaaaa;
     
+}
+
+/*===========================   PROFIELPAGINA   ========================*/
+
+.profielul {
+  list-style-type: none;
 }
