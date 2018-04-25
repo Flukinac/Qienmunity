@@ -31,6 +31,12 @@ hr{
     float:none;
 }
 
+.img-thumbnail{    
+  object-fit: none;
+  object-position: center; 
+  max-height: 500px;
+  margin-bottom: 1rem;
+}
 /*============================  NAVBAR CSS  ================================*/
 
 #Qienbrand{
@@ -129,9 +135,6 @@ hr{
 #prof-spacer{
     background-color: #9d3ff391;
 }
-
-/*===========================   PROFIELPAGINA   ========================*/
-
-.profielul {
-  list-style-type: none;
+.profile-img {
+    max-height:300px;
 }

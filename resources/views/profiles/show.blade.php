@@ -9,7 +9,7 @@
                 <div class="spacer" id="prof-spacer"></div>
                 <br>
                 @if (Storage::disk('local')->has($profile->username . '-' . $profile->id . '.jpg'))
-                    <img class="img-circle"  width="250px" src="{{ route('profile.image', ['filename' => $profile->username . '-' . $profile->user_id . '.jpg']) }}" alt="Profiel Foto">
+                    <img class="img-circle profile-img"  width="250px" src="{{ route('profile.image', ['filename' => $profile->username . '-' . $profile->user_id . '.jpg']) }}" alt="Profiel Foto">
                 @endif
                 <div class="card-body">
                 <h5 class="card-title"><b>{{$profile->username}}</b></h5>
@@ -22,7 +22,7 @@
               <li class="list-group-item profile-list"><small>Laatst geüpdate op: {{$profile->updated_at}}</small></li>
             </ul>
             <div class="card-body">
-              <a href="/profiles" class="card-link">Alle Profielen</a>
+              <a href="/profiles" class="btn btn-default">Alle Profielen</a>
             </div>
           </div>
         </div>
