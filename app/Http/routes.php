@@ -55,6 +55,8 @@ Route::group(['middleware' => 'auth'], function () {
     
     //Methode routes
     
+    Route::put('/videoupdate', 'HomeController@updatevideo');
+    
     Route::get('/profileimage/{filename}', ['uses' => 'ProfileController@getUserImage', 'as' => 'profile.image']);
 
     Route::post('/zoek', 'NieuwsController@search');
@@ -67,7 +69,7 @@ Route::group(['middleware' => 'auth'], function () {
     
     Route::post('/contactMail', 'ContactController@sendContact');
     
-    //Route::post('/notify', 'ContactController@notifyMail');
+    //Route::post('/notify{id}', 'ContactController@notifyMail');
 
     Route::get('/home','HomeController@index');
    
@@ -78,8 +80,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/myprofile','ProfileController@myProfile' );
 
     Route::get('/auth/success', ['uses' => 'Auth\AuthController@success', 'as'   => 'auth.success']);
-        
+                
+    Route::get('/unsign/{mail}', 'Auth\AuthController@notify' );  
     
+   
+ 
     //Comments plaatsen en deleten op Nieuws en Communitypagina vanuit namespace CommentControllers
     
     Route::group(['namespace'=>'CommentControllers', 'prefix'=>'CommentControllers'], function(){

@@ -67,7 +67,9 @@ class CommunityController extends Controller
         $post->user_id = auth()->user()->id;
         $post->image = $filename;
         $post->save();
-        ContactController::notifyMail($post->user_id, "comm"); //voor notificatie mail van aanmaak nieuwe post
+//        ==========-----NOTIFY MAIL================               
+        $afzenderControl = "communitypost";
+        ContactController::notifyMail($post->user_id, $afzenderControl); //voor notificatie mail van aanmaak nieuwe post
 //        ==========-----VIEW================
         return redirect('/communitypost')->with('success', 'Nieuwe post aangemaakt');
     }

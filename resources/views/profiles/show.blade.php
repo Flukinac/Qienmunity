@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('content')
         <a href="/profiles" class="btn btn-default">< Terug naar alle profielen</a>
+
         <br>
         <div id="container-profile">
             
@@ -25,5 +26,6 @@
             </div>
           </div>
         </div>
+
 
 @endsection
