@@ -19,7 +19,7 @@
                     </div>
                     <div class="col-md-12 col-md-offset-0">
                     @if (Storage::disk('local')->has($post->title . '' . $post->user_id . 'news.jpg'))
-                        <img class="img-responsive" src="{{route('news.image', ['filename' => $post->image]) }}" alt="">
+                        <img class="img-responsive img-thumbnail" src="{{route('news.image', ['filename' => $post->image]) }}" alt="">
                         <br>
                         <h2>Content</h2>
                     @endif

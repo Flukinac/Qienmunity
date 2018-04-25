@@ -28,7 +28,7 @@
 
                         <img class="card-img-top" id="card-img-top" src="{{ URL::asset('css/images/qien-color.jpg') }}" alt="Card image cap">
                         <div class="card-body">
-                              <h3 class="card-title" id="qien--colour">{{$post->title}}</h3>
+                            <a href="/nieuwsposts/{{$post->id}}"><h3 class="card-title" id="qien--colour">{{$post->title}}</h3></a>
                               <p class="card-text">{!!str_limit($post->content, 300)!!}</p>
                               <p class="card-text"><small class="text-muted">Gepost op: {{$post->created_at}} door {{$post->user->name}} </small></p>
                               <a href="/nieuwsposts/{{$post->id}}" class="btn btn-default">Lees Verder</a>

@@ -13,7 +13,7 @@
                 </div>
                 <br>
                 {{Form::textarea('content','',['id'=>'article-ckeditor', 'class'=>'form-control', 'placeholder' => 'Content'])}}
-                {{Form::submit('Submit')}}
+                {{Form::submit('Post versturen >', ['class' => 'btn btn-primary'])}}
         {!! Form::close() !!}
 
 @endsection
