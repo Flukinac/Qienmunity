@@ -129,9 +129,6 @@ hr{
 #prof-spacer{
     background-color: #9d3ff391;
 }
-
-/*===========================   PROFIELPAGINA   ========================*/
-
-.profielul {
-  list-style-type: none;
+.profile-img{
+    max-height:300px;
 }
