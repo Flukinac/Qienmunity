@@ -68,8 +68,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/newsimage/{filename}', ['uses' => 'NieuwsController@getUserImage', 'as' => 'news.image']);
     
     Route::post('/contactMail', 'ContactController@sendContact');
-    
-    //Route::post('/notify{id}', 'ContactController@notifyMail');
 
     Route::get('/home','HomeController@index');
    
