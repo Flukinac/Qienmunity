@@ -116,5 +116,6 @@ class AuthController extends Controller
     }
     public static function notify(Request $request, $mail){
         User::where('email', $mail)->update(['notificatie' => 0]);
+        return view('NotifyChangeSucces');
     }
 }
