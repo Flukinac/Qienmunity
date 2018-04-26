@@ -123,22 +123,23 @@ class ProfileController extends Controller
             'image' => 'mimes:jpeg,jpg,bmp,png',
         ]);
         
+        $profile = Profile::find($id);
         //        ==========-----FOTO UPDATE================
         if($request->file('image')){
-            $old_name = auth()->user()->name;
-            $old_filename = $old_name . '-' . auth()->user()->id . '.jpg';
+            $old_name = $profile->username;
+            $old_filename = $old_name . '-' . $profile->id . '.jpg';
     //        DELETE FILE FROM STORAGE.
             Storage::delete($old_filename);
     //        ADD FILE TO STORAGE
             $file = $request->file('image');
-            $filename = $old_name . '-' . auth()->user()->id . '.jpg';
+            $filename = $old_name . '-' . $profile->id . '.jpg';
 
             Storage::disk('local')->put($filename, File::get($file));
 
         }
         //Profiel wijzigen
         
-        $profile = Profile::find($id);
+        
         $profile->email = $request->input('email');
         $profile->dateofbirth = $request->input('dateofbirth');
         $profile->position = $request->input('position');
