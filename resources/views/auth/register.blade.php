@@ -45,8 +45,8 @@
                             <div class="col-md-6">
                                 <select id="rol" name="rol" class="form-control">
                                     <option>Admin</option>
-                                    <option>Trainee</option>
                                     <option>Docent</option>
+                                    <option selected>Trainee</option>
                                 </select>
 
                                 @if ($errors->has('rol'))

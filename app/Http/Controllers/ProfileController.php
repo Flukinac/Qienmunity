@@ -14,7 +14,11 @@ class ProfileController extends Controller
 
     public function index()
     {
-        $profiles = Profile::orderBy('username','asc')->paginate(20);
+        if(auth()->user()->rol == 0){
+            $profiles = Profile::orderBy('id','asc')->paginate(20);
+        }else{
+            $profiles = Profile::orderBy('username','asc')->paginate(20);
+        }
         return view('profiles.index')->with('profiles', $profiles);
     }
     
@@ -37,6 +41,7 @@ class ProfileController extends Controller
         $this->validate($request,[
             'username'=>'required',
             'email'=>'required',
+            'image' => 'mimes:jpeg,jpg,bmp,png',
         ]);
 
 //        ==========-----FOTO UPLOAD================
@@ -115,24 +120,26 @@ class ProfileController extends Controller
     {
         $this->validate($request,[
             'email'=>'required',
+            'image' => 'mimes:jpeg,jpg,bmp,png',
         ]);
         
+        $profile = Profile::find($id);
         //        ==========-----FOTO UPDATE================
         if($request->file('image')){
-            $old_name = auth()->user()->name;
-            $old_filename = $old_name . '-' . auth()->user()->id . '.jpg';
+            $old_name = $profile->username;
+            $old_filename = $old_name . '-' . $profile->id . '.jpg';
     //        DELETE FILE FROM STORAGE.
             Storage::delete($old_filename);
     //        ADD FILE TO STORAGE
             $file = $request->file('image');
-            $filename = $old_name . '-' . auth()->user()->id . '.jpg';
+            $filename = $old_name . '-' . $profile->id . '.jpg';
 
             Storage::disk('local')->put($filename, File::get($file));
 
         }
         //Profiel wijzigen
         
-        $profile = Profile::find($id);
+        
         $profile->email = $request->input('email');
         $profile->dateofbirth = $request->input('dateofbirth');
         $profile->position = $request->input('position');

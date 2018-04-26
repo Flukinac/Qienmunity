@@ -6,7 +6,6 @@ use Mail;
 use App\User;
 use App\Profile;
 use Illuminate\Http\Request;
-//use Illuminate\Support\Facades\Mail;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -24,33 +23,31 @@ class ContactController extends Controller
             
             $message->subject($title);
             $message->from('sevisser1@gmail.com','Qienmunity');
-            $message->to('sevisser1@gmail.com');
+            $message->to('paul.veen@qien.nl');
    
         });
         
     }
-    public static function notifyMail($id, $afzenderControl){
-        $afzenderControl == "comm" ? $afzender = "communitypost" : $afzender = "nieuwspost";
+    public static function notifyMail($id, $subject){
         $user = User::where('id', $id)->get();
         $AllMail = Profile::select('email')->get();
-        $mail = "Er is zojuist een ".$afzender." gedaan door ".$user[0]['name'];
-        $subject = $afzender;
+        $mail = "Er is zojuist iets gepost op de ".$subject."pagina door ".$user[0]['name'];
         
        	ContactController::notifyMailTo($mail, $AllMail, $subject); 
     }
-    
+   
     public static function notifyMailTo($mail, $AllMail, $subject){
         foreach($AllMail as $email){
           $emailCurrent = $email['email'];
-            if(!empty($emailCurrent)){
-                mail::send('mailTemplate', ['content' => $mail,'sendFrom' => "Qienmunity", 'replyTo' => " "] ,function($message) use ($subject, $emailCurrent){
+          $auth = User::select('notificatie')->where('email', $emailCurrent)->get();
+            if(!empty($emailCurrent && $auth == '[{"notificatie":1}]')){
+                mail::send('mailTemplateNotify', ['content' => $mail,'sendFrom' => "Qienmunity",'user' => $emailCurrent, 'link'=>$subject] ,function($message) use ($subject, $emailCurrent){
 
                     $message->subject($subject);
                     $message->from('qiencommunity@gmail.com');
                     $message->to($emailCurrent);
-
                 });
-            }
+            }           
         }
     }
     
@@ -70,7 +67,6 @@ class ContactController extends Controller
                     $message->subject($subject);
                     $message->from('qiencommunity@gmail.com');
                     $message->to($emailCurrent);
-
                 });
     }
 }

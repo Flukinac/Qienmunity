@@ -21,8 +21,7 @@ class NieuwsController extends Controller
 
         $pinned = Nieuwspost::orderBy('id','asc')->where('pinned', 1)->take(3)->paginate(3);
         $post = Nieuwspost::orderBy('id','desc')->where('pinned', 0)->paginate(10);
-        return view('nieuwspage/nieuws')->with('nieuws', $post)->with('pinned', $pinned);
-                                        
+        return view('nieuwspage/nieuws')->with('nieuws', $post)->with('pinned', $pinned);                                     
 
     }
     /**
@@ -46,6 +45,7 @@ class NieuwsController extends Controller
         $this->validate($request,[
             'titel' => 'required',
             'content' =>  'required',
+            'image' => 'mimes:jpeg,jpg,bmp,png',
         ]);
 //        ==========-----FOTO UPLOAD================
         $file = $request->file('image');
@@ -69,7 +69,10 @@ class NieuwsController extends Controller
         $post->title = $request->input('titel');
         $post->content = $request->input('content');
         $post->save();
-        ContactController::notifyMail($post->user_id, "nieuws"); //voor notificatie mail van aanmaak nieuwe post
+//        ==========-----NOTIFY MAIL================               
+        $afzenderControl = "nieuwsposts";
+        ContactController::notifyMail($post->user_id, $afzenderControl); //voor notificatie mail van aanmaak nieuwe post
+//        ==========-----VIEW================
         return redirect('/nieuwsposts')->with('success', 'Nieuwspost succesvol gemaakt');
     }
     
@@ -118,6 +121,7 @@ class NieuwsController extends Controller
             $this->validate($request,[
                 'titel' => 'required',
                 'content' =>  'required',
+                'image' => 'mimes:jpeg,jpg,bmp,png',
             ]);
 //        ==========-----FOTO UPDATE================
         $file = $request->file('image');
@@ -171,11 +175,9 @@ class NieuwsController extends Controller
 
     
     public function search(Request $request){
-            //error_log("yipiypiyo");
             $query = $request->json()->all()["term"];  
             if(!empty($query)){
-                $postquery = Nieuwspost::where('title', 'like', '%'.$query.'%')
-                                               //->orderByRaw('created_at DESC')
+                $postquery = Nieuwspost::where('title', 'like', '%'.$query.'%')                                               
                                                ->get();
 
                 return new Response($postquery, 200);

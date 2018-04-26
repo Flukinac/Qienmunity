@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-@if (auth()->user()->id == $profile->user_id)
+@if (auth()->user()->id == $profile->user_id|| auth()->user()->rol == 0)
 
 
         <h1>Profiel bewerken</h1>

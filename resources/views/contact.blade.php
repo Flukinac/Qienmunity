@@ -3,18 +3,22 @@
 @section('content')
 
         <h1>Contact</h1>
-
-
-        <center>
-                <input type="text" class="subject" placeholder="onderwerp" name="contactName"><br><br>
-                <textarea rows="10" class="text" cols="50" placeholder="text invoer mail" name="contactText"></textarea><br><br>
-                <input type="button" onclick="contactPost()" class="btn btn-primary" value="verzend"><br><br>
-                <div id="mailSucces"></div>
-        </center>
-            
         
-    </body>
-</html>
+        <h4>Heb je vragen, opmerkingen of tips voor het QienMunity platform?</h4>
+        <p>Neem via onderstaand formulier contact op met Paul Veen van Qien. Je wordt dan zo spoedig mogelijk teruggemaild.</p>
+
+<form>
+  <div class="form-group" id="mailSucces">
+    <label for="exampleFormControlInput1">Onderwerp</label>
+    <input type="text" class="form-control" id="subject" placeholder="Onderwerp" name="contactName">
+  </div>
+
+  <div class="form-group">
+    <label for="exampleFormControlTextarea1">Jouw bericht</label>
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="10" name="contactText" placeholder="Beste Paul van Qien,"></textarea>
+  </div>
+    <input type="button" onclick="contactPost()" class="btn btn-primary" value="Verzend">
+</form>
 
 
 @endsection
