@@ -43,6 +43,7 @@ class CommunityController extends Controller
         $this->validate($request,[
             'titel' => 'required',
             'content' =>  'required',
+            'image' => 'mimes:jpeg,jpg,bmp,png',
         ]);
 //        ==========-----FOTO UPLOAD================
         $file = $request->file('image');
@@ -110,6 +111,7 @@ class CommunityController extends Controller
         $this->validate($request,[
             'titel' => 'required',
             'content' =>  'required',
+            'image' => 'mimes:jpeg,jpg,bmp,png',
         ]);
         
 //      ==========-----FOTO UPDATE================

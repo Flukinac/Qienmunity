@@ -41,6 +41,7 @@ class ProfileController extends Controller
         $this->validate($request,[
             'username'=>'required',
             'email'=>'required',
+            'image' => 'mimes:jpeg,jpg,bmp,png',
         ]);
 
 //        ==========-----FOTO UPLOAD================
@@ -119,6 +120,7 @@ class ProfileController extends Controller
     {
         $this->validate($request,[
             'email'=>'required',
+            'image' => 'mimes:jpeg,jpg,bmp,png',
         ]);
         
         //        ==========-----FOTO UPDATE================
