@@ -278,6 +278,7 @@ class ComposerStaticInit6d643484cedaa02e7d1304e937782957
     public static $classMap = array (
         'AddCommunitypostIdToComments' => __DIR__ . '/../..' . '/database/migrations/2018_04_21_133446_add_communitypost_id_to_comments.php',
         'AddNewsidToComments' => __DIR__ . '/../..' . '/database/migrations/2018_04_16_131927_add_newsid_to_comments.php',
+        'AddNotificationToUserTable' => __DIR__ . '/../..' . '/database/migrations/2018_04_26_072640_add_notification_to_user_table.php',
         'AddPinnedpostToNieuwspostsTable' => __DIR__ . '/../..' . '/database/migrations/2018_04_17_135823_add_pinnedpost_to_nieuwsposts_table.php',
         'AddUserIdComments' => __DIR__ . '/../..' . '/database/migrations/2018_04_06_133705_add_user_id_comments.php',
         'AddUserIdCommunity' => __DIR__ . '/../..' . '/database/migrations/2018_04_06_133842_add_user_id_community.php',

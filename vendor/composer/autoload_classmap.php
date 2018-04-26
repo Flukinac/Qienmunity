@@ -8,6 +8,7 @@ $baseDir = dirname($vendorDir);
 return array(
     'AddCommunitypostIdToComments' => $baseDir . '/database/migrations/2018_04_21_133446_add_communitypost_id_to_comments.php',
     'AddNewsidToComments' => $baseDir . '/database/migrations/2018_04_16_131927_add_newsid_to_comments.php',
+    'AddNotificationToUserTable' => $baseDir . '/database/migrations/2018_04_26_072640_add_notification_to_user_table.php',
     'AddPinnedpostToNieuwspostsTable' => $baseDir . '/database/migrations/2018_04_17_135823_add_pinnedpost_to_nieuwsposts_table.php',
     'AddUserIdComments' => $baseDir . '/database/migrations/2018_04_06_133705_add_user_id_comments.php',
     'AddUserIdCommunity' => $baseDir . '/database/migrations/2018_04_06_133842_add_user_id_community.php',
