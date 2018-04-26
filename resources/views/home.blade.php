@@ -33,7 +33,7 @@
             <a href='/profiles'><h2>Nieuwste gebruikers</h2></a>
                    <div class="well" style="box-shadow: 0 7px 7px 3px #aaaaaa;">
                 @foreach($profiles as $profile)
-                        <a href="/profiles/{{$profile->id}}"><img style="vertical-align: middle;" class="img-circle" height=50px width=50px src="{{ route('profile.image', ['filename' => $profile->username . '-' . $profile->user_id . '.jpg']) }}" alt="" class="img-responsive"></a>
+                        <a href="/profiles/{{$profile->id}}"><img style="vertical-align: middle;" class="img-circle" height=50px width=50px src="{{ route('profile.image', ['filename' => $profile->username . '-' . $profile->id . '.jpg']) }}" alt="" class="img-responsive"></a>
                         <h3 style="display: inline-block; padding-left: 20px;"><a href="/profiles/{{$profile->id}}">{{$profile->username}}</a></h3>
                         <br>
                         <p style="display: inline-block; padding-left: 75px;">{!!str_limit($profile->position, 100)!!}</p>
