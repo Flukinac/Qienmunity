@@ -80,7 +80,7 @@ class AuthController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'rol'=> $data['rol'],
-            'password' => bcrypt($data['password']),
+            'password' => bcrypt($data["password"]),
             'notificatie' => 1
         ]); 
         
@@ -94,7 +94,10 @@ class AuthController extends Controller
 
         ContactController::sendMailNewUser($data);
     }
-     
+    public function remove(Request $request, $profile){
+        return view('/profiles/remove', $profile);
+    }
+    
     public function register(Request $request)
 {
     $validator = $this->validator($request->all());

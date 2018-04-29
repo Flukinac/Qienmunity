@@ -50,7 +50,6 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::resource('communitypost','CommunityController');
 
-    Route::resource('profiles', 'ProfileController');
     
     
     //Methode routes
@@ -80,6 +79,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/auth/success', ['uses' => 'Auth\AuthController@success', 'as'   => 'auth.success']);
                 
     Route::get('/unsign/{mail}', 'Auth\AuthController@notify' );  
+    
+    Route::get('/RemoveUser/{profile}', 'Auth\AuthController@remove');
     
    
  

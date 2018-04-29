@@ -9,12 +9,19 @@ and open the template in the editor.
 */
 
 /*============================  GENERAL CSS ================================*/
+.general-body{
+    background-image: url("images/27.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+    
+}
 #qien--background-colour{
     background-color:#9d3ff391;
     border:#9d3ff3
 }
 
 #qien--background-colour:hover{
+    
     background-color:#9d3ff3;
 
 }
