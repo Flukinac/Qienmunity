@@ -29,7 +29,7 @@
         }
     </style>
 </head>
-<body id="app-layout">
+<body id="app-layout" class="general-body">
     <nav class="navbar navbar-default navbar-static-top" id="navbar">
         <div class="container">
             <div class="navbar-header">
