@@ -24,13 +24,13 @@ Route::group(['middleware' => 'auth'], function () {
         return view('nieuws');
     });
 
-    Route::get('/resources', function () {
-        return view('resources');
+    Route::get('/resource', function () {
+        return view('index');
     });
 
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    });
+//    Route::get('/dashboard', function () {
+//        return view('dashboard', ['post' => $post]);
+//    });
 
     Route::get('/nieuwegebruiker', function () {
         return view('auth/register');
@@ -49,6 +49,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('post','PostIdController');
 
     Route::resource('communitypost','CommunityController');
+    
+    Route::resource('resource','ResourceController');
 
     
     
