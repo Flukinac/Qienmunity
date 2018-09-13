@@ -2,10 +2,9 @@
 
 @section('content')
     @if ($post->title)
-    <h1>Resource: {{$post->title}}</h1><br>
+<!--    <h1>Resource: {{$post->title}}</h1><br>-->
     @endif
-    <a href="/communitypost" class="btn btn-default">< Ga terug</a><br/><br/>
-       
+    <a href="/communitypost" class="btn btn-default">Ga terug</a><br/><br/>
     <div class="row">
         <div class="col-md-12 col-md-offset-0">
             <div class="card" id="showNewsPost">

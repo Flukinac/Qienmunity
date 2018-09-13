@@ -20,9 +20,9 @@ class ResourceController extends Controller
      */
     public function index()
     {   
-        $post = resourceposts::orderBy('id')->get();
-        print_r($post);
-        //return view('resource/index', ['post' => $post[0]]); 
+        $post = resourcepost::orderBy('id', 'desc')->paginate(10);
+        print_r($post[0]->title);
+        return view('rescources/index')->with('post', $post); 
     }
 
     /**
