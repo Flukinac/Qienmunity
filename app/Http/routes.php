@@ -89,8 +89,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('resource','ResourceController');
 
 
-        Route::auth();
-
         Route::resource('/trainees', 'TraineeController');
 
         Route::resource('/admins', 'AdminController');

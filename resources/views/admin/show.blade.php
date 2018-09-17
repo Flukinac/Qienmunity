@@ -41,6 +41,7 @@
     }
 </style>
 <!--------------------------------- [ overzicht trainees ] --------------------------------->
+<div class="well" style="box-shadow: 0 7px 7px 3px #aaaaaa;">
   <div id="bijlageContainer">
     <a onclick=closeFile()><i class="fas fa-times-circle"></i></a>
     <img id="bijlage" />
@@ -60,9 +61,9 @@
 
         </tr>
         @foreach($users as $user)
-            @if($user->role == 0)
+            @if($user->rol == 0)
                     <tr>
-                        <td>{{$user->first_name}}</td>
+                        <td>{{$user->name}}</td>
                         <td>{{$user->last_name}}</td>
                         <td>{{$user->email}}</td>
                         <td>{{$user->employee_number}}</td>
@@ -83,7 +84,9 @@
             @endif
         @endforeach
     </table>
+</div>
 <!--------------------------------- [ overzicht admins ] --------------------------------->
+<div class="well" style="box-shadow: 0 7px 7px 3px #aaaaaa;">
     <h3>Overzicht admins</h3>
     <table>
         <tr>
@@ -94,9 +97,9 @@
 
         </tr>
         @foreach($users as $user)
-            @if($user->role == 1)
+            @if($user->rol == 1)
                     <tr>
-                        <td>{{$user->first_name}}</td>
+                        <td>{{$user->name}}</td>
                         <td>{{$user->last_name}}</td>
                         <td>{{$user->email}}</td>
                             <td><a href='/trainees/{{$user->id}}/edit'class='btn btn-default'>Wijzig</a></td>
@@ -106,37 +109,39 @@
             @endif
         @endforeach
     </table>
+</div>
 <!--------------------------------- [ overzicht companies ] --------------------------------->
+<div class="well" style="box-shadow: 0 7px 7px 3px #aaaaaa;">
     <h3>Overzicht Bedrijven</h3>
-    <table>
-        <tr>
-            <th>Naam </th>
-            <th>Locatie</th>
-            <th>Contact persoon </th>
-            <th>E-mail</th>
-            <th>Telefoon nummer</th>
-<!--            <th>Bekijk</th>
-            <th>Wijzig</th>-->
+        <table>
+            <tr>
+                <th>Naam </th>
+                <th>Locatie</th>
+                <th>Contact persoon </th>
+                <th>E-mail</th>
+                <th>Telefoon nummer</th>
+    <!--            <th>Bekijk</th>
+                <th>Wijzig</th>-->
 
-        </tr>
-        @foreach($companies as $company)
-                    <tr>
-                        <td>{{$company->name}}</td>
-                        <td>{{$company->location}}</td>
-                        <td>{{$company->contact_person}}</td>
-                        <td>{{$company->email}}</td>
-                        <td>0{{$company->phone_number}}</td>
+            </tr>
+            @foreach($companies as $company)
+                        <tr>
+                            <td>{{$company->name}}</td>
+                            <td>{{$company->location}}</td>
+                            <td>{{$company->contact_person}}</td>
+                            <td>{{$company->email}}</td>
+                            <td>0{{$company->phone_number}}</td>
 
-                            <!--<td><a href='/trainees/{{$user->id}}'class='btn btn-default'>Bekijk</a></td>-->
+                                <!--<td><a href='/trainees/{{$user->id}}'class='btn btn-default'>Bekijk</a></td>-->
 
-                            <!--<td><a href='/trainees/{{$user->id}}/edit'class='btn btn-default'>Wijzig</a></td>-->
-
-
-                    </tr>
-        @endforeach
-    </table>
+                                <!--<td><a href='/trainees/{{$user->id}}/edit'class='btn btn-default'>Wijzig</a></td>-->
 
 
+                        </tr>
+            @endforeach
+        </table>
+</div>
+<div class="well" style="box-shadow: 0 7px 7px 3px #aaaaaa;">
     <h2>Uren</h2>
 @endsection
 @section('review')
@@ -160,7 +165,7 @@
                     <td>{{$hour->date}}</td>
                     @foreach($users as $user)
                         @if($user->id === $hour->user_id)
-                            <td>{{$user->first_name}}</td>
+                            <td>{{$user->name}}</td>
                         @endif
                     @endforeach
                     <td>{{$hour->created_at}}</td>
@@ -189,7 +194,7 @@
                     <td>{{$hour->date}}</td>
                     @foreach($users as $user)
                         @if($user->id === $hour->user_id)
-                            <td>{{$user->first_name}}</td>
+                            <td>{{$user->name}}</td>
                         @endif
                     @endforeach
                     <td>{{$hour->created_at}}</td>
@@ -218,7 +223,7 @@
                     <td>{{$hour->date}}</td>
                     @foreach($users as $user)
                         @if($user->id === $hour->user_id)
-                            <td>{{$user->first_name}}</td>
+                            <td>{{$user->name}}</td>
                         @endif
                     @endforeach
                     <td>{{$hour->created_at}}</td>
@@ -347,4 +352,5 @@
         @endif
     @endforeach
     </table>
+</div>
 @endsection
