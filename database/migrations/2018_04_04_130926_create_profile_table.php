@@ -20,8 +20,8 @@ class CreateProfileTable extends Migration
             $table->string('image');
             $table->string('position');
             $table->text('biography');
+            $table->integer('user_id');
             $table->timestamps();
-            
         });
     }
 

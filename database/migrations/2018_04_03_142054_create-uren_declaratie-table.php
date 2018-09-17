@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCommunitypostsTable extends Migration
+class CreateUrenDeclaratieTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,13 +12,13 @@ class CreateCommunitypostsTable extends Migration
      */
     public function up()
     {
-        Schema::create('communityposts', function (Blueprint $table) {
+        Schema::create('hours_declarations', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('title');
-            $table->text('content');
-            $table->text('image');
-            $table->integer('user_id');
-            $table->integer('likes');
+            $table->date('date');
+            $table->integer('amount');
+            $table->string('type');
+            $table->string('statement');
+            $table->integer('status')->default(0);
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class CreateCommunitypostsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('communityposts');
+        Schema::drop('hours_declarations');
     }
 }
