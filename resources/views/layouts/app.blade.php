@@ -59,6 +59,7 @@
                     <li><a href="{{ url('/resource') }}">Resource</a></li>
                     <li><a href="{{ url('/events') }}">Events</a></li>
                     <li><a href="{{ url('/contact') }}">Contact</a></li>
+                    <li><a href="{{ url('/declaraties') }}">Declaraties</a></li>
                 </ul>
                 @endif
                 <!-- Right Side Of Navbar -->

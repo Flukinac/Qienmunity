@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->unsignedInteger('company_id')->nullable();
             $table->integer('rol');
             $table->string('ímg_url');
-            $table->integer('notificatie');
+            $table->integer('notification');
             $table->timestamps();
             $table->rememberToken();
         });

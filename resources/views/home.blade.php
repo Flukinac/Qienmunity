@@ -9,25 +9,22 @@
 <div class="container">
     <div class="row">
         <!--Nieuwposts tonen-->
-            <div class="col-lg-6">   
-                
+            <div class="col-lg-6">
                 <a href='/nieuwsposts'><h2>Nieuws</h2></a>
-                       <div class="well" style="box-shadow: 0 7px 7px 3px #aaaaaa;">
-                            @foreach($nieuwspost as $post)
-                            <div>      
-                                    <h3 class="card-title" ><a href="/nieuwsposts/{{$post->id}}">{{$post->title}}</a></h3>
-                                    <p>{!!str_limit($post->content, 300)!!}</p>
-                                    <small>Geschreven op {{$post->updated_at}} door <a href='/profiles/{{$post->user->profile->id}}'>{{$post->user->name}}</a></small>
-                                    <hr>
+                    <div class="well" style="box-shadow: 0 7px 7px 3px #aaaaaa;">
+                        @foreach($nieuwspost as $post)
+                            <div>
+                                <h3 class="card-title" ><a href="/nieuwsposts/{{$post->id}}">{{$post->title}}</a></h3>
+                                <p>{!!str_limit($post->content, 300)!!}</p>
+                                <small>Geschreven op {{$post->updated_at}} door <a href='/profiles/{{$post->user->profile->id}}'>{{$post->user->name}}</a></small>
+                                <hr>
                             </div>
-                            @endforeach
-                            <a href="/nieuwsposts">Bekijk alle nieuwsposts ></a>
-                       </div>
-                
+                        @endforeach
+                        <a href="/nieuwsposts">Bekijk alle nieuwsposts ></a>
+                    </div>
             </div>
-        
-                
-                <!--Toon 3 nieuwste gebruikers-->
+
+        <!--Toon 3 nieuwste gebruikers-->
         
         <div class="col-lg-6">
             <a href='/profiles'><h2>Nieuwste gebruikers</h2></a>
@@ -42,9 +39,9 @@
                 <a href="/profiles">Bekijk alle profielen ></a>
             </div>
         </div>
-        
     </div>
     <div class="row">
+
                 <!--Communitypost tonen-->
         
         <div class="col-lg-6">
