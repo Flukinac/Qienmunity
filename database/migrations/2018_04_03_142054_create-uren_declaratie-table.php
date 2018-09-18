@@ -19,6 +19,8 @@ class CreateUrenDeclaratieTable extends Migration
             $table->string('type');
             $table->string('statement');
             $table->integer('status')->default(0);
+            $table->unsignedInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

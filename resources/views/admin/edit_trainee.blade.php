@@ -9,7 +9,7 @@
       <div class="container">
         <h2>Wijzig Gebruiker gegevens</h2>
 
-        <h3><a href=''class='btn btn-default'>terug</a><h3>
+        <h3><a href='/declarations'class='btn btn-default'>terug</a><h3>
 
 
         <hr>
@@ -19,7 +19,7 @@
             <div class="form-group">
                 {{Form::hidden('_method','PUT')}}
                 {{Form::label('voornaam', 'Voornaam')}}
-                {{Form::text('first_name', $user->first_name, ['name' => 'first_name', 'id' => 'first_name', 'class' => 'form-control input-sm'])}}
+                {{Form::text('name', $user->name, ['name' => 'name', 'id' => 'name', 'class' => 'form-control input-sm'])}}
             </div>
 
             <div class="form-group">
@@ -50,8 +50,6 @@
                     2 => 'Bedrijf'
                 ], $user->role, ['name' => 'admin', 'id' => 'admin', 'class'=>'form-control'])}}
             </div>
-
-
 
             <div class="form-group">
                 {{Form::file('cover_image')}}

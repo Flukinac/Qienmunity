@@ -276,10 +276,10 @@ class ComposerStaticInit6d643484cedaa02e7d1304e937782957
     );
 
     public static $classMap = array (
-        'AddCompanyId' => __DIR__ . '/../..' . '/database/migrations/2018_09_17_081916_add_company_id.php',
-        'CreateCommentsTable' => __DIR__ . '/../..' . '/database/migrations/2018_04_03_164439_create_comments_table.php',
+        'AddCompanyIdForeignAssign' => __DIR__ . '/../..' . '/database/migrations/2018_09_17_081916_add_company_id_foreign_assign.php',
+        'AddUserIdToHoursDeclaration' => __DIR__ . '/../..' . '/database/migrations/2018_09_18_122000_add_user_id_to_hours_declaration.php',
+        'CreateCommentsTable' => __DIR__ . '/../..' . '/database/migrations/2018_09_16_164439_create_comments_table.php',
         'CreateCommunitypostsTable' => __DIR__ . '/../..' . '/database/migrations/2018_04_03_183404_create_communityposts_table.php',
-        'CreateCompaniesTable' => __DIR__ . '/../..' . '/database/migrations/2018_04_04_110903_create-companies-table.php',
         'CreateDashboardTable' => __DIR__ . '/../..' . '/database/migrations/2018_04_24_145242_create_dashboard_table.php',
         'CreateDeclaratieTable' => __DIR__ . '/../..' . '/database/migrations/2018_04_04_110351_create-declaratie-table.php',
         'CreateNieuwspostsTable' => __DIR__ . '/../..' . '/database/migrations/2018_04_03_183319_create_nieuwsposts_table.php',
@@ -288,6 +288,7 @@ class ComposerStaticInit6d643484cedaa02e7d1304e937782957
         'CreateResourcepostsTable' => __DIR__ . '/../..' . '/database/migrations/2018_04_03_183116_create_resourceposts_table.php',
         'CreateUrenDeclaratieTable' => __DIR__ . '/../..' . '/database/migrations/2018_04_03_142054_create-uren_declaratie-table.php',
         'CreateUsersTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_000000_create_users_table.php',
+        'CreatecompaniesTable' => __DIR__ . '/../..' . '/database/migrations/2018_04_04_110903_create-companies-table.php',
         'DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeds/DatabaseSeeder.php',
         'File_Iterator' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Iterator.php',
         'File_Iterator_Facade' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Facade.php',

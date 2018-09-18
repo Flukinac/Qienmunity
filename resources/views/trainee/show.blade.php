@@ -43,7 +43,7 @@ $user = Auth::user();
      <div class=container-hours>
       <div class="container">
 
-        <h3>Welkom {{ $user->first_name }}</h3>
+        <h3>Welkom {{ $user->name }}</h3>
 
 
         <h2>Uren Declaraties</h2>
@@ -56,7 +56,7 @@ $user = Auth::user();
                     <option id=abscense value="abscense">kort verlof</option>
                     <option id=holiday value="holiday">vakantie</option>
                     <option id=sick value="sick">ziek</option>
-                    <option id=extra value="extra">overige</option>
+                    <option id=extra value="extra">overig</option>
                 </select>
                 <input name=date id=date type="date">
                 <textarea name=statement id="statement" rows="1.8" cols="40" placeholder='Vul hier een beschrijving in'></textarea>

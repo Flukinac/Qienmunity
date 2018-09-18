@@ -6,10 +6,10 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'AddCompanyId' => $baseDir . '/database/migrations/2018_09_17_081916_add_company_id.php',
-    'CreateCommentsTable' => $baseDir . '/database/migrations/2018_04_03_164439_create_comments_table.php',
+    'AddCompanyIdForeignAssign' => $baseDir . '/database/migrations/2018_09_17_081916_add_company_id_foreign_assign.php',
+    'AddUserIdToHoursDeclaration' => $baseDir . '/database/migrations/2018_09_18_122000_add_user_id_to_hours_declaration.php',
+    'CreateCommentsTable' => $baseDir . '/database/migrations/2018_09_16_164439_create_comments_table.php',
     'CreateCommunitypostsTable' => $baseDir . '/database/migrations/2018_04_03_183404_create_communityposts_table.php',
-    'CreateCompaniesTable' => $baseDir . '/database/migrations/2018_04_04_110903_create-companies-table.php',
     'CreateDashboardTable' => $baseDir . '/database/migrations/2018_04_24_145242_create_dashboard_table.php',
     'CreateDeclaratieTable' => $baseDir . '/database/migrations/2018_04_04_110351_create-declaratie-table.php',
     'CreateNieuwspostsTable' => $baseDir . '/database/migrations/2018_04_03_183319_create_nieuwsposts_table.php',
@@ -18,6 +18,7 @@ return array(
     'CreateResourcepostsTable' => $baseDir . '/database/migrations/2018_04_03_183116_create_resourceposts_table.php',
     'CreateUrenDeclaratieTable' => $baseDir . '/database/migrations/2018_04_03_142054_create-uren_declaratie-table.php',
     'CreateUsersTable' => $baseDir . '/database/migrations/2014_10_12_000000_create_users_table.php',
+    'CreatecompaniesTable' => $baseDir . '/database/migrations/2018_04_04_110903_create-companies-table.php',
     'DatabaseSeeder' => $baseDir . '/database/seeds/DatabaseSeeder.php',
     'File_Iterator' => $vendorDir . '/phpunit/php-file-iterator/src/Iterator.php',
     'File_Iterator_Facade' => $vendorDir . '/phpunit/php-file-iterator/src/Facade.php',

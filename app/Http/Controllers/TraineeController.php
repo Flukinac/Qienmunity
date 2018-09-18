@@ -69,22 +69,21 @@ class TraineeController extends ApiController
 
       $hours = Hours_declaration::where('user_id',$id)->get();
       $declarations = Declaration::where('user_id',$id)->get();
-      if(isset($user->company_id)){
+      if (isset($user->company_id)) {
         $company = Company::find($user->company_id);
       } else {
         $company = new Company;
         $company->name = 'Geen bedrijf';
       }
 
-      if( Auth::user()->role == 1 ){
+//      if (Auth::user()->rol == 1) {
+//
+//          return view('/admin/show_trainee')->with(compact('user','company','hours','declarations'));
+//
+//      } elseif (Auth::user()->rol == 0) {
 
-          return view('admin.show_trainee')->with(compact('user','company','hours','declarations'));
-
-      } elseif ( Auth::user()->role == 0 ) {
-
-          return view('/trainee/show')->with(compact('user','hours','declarations','company'));
-
-      }
+          return view('/trainee/show')->with(compact('user', 'company', 'hours','declarations'));
+     // }
     }
     /**
      * Show the form for editing the specified resource.
@@ -97,16 +96,15 @@ class TraineeController extends ApiController
         $user = User::find($id);
         $company = Company::find($user->company_id);
         $hours = Hours_declaration::find($id);
-
         $companies = Company::all();
         $select = [];
         $select[''] = "Geen bedrijf";
-        foreach($companies as $company2){
+
+        foreach($companies as $company2) {
             $select[$company2->id] = $company2->name;
-
         }
-        return view('admin.edit_trainee')->with(compact('user','company', 'select'));
 
+        return view('admin.edit_trainee')->with(compact('user','company', 'select'));
     }
     /**
      * Update the specified resource in storage.
@@ -119,17 +117,17 @@ class TraineeController extends ApiController
     {
         $new = User::find($id);
 
-        $new->first_name = $request->input('first_name');
+        $new->name = $request->input('name');
         $new->last_name = $request->input('last_name');
         $new->email = $request->input('email');
         $new->employee_number = $request->input('employee_number');
 
-        if($request->input('company') != ''){
+        if ($request->input('company') != '') {
           $new->company_id = $request->input('company');
         } else {
           $new->company_id = null;
         }
-        $new->role = $request->input('admin');
+        $new->rol = $request->input('admin');
 
         $new->save();
 
