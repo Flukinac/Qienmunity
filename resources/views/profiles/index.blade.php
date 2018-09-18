@@ -27,6 +27,8 @@
                               <td>{{$profile->created_at}}</td>
                               @if(auth()->user()->rol == 0)
                               <td><a href ="/profiles/{{$profile->id}}/edit" class="btn btn-sm btn-default">Profiel bewerken ></a></td>
+                              <td><a href ="/RemoveUser/{{$profile}}" class="btn btn-sm btn-default">Gebruiker verwijderen ></a></td>
+                              
                               @endif
                             </tr>
  

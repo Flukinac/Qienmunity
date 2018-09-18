@@ -17,6 +17,7 @@ class CreateCommunitypostsTable extends Migration
             $table->string('title');
             $table->text('content');
             $table->text('image');
+            $table->integer('user_id');
             $table->integer('likes');
             $table->timestamps();
         });

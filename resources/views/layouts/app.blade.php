@@ -29,7 +29,7 @@
         }
     </style>
 </head>
-<body id="app-layout">
+<body id="app-layout" class="general-body">
     <nav class="navbar navbar-default navbar-static-top" id="navbar">
         <div class="container">
             <div class="navbar-header">
@@ -56,7 +56,10 @@
                     <li><a href="{{ url('/profiles') }}">Profielen</a></li>
                     <li><a href="{{ url('/nieuwsposts') }}">Nieuws</a></li>
                     <li><a href="{{ url('/communitypost') }}">Community</a></li>
+                    <li><a href="{{ url('/resource') }}">Resource</a></li>
+                    <li><a href="{{ url('/events') }}">Events</a></li>
                     <li><a href="{{ url('/contact') }}">Contact</a></li>
+                    <li><a href="{{ url('/declarations') }}">Declaraties</a></li>
                 </ul>
                 @endif
                 <!-- Right Side Of Navbar -->

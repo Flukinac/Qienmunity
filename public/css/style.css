@@ -1,0 +1,63 @@
+.header {
+    margin: 0 auto;
+    width: 100%;
+    height: 20px;
+}
+
+hr{
+    background: #9900ff;
+}
+
+h2, h1{
+    margin-top: 50px;
+    text-align: center;
+    color: white;
+    padding: 20px;
+}
+
+.container{
+    width: 800px ;
+    margin-left: auto ;
+    margin-right: auto ;
+}
+
+.tabcontent{
+    background: white;
+}
+
+  .tabcontent, .tabcontent2 {
+    background-color: white;
+    margin-bottom: 50px;
+  }
+
+  th, td {
+    padding-right: 20px;
+  }
+
+/*-------------------input text style-----------------*/
+
+input{
+    width: 18%;
+    border: 2px solid #aaa;
+    border-radius: 4px;
+    margin:8px 0;
+    outline: none;
+    padding:3px;
+    box-sizing: border;
+    font-size: 12px;
+}
+
+textarea{
+    width: 300px;
+    height: 35px;
+    border: 2px solid #aaa;
+    border-radius: 4px;
+    margin:0px 0;
+    outline: none;
+    padding:8px;
+}
+
+th, td{
+        border: 1px solid;
+        padding: 5px;
+}

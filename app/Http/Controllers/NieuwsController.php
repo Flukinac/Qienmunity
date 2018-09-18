@@ -21,6 +21,7 @@ class NieuwsController extends Controller
 
         $pinned = Nieuwspost::orderBy('id','asc')->where('pinned', 1)->take(3)->paginate(3);
         $post = Nieuwspost::orderBy('id','desc')->where('pinned', 0)->paginate(10);
+        
         return view('nieuwspage/nieuws')->with('nieuws', $post)->with('pinned', $pinned);                                     
 
     }

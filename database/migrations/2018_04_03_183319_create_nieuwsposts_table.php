@@ -17,6 +17,8 @@ class CreateNieuwspostsTable extends Migration
             $table->string('title');
             $table->text('content');
             $table->text('image');
+            $table->integer('user_id');
+            $table->integer('pinned');
             $table->timestamps();
          
         });
