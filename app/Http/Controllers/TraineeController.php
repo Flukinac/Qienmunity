@@ -76,14 +76,12 @@ class TraineeController extends ApiController
         $company->name = 'Geen bedrijf';
       }
 
-//      if (Auth::user()->rol == 1) {
-//
-//          return view('/admin/show_trainee')->with(compact('user','company','hours','declarations'));
-//
-//      } elseif (Auth::user()->rol == 0) {
+      if (Auth::user()->rol == 0) {
+          return view('/admin/show_trainee')->with(compact('user','company','hours','declarations'));
 
+      } elseif (Auth::user()->rol == 1) {
           return view('/trainee/show')->with(compact('user', 'company', 'hours','declarations'));
-     // }
+      }
     }
     /**
      * Show the form for editing the specified resource.

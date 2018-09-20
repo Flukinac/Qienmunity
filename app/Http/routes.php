@@ -30,12 +30,8 @@ Route::group(['middleware' => 'auth'], function () {
         return view('nieuws');
     });
 
-    Route::get('/resource', function () {
-        return view('index');
-    });
-
-//    Route::get('/dashboard', function () {
-//        return view('dashboard', ['post' => $post]);
+//    Route::get('/resource', function () {
+//        return view('index');
 //    });
 
     Route::get('/nieuwegebruiker', function () {

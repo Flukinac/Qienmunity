@@ -9,7 +9,7 @@
       <div class="container">
         <h2>Wijzig Gebruiker gegevens</h2>
 
-        <h3><a href='/declarations'class='btn btn-default'>terug</a><h3>
+        <h3><a href="{{ url('/declarations',auth()->user()->id) }}"class='btn btn-default'>terug</a><h3>
 
 
         <hr>

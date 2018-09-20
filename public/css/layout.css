@@ -19,6 +19,9 @@ and open the template in the editor.
     background-color:#9d3ff391;
     border:#9d3ff3
 }
+.transparent{
+    background:rgba(255,255,255,0.5);
+}
 
 #qien--background-colour:hover{
     
