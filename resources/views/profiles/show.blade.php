@@ -1,18 +1,21 @@
 @extends('layouts.app')
 @section('content')
+    @if (!isset($profile))
+        <h1>Geen profiel gevonden!</h1>
+        <a href="/" class="btn btn-default">< Terug naar Home</a>
+    @else
         <a href="/profiles" class="btn btn-default">< Terug naar alle profielen</a>
 
         <br>
         <div id="container-profile">
-            
             <div class="card text-center" id="prof-card" style="width: 50vw;">
                 <div class="spacer" id="prof-spacer"></div>
                 <br>
 
                 @if (Storage::disk('local')->has($profile->username . '-' . $profile->id . '.jpg'))
                     <img class="img-circle profile-img" height='250px' width="250px" src="{{ route('profile.image', ['filename' => $profile->username . '-' . $profile->id . '.jpg']) }}" alt="Profiel Foto">
-
                 @endif
+
                 <div class="card-body">
                 <h5 class="card-title"><b>{{$profile->username}}</b></h5>
                 <hr>
@@ -28,6 +31,7 @@
             </div>
           </div>
         </div>
-
-
+    @endif
 @endsection
+
+

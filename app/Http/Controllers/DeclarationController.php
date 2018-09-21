@@ -88,7 +88,7 @@ class DeclarationController extends Controller
             $companies = Company::all();
             return view('admin.show')->with(compact('users','hours','declarations','companies','date'));
 
-        } elseif (Auth::user()->rol == 1) {
+        } elseif (Auth::user()->rol >= 1) {
             return view('trainee.show')->with(compact('user','hours','declarations','company'));
         }
     }

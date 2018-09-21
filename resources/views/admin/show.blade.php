@@ -120,24 +120,21 @@
                 <th>Contact persoon </th>
                 <th>E-mail</th>
                 <th>Telefoon nummer</th>
-    <!--            <th>Bekijk</th>
-                <th>Wijzig</th>-->
-
+                <th>Aangemaakt op</th>
+                <th>Gewijzigd op</th>
+                <th>Wijzig</th>
             </tr>
             @foreach($companies as $company)
-                        <tr>
-                            <td>{{$company->name}}</td>
-                            <td>{{$company->location}}</td>
-                            <td>{{$company->contact_person}}</td>
-                            <td>{{$company->email}}</td>
-                            <td>0{{$company->phone_number}}</td>
-
-                                <!--<td><a href='/trainees/{{$user->id}}'class='btn btn-default'>Bekijk</a></td>-->
-
-                                <!--<td><a href='/trainees/{{$user->id}}/edit'class='btn btn-default'>Wijzig</a></td>-->
-
-
-                        </tr>
+                <tr>
+                    <td>{{$company->name}}</td>
+                    <td>{{$company->location}}</td>
+                    <td>{{$company->contact_person}}</td>
+                    <td>{{$company->email}}</td>
+                    <td>{{$company->phone_number}}</td>
+                    <td>{{$company->created_at}}</td>
+                    <td>{{$company->updated_at}}</td>
+                    <td><a href='/companies/{{$company->id}}/edit'class='btn btn-default'>Wijzig</a></td>
+                </tr>
             @endforeach
         </table>
 </div>

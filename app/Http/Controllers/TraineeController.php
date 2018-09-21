@@ -93,15 +93,16 @@ class TraineeController extends ApiController
     {
         $user = User::find($id);
         $company = Company::find($user->company_id);
-        $hours = Hours_declaration::find($id);
         $companies = Company::all();
         $select = [];
-        $select[''] = "Geen bedrijf";
 
-        foreach($companies as $company2) {
-            $select[$company2->id] = $company2->name;
+        if (count($companies) > 0) {
+            foreach($companies as $company2) {
+                $select[] = $company2->name;
+            }
+        } else {
+            $select[] = "Geen bedrijf";
         }
-
         return view('admin.edit_trainee')->with(compact('user','company', 'select'));
     }
     /**

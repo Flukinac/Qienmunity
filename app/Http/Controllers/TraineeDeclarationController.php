@@ -21,18 +21,15 @@ class TraineeDeclarationController extends Controller
      */
     public function index($id)
     {
-//        $company = Company::find($id);
-//        $user = User::find($id);
-//        $date = Input::get('date');
-//        var_dump($date);
-//
-//        $declarations = Declaration::where('date_receipt','like',"$date%")->get();
-//
-//        echo $declarations;
-//
-//        return view('admin.show_trainee')->with(compact('user', 'declarations', 'company'));
-//
-//
+        $company = Company::find($id);
+        $user = User::find($id);
+        $date = Input::get('date');
+
+        $declarations = Declaration::where('date_receipt','like',"$date%")->get();
+
+        echo $declarations;
+
+        return view('admin.show_trainee')->with(compact('user', 'declarations', 'company'));
 
     }
     /**
@@ -87,7 +84,7 @@ class TraineeDeclarationController extends Controller
      */
     public function show($id, $date)
     {
-
+        //
     }
     /**
      * Show the form for editing the specified resource.
@@ -101,7 +98,7 @@ class TraineeDeclarationController extends Controller
         $user = User::find($user_id);
         $declaration = Declaration::find($declaration_id);
 
-
+        return view('trainee.declarations.edit')->with('declaration',$declaration)->with('user', $user);
     }
     /**
      * Update the specified resource in storage.
