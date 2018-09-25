@@ -33,7 +33,7 @@
                         </div>
                         <div class="form-group">
                             {{Form::label('phone_number', 'Telefoonnummer')}}
-                            {{Form::text('phone_number', $company->phone_number ,['name' => 'phone_number', 'id' => 'phone_number', 'class'=>'form-control'])}}
+                            {{Form::number('phone_number', $company->phone_number ,['name' => 'phone_number', 'id' => 'phone_number', 'class'=>'form-control'])}}
                         </div>
                         {{Form::submit('updaten', ['class'=>'btn btn-primary'])}}
                         {!! Form::close() !!}

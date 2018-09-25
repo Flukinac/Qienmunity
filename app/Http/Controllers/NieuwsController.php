@@ -45,34 +45,27 @@ class NieuwsController extends Controller
 //        ==========-----DATA VALIDATION================
         $this->validate($request,[
             'titel' => 'required',
-            'content' =>  'required',
+            'content' => 'required',
             'image' => 'mimes:jpeg,jpg,bmp,png',
         ]);
 //        ==========-----FOTO UPLOAD================
         $file = $request->file('image');
-        $title = trim($request->input('titel'));
-        $filename = $title.''.auth()->user()->id.'news.jpg';
-        $update = false;
-        
-        if (Storage::disk('local')->exists($filename)) {
-            $old_file = Storage::disk('local')->get($filename);
-            
-            Storage::disk('local')->put($filename, File::get($file));
-            $update = true;
-        }
-        else if ($file) {
+        $id = auth()->user()->id;
+        if ($file) {
+            $title = trim($request->input('titel'));
+            $filename = $title.$id.'news.jpg';
             Storage::disk('local')->put($filename, File::get($file));
         }
-        
+
         $post = new Nieuwspost;
-        $post->user_id = auth()->user()->id;
+        $post->user_id = $id;
         $post->image = $filename;
         $post->title = $request->input('titel');
         $post->content = $request->input('content');
         $post->save();
-//        ==========-----NOTIFY MAIL================               
+//        ==========-----NOTIFY MAIL================
         $afzenderControl = "nieuwsposts";
-        ContactController::notifyMail($post->user_id, $afzenderControl); //voor notificatie mail van aanmaak nieuwe post
+        ContactController::notifyMail($id, $afzenderControl); //voor notificatie mail van aanmaak nieuwe post
 //        ==========-----VIEW================
         return redirect('/nieuwsposts')->with('success', 'Nieuwspost succesvol gemaakt');
     }

@@ -18,7 +18,7 @@ class CreatecompaniesTable extends Migration
             $table->string('location');
             $table->string('contact_person');
             $table->string('email');
-            $table->integer('phone_number');
+            $table->int('phone_number');
             $table->timestamps();
         });
     }

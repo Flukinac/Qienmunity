@@ -91,7 +91,6 @@ Route::group(['middleware' => 'auth'], function () {
 
         Route::resource('/declarations','DeclarationController');
 
-
         Route::resource('/hours_declarations', 'Hours_declarationController');
 
         Route::resource('/companies', 'CompanyController');
@@ -130,9 +129,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/unsign/{mail}', 'Auth\AuthController@notify' );  
     
     Route::get('/RemoveUser/{profile}', 'Auth\AuthController@remove');
-    
-   
- 
+
+    Route::post('nieuwscomment/{post_id}', ['uses' => 'NieuwsCommentController@store', 'as' => 'nieuwscomment.store']);
+
+
+
+
     //Comments plaatsen en deleten op Nieuws en Communitypagina vanuit namespace CommentControllers
     
     Route::group(['namespace'=>'CommentControllers', 'prefix'=>'CommentControllers'], function(){
