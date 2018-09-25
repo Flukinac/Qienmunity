@@ -13,11 +13,26 @@ and open the template in the editor.
     background-image: url("images/27.jpg");
     background-size: cover;
     background-attachment: fixed;
-    
 }
+
 #qien--background-colour{
     background-color:#9d3ff391;
     border:#9d3ff3
+}
+
+/*.textbox{*/
+    /*border: #solid 10px #000;*/
+    /*background-color: rgba(105,100,100,0.4);*/
+    /*width: auto;*/
+    /*padding-left: -10%;*/
+    /*padding-right: -10%;*/
+    /*height: max-content;*/
+    /*margin-left: 10%;*/
+    /*margin-right: 10%;*/
+/*}*/
+
+.transparent{
+    background:rgba(255,255,255,0.5);
 }
 
 #qien--background-colour:hover{

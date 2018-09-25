@@ -17,7 +17,7 @@
       <div class="container">
         <h2>Declaratie</h2>
 
-        <h3>terug<h3>
+          <h3><a href="{{ url('/declarations',auth()->user()->id) }}"class='btn btn-default'>terug</a></h3>
 
 
            <hr>
@@ -60,7 +60,7 @@
 
                     {{Form::submit('updaten', ['class'=>'btn btn-primary'])}}
             {!! Form::close() !!}
-	</div>
+	        </div>
         </div><!-- end of .row (form) -->
         <hr>
        </div>

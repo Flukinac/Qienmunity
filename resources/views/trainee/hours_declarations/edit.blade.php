@@ -17,10 +17,9 @@
       <div class="container">
         <h2>Uren registratie</h2>
 
-        <h3>terug<h3>
+          <h3><a href="{{ url('/declarations',auth()->user()->id) }}"class='btn btn-default'>terug</a></h3>
 
-
-           <hr>
+          <hr>
         <div class=container-small>   
 	<div class="row">
         {!! Form::open(['action' => ['TraineeHours_declarationController@update',$hours->id, $user->id ], 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}

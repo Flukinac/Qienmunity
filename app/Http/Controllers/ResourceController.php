@@ -19,10 +19,10 @@ class ResourceController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
-        $post = resourcepost::orderBy('id', 'desc')->paginate(10);
-        print_r($post[0]->title);
-        return view('rescources/index')->with('post', $post); 
+    {
+        $posts = resourcepost::orderBy('id', 'desc')->paginate(10);
+
+        return view('resources/resources')->with('posts', $posts);
     }
 
     /**

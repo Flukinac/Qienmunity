@@ -71,7 +71,8 @@ class CompanyController extends Controller
      */
     public function edit($id)
     {
-        //
+        $company = Company::find($id);
+        return view('company.edit')->with('company',$company);
     }
 
     /**
@@ -83,7 +84,17 @@ class CompanyController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $company = Company::find($id);
+
+        $company->name = $request->input('name');
+        $company->location = $request->input('location');
+        $company->contact_person = $request->input('contact_person');
+        $company->email = $request->input('email');
+        $company->phone_number = $request->input('phone_number');
+
+        $company->save();
+
+        return redirect('admins/{id}');
     }
 
     /**

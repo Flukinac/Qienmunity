@@ -21,12 +21,14 @@ class DeclarationController extends Controller
      */
     public function index()
     {
-        $companies = Company::all();
-        $declarations = Declaration::all();
-        $hours = Hours_declaration::all();
-        $users = User::all();
-
-        return view('admin.show')->with(compact('users','hours','declarations','companies', 'date'));
+//        $companies = Company::all();
+//        $declarations = Declaration::all();
+//        $hours = Hours_declaration::all();
+//        $users = User::all();
+//        if (auth()->user->rol == 0) {
+//            return view('admin.show')->with(compact('users','hours','declarations','companies', 'date'));
+//        }
+//        return view('trainee.show')->with(compact('user','hours','declarations','company'));
     }
 
     /**
@@ -71,29 +73,24 @@ class DeclarationController extends Controller
      */
     public function show($id)
     {
+        $user = User::find($id);
+        $hours = Hours_declaration::where('user_id',$id)->get();
+        $declarations = Declaration::where('user_id',$id)->get();
+        if (isset($user->company_id)) {
+            $company = Company::find($user->company_id);
+        } else {
+            $company = new Company;
+            $company->name = 'Geen bedrijf';
+        }
 
-//
-//        $user = User::find($id);
-//
-//        $hours = Hours_declaration::where('user_id',$id)->get();
-//        $declarations = Declaration::where('user_id',$id)->get();
-//        if(isset($user->company_id)){
-//            $company = Company::find($user->company_id);
-//        } else {
-//            $company = new Company;
-//            $company->name = 'Geen bedrijf';
-//        }
-//
-//        if( Auth::user()->role == 1 ){
-//
-//            return view('admin.show_trainee')->with(compact('user','company','hours','declarations'));
-//
-//        } elseif ( Auth::user()->role == 0 ) {
-//
-//            return view('/trainee/show')->with(compact('user','hours','declarations','company'));
-//
-//        }
+        if (Auth::user()->rol == 0) {
+            $users = User::all();
+            $companies = Company::all();
+            return view('admin.show')->with(compact('users','hours','declarations','companies','date'));
 
+        } elseif (Auth::user()->rol >= 1) {
+            return view('trainee.show')->with(compact('user','hours','declarations','company'));
+        }
     }
 
     /**
@@ -104,7 +101,7 @@ class DeclarationController extends Controller
      */
     public function edit($id)
     {
-
+        //
     }
 
     /**

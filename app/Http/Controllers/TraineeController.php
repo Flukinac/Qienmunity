@@ -76,14 +76,12 @@ class TraineeController extends ApiController
         $company->name = 'Geen bedrijf';
       }
 
-//      if (Auth::user()->rol == 1) {
-//
-//          return view('/admin/show_trainee')->with(compact('user','company','hours','declarations'));
-//
-//      } elseif (Auth::user()->rol == 0) {
+      if (Auth::user()->rol == 0) {
+          return view('/admin/show_trainee')->with(compact('user','company','hours','declarations'));
 
+      } elseif (Auth::user()->rol == 1) {
           return view('/trainee/show')->with(compact('user', 'company', 'hours','declarations'));
-     // }
+      }
     }
     /**
      * Show the form for editing the specified resource.
@@ -95,15 +93,16 @@ class TraineeController extends ApiController
     {
         $user = User::find($id);
         $company = Company::find($user->company_id);
-        $hours = Hours_declaration::find($id);
         $companies = Company::all();
         $select = [];
-        $select[''] = "Geen bedrijf";
 
-        foreach($companies as $company2) {
-            $select[$company2->id] = $company2->name;
+        if (count($companies) > 0) {
+            foreach($companies as $company2) {
+                $select[] = $company2->name;
+            }
+        } else {
+            $select[] = "Geen bedrijf";
         }
-
         return view('admin.edit_trainee')->with(compact('user','company', 'select'));
     }
     /**

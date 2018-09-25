@@ -9,7 +9,7 @@
 
     var User = Backbone.Model.extend({
       urlRoot: '/register'
-    })
+    });
 
     var company = new Company();
 
