@@ -11,7 +11,7 @@
                     <h3>{{$post->title}}</h3>
                 </div>
                 <div class="col-md-12 col-md-offset-0">
-                    @if (Storage::disk('local')->has($post->title . '' . $post->user_id . 'commu.jpg'))
+                    @if (Storage::disk('local')->has($post->title . $post->user_id . 'commu.jpg'))
                         <img src="{{route('community.image', ['filename' => $post->image]) }}" alt="" class="img-responsive img-thumbnail">
                         <h2>Content</h2>
                     @endif

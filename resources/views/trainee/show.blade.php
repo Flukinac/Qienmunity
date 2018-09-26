@@ -7,6 +7,7 @@ use App\User;
 use App\Declaration;
 
 $user = Auth::user();
+$id = $user->id;
 ?>
 
 <html>
@@ -24,11 +25,15 @@ $user = Auth::user();
         background-color: white;
         margin-bottom: 50px;
     }
-    .form-control  {
-        width: 25%;
-    }
     th, td {
         padding-right: 20px;
+    }
+    .form-group{
+        display:inline-block;
+        margin-bottom: 0;
+    }
+    .form{
+        margin-bottom: 15px;
     }
   </style>
 
@@ -49,23 +54,36 @@ $user = Auth::user();
 
 
         <h2>Uren Declaraties</h2>
-            <fieldset id='form'>
-                <input name=amount id=hours type="number" class="form-control" placeholder=' Totaal Uren'>
-                <select name=type id="type" class="form-control">
-                    <option id=workhours value="workhours"> gewerkte uren</option>
-                    <option id=extrahours value="extrahours">overuren</option>
-                    <option id=abscense value="abscense">kort verlof</option>
-                    <option id=holiday value="holiday">vakantie</option>
-                    <option id=sick value="sick">ziek</option>
-                    <option id=extra value="extra">overig</option>
-                </select>
-                <input name=date id=date class="form-control" type="date">
-                <textarea name=statement id="statement" rows="1.8" cols="40" class="form-control" placeholder=' Vul hier een beschrijving in'></textarea>
 
-                <br>
-                <input type="button" class="btn btn-default" value='Voer in' id="submit" onclick="send()">
-                <br>
-            </fieldset>
+        <div class="form">
+            {!! Form::open (['url' => "/trainees/$id/hours_declarations", 'method' => 'POST' ,'enctype' => 'multipart/form-data', 'class' => 'form-groupss'])!!}
+              <div>
+                  {{Form::label('Totaal Uren', ' ')}}
+                  {{Form::number('hours', 'hours',['placeholder' => 'Totaal aantal uren', 'class' => 'form-group', 'required' => 'required'])}}
+              </div>
+              <div>
+                  {{Form::label('type', ' ')}}
+                  {{Form::select('type',
+                    ['workhours' => 'gewerkte uren',
+                    'extrahours' => 'extra uren',
+                    'abscense' => 'kort verlof',
+                    'holiday' => 'vakantie',
+                    'sick' => 'ziek',
+                    'extra' => 'overig'
+                    ], ['class' => 'form-group'])
+                  }}
+              </div>
+              <div>
+                  {{Form::label('Datum', ' ')}}
+                  {{Form::date('date', 'date', ['class' => 'form-group', 'required' => 'required'])}}
+              </div>
+              <div>
+                  {{Form::label('Beschrijving', ' ')}}
+                  {{Form::textarea('statement', ' ', ['rows' => '1.8','cols' => '30'], ['placeholder' => ' Vul hier een beschrijving in', 'class' => 'form-group'])}}
+              </div>
+              {{Form::submit('Submit', ['class' => 'btn btn-default'])}}
+            {!! Form::close() !!}
+        </div>
 
         <div class="tab">
           <button class="tablinks" onclick="openTab(event, 'review')" id="defaultOpen">Review</button>
@@ -161,9 +179,8 @@ $user = Auth::user();
                   @endforeach
           </table>
         </div>
-</div>
-
       </div>
+     </div>
 <!---========================-Declaratie formulier------------------------------>
 
 
@@ -181,14 +198,12 @@ $user = Auth::user();
                 <h2>Declaraties</h2>
 
                 <div class="form">
-                    <?php $id = Auth::user()->id; ?>
-                    {!! Form::open(['url' => "/trainees/$id/declarations",'method' => 'POST' , 'enctype' => 'multipart/form-data', 'files' => true ]) !!}
-
-                        <div class="form-group">
+                    {!! Form::open(['url' => "/trainees/$id/declarations",'method' => 'POST' , 'enctype' => 'multipart/form-data', 'files' => true, 'class' => 'form-group']) !!}
+                        <div >
                             {{Form::label('date_receipt', ' ')}}
-                            {{Form::date('date_receipt', \Carbon\Carbon::now())}}
+                            {{Form::date('date_receipt', \Carbon\Carbon::now(), ['class' => 'form-group', 'required' => 'required'])}}
                         </div>
-                        <div class="form-group">
+                        <div>
                             {{Form::label('type', ' ')}}
                             {{Form::select('type', [
                                 'travelling' => 'reis',
@@ -201,21 +216,21 @@ $user = Auth::user();
                                 'extra' => 'extra'
                             ])}}
                         </div>
-                        <div class="form-group">
+                        <div>
                            {{Form::label('btw', ' ')}}
-                           {{Form::number('btw', 'btw', ['placeholder' => 'btw'])}}
+                           {{Form::number('btw', 'btw', ['placeholder' => 'btw', 'class' => 'form-group'])}}
                         </div>
-                       <div class="form-group">
+                        <div>
                            {{Form::label('total_receipt', ' ')}}
-                           {{Form::number('total_receipt', 'total_receipt', ['placeholder' => 'Totaal'])}}
+                           {{Form::number('total_receipt', 'total_receipt', ['placeholder' => 'Totaal', 'required' => 'required', 'class' => 'form-group'])}}
                         </div>
-                        <div class="form-group">
+                        <div>
                             {{Form::label('description', ' ')}}
-                            {{Form::textarea('description', '',['rows' => '1.8','cols' => '30'], ['placeholder' => 'Beschrijving'])}}
+                            {{Form::textarea('description', '',['rows' => '1.8','cols' => '30'], ['placeholder' => 'Beschrijving', 'class' => 'form-group'])}}
                         </div>
-                        <div class="form-group">
+                        <div>
                             {{Form::label('image', ' ')}}
-                            {{Form::file('image',['class'=>'btn btn-default'])}}
+                            {{Form::file('image',['class' => 'btn btn-default'])}}
                         </div>
                         {{Form::submit('Submit', ['class' => 'btn btn-default'])}}
                     {!! Form::close() !!}

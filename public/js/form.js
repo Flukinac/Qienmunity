@@ -1,13 +1,12 @@
 
 var i = 0;
-function add_line(){
 
+function add_line(){
     var original = document.getElementById('form');
     var clone = original.cloneNode(true);
           clone.id = "form" + ++i;
 
-                document.getElementById('extraLine').appendChild(clone);
-
+          document.getElementById('extraLine').appendChild(clone);
 }
 
 
@@ -37,21 +36,21 @@ function send(){
 }
 
 
-    function openTab(evt, tabName) {
-        var i, tabcontent, tablinks;
-            tabcontent = document.getElementsByClassName("tabcontent");
-                for (i = 0; i < tabcontent.length; i++) {
-                    tabcontent[i].style.display = "none";
-            }
+function openTab(evt, tabName) {
+    var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+        }
 
-            tablinks = document.getElementsByClassName("tablinks");
-                for (i = 0; i < tablinks.length; i++) {
-                    tablinks[i].className = tablinks[i].className.replace(" active", "");
-            }
+        tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
 
-                       document.getElementById(tabName).style.display = "block";
-                       evt.currentTarget.className += " active";
-    }
+                   document.getElementById(tabName).style.display = "block";
+                   evt.currentTarget.className += " active";
+}
 
                        // Get the element with id="defaultOpen" and click on it
                        document.getElementById("defaultOpen").click();
@@ -59,23 +58,23 @@ function send(){
 
 
 
-    function openTab2(evt2, tabName2) {
+function openTab2(evt2, tabName2) {
 
-        var i, tabcontent, tablinks;
+    var i, tabcontent, tablinks;
 
-            tabcontent = document.getElementsByClassName("tabcontent2");
-                for (i = 0; i < tabcontent.length; i++) {
-                    tabcontent[i].style.display = "none";
-            }
+    tabcontent = document.getElementsByClassName("tabcontent2");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+    }
 
-            tablinks = document.getElementsByClassName("tablinks2");
-                for (i = 0; i < tablinks.length; i++) {
-                    tablinks[i].className = tablinks[i].className.replace(" active", "");
-            }
-                       document.getElementById(tabName2).style.display = "block";
-                       evt2.currentTarget.className += " active";
+    tablinks = document.getElementsByClassName("tablinks2");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+               document.getElementById(tabName2).style.display = "block";
+               evt2.currentTarget.className += " active";
 
-        }
+}
                        // Get the element with id="defaultOpen" and click on it
                        document.getElementById("defaultOpen2").click();
 
@@ -83,24 +82,19 @@ function send(){
 
 
 function send2(){
+    var row = document.getElementById('form_declarations'),
+        naamvakje = row.firstChild,
+        objectson,
+        object = {};
 
+    object.date_receipt= naamvakje.parentNode.children[1].value;
+    object.type = naamvakje.parentNode.children[2].value;
+    object.total_receipt = naamvakje.parentNode.children[3].value;
+    object.btw = naamvakje.parentNode.children[4].value
+    object.description = naamvakje.parentNode.children[5].value
+    console.log(naamvakje);
 
-
-    var row = document.getElementById('form_declarations');
-
-    var naamvakje = row.firstChild;
-
-    var object = {};
-
-        object.date_receipt= naamvakje.parentNode.children[1].value;
-        object.type = naamvakje.parentNode.children[2].value;
-        object.total_receipt = naamvakje.parentNode.children[3].value;
-        object.btw = naamvakje.parentNode.children[4].value
-        object.description = naamvakje.parentNode.children[5].value
-        console.log(naamvakje);
-
-    var objectjson = JSON.stringify(object);
-
+    objectjson = JSON.stringify(object);
 
             xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function(){
@@ -113,17 +107,15 @@ function send2(){
 }
 
 
-
-function getMonthDeclarations(id){
+function getMonthDeclarations(id) {
 
     var selectMonth = $( "#select_month_declarations option:selected" ).val();
     var selectYear = $( "#select_year_declarations option:selected" ).val();
-
-
     var date = selectYear+"-"+selectMonth;
-        console.log(date);
-          $(".declarationtr:not(:contains("+date+"))").remove();
-          $( "#select_button_declarations" ).hide();
+
+    console.log(date);
+      $(".declarationtr:not(:contains("+date+"))").remove();
+      $("#select_button_declarations").hide();
 }
 
 function getMonthHourDeclarations(id){

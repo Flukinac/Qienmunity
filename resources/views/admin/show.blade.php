@@ -97,7 +97,7 @@
 
         </tr>
         @foreach($users as $user)
-            @if($user->rol == 1)
+            @if($user->rol == 0)
                     <tr>
                         <td>{{$user->name}}</td>
                         <td>{{$user->last_name}}</td>

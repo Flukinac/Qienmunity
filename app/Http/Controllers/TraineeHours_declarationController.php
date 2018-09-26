@@ -36,7 +36,17 @@ class TraineeHours_declarationController extends Controller
      */
     public function store(Request $request, $id)
     {
-
+        {
+            $declaration = new Hours_declaration();
+            $declaration->user_id = $id;
+            $declaration->date = $request->input('date');
+            $declaration->amount = $request->input('hours');
+            $declaration->type = $request->input('type');
+            $declaration->statement = $request->input('statement');
+            $declaration->status = 0;
+            $declaration->save();
+            return redirect()->back()->with('succes', 'Declaratie succesvol ingevoerd');
+        }
     }
     /**
      * Display the specified resource.
@@ -70,20 +80,15 @@ class TraineeHours_declarationController extends Controller
      */
     public function update(Request $request, $id)
     {
-
-        $user = Auth::user();
-
         $hours = Hours_declaration::find($id);
         $hours->amount = $request->input('amount');
         $hours->type = $request->input('type');
         $hours->date = $request->input('date');
         $hours->statement = $request->input('statement');
-        $hours->updated_at = $request->input('updated_at');
-        $user->user_id = $user->id;
 
         $hours->save();
-//        return redirect()->back()->with('succes', 'Uren succesvol aangepast');
-        return redirect("/trainees/$user->id");
+
+        return redirect("/trainees/".Auth::user()->id)->with('succes', 'Uren succesvol aangepast');
 
     }
     /**s

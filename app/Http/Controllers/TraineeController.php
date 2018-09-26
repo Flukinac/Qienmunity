@@ -79,7 +79,7 @@ class TraineeController extends ApiController
       if (Auth::user()->rol == 0) {
           return view('/admin/show_trainee')->with(compact('user','company','hours','declarations'));
 
-      } elseif (Auth::user()->rol == 1) {
+      } elseif (Auth::user()->rol >= 1) {
           return view('/trainee/show')->with(compact('user', 'company', 'hours','declarations'));
       }
     }

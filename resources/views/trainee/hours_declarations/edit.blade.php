@@ -24,9 +24,8 @@
 	<div class="row">
         {!! Form::open(['action' => ['TraineeHours_declarationController@update',$hours->id, $user->id ], 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
             <div class="form-group">
-                {{Form::hidden('_method','PUT')}}
                 {{Form::label('hoeveelheid', 'hoeveelheid')}}
-                {{Form::number('amount', $hours->amount, ['name' => 'amount', 'id' => 'amount', 'class' => 'form-control input-sm'])}}
+                {{Form::number('amount', $hours->amount, ['name' => 'amount', 'id' => 'amount', 'class' => 'form-control input-sm', 'required' => 'required'])}}
             </div>
             <div class="form-group">
                 {{ Form::select('type', [
@@ -36,22 +35,21 @@
                    'holiday' => 'vakantie',
                    'sick' => 'ziek',
                    'extra' => 'overige']
-                ) }} 
+                )}}
             </div>    
             <div class="form-group">
                 {{Form::label('date', 'datum')}}
-                {{Form::date('date', $hours->date, ['name' => 'date', 'id' => 'statement', 'class' => 'form-control input-sm'])}}
+                {{Form::date('date', $hours->date, ['name' => 'date', 'id' => 'statement', 'class' => 'form-control input-sm', 'required' => 'required'])}}
             </div>         
             <div class="form-group">
                 {{Form::label('statement', 'beschrijving')}}
                 {{Form::textarea('', $hours->statement, ['name' => 'statement', 'id' => 'statement', 'class' => 'form-control input-sm'])}}
             </div>
-
             <div class="form-group">
                 {{Form::file('cover_image')}}
             </div>
-                
-                {{Form::submit('updaten', ['class'=>'btn btn-primary'])}}
+                {{Form::hidden('_method','PUT')}}
+                {{Form::submit('Updaten', ['class'=>'btn btn-primary'])}}
         {!! Form::close() !!}
 	</div>	
         </div>
