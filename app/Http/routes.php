@@ -38,8 +38,8 @@ Route::group(['middleware' => 'auth'], function () {
         return view('auth/register');
     });
     
-    Route::get('/myprofile',[
-    'uses'=>'ProfileController@myProfile'] );
+//    Route::get('/myprofile',[
+//    'uses'=>'ProfileController@myProfile'] );
 
     //custom routes
 

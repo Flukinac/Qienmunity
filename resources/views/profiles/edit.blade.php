@@ -8,7 +8,7 @@
 
             <h1>Profiel bewerken</h1>
             <h2>{{$profile->username}}</h2>
-            <a href="/myprofile" class="btn btn-default">< Ga terug</a><br/><br/>
+            <a href="/profiles" class="btn btn-default">< Ga terug</a><br/><br/>
             {!! Form::open(['action' => ['ProfileController@update', $profile->id], 'method' => 'POST', 'enctype' => 'multipart/form-data', 'files' => true])!!}
                 <div class='form-group'>
                     {{Form::label('email', 'E-mail')}}
@@ -36,7 +36,7 @@
 
         @else
             <h1>Leuk geprobeerd, dit is niet jouw profiel</h1>
-            <a href="/myprofile" class="btn btn-default">< Terug naar mijn profiel</a>
+            <a href="/profiles" class="btn btn-default">< Terug naar mijn profiel</a>
         @endif
     @endif
 @endsection
