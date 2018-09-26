@@ -77,7 +77,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('nieuwsposts','NieuwsController');
 
     Route::resource('profiles', 'ProfileController');
-    
+
     Route::resource('post','PostIdController');
 
     Route::resource('communitypost','CommunityController');
@@ -121,8 +121,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('bookmark/{post_id}', ['uses' => 'NieuwsController@bookmark', 'as' => 'nieuws.bookmark']);
     
     Route::get('testauth', 'testController@auth');  
-
-    Route::get('/myprofile','ProfileController@myProfile' );
 
     Route::get('/auth/success', ['uses' => 'Auth\AuthController@success', 'as'   => 'auth.success']);
                 

@@ -54,7 +54,7 @@ class TraineeDeclarationController extends Controller
     {
         $user = Auth::user();
 
-        if($request->hasFile('image')){
+        if ($request->hasFile('image')) {
 //            $fileNameWithExt = $request->file('include')->getClientOriginalName();
 //            $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
               $extension = $request->file('image')->getClientOriginalExtension();
@@ -62,7 +62,7 @@ class TraineeDeclarationController extends Controller
               $fileNameToStore = $user->id.$user->last_name.time().'.'.$extension;
               $file = $request->file('image');
               Storage::disk('local')->put($fileNameToStore, File::get($file));
-         }else{
+         } else {
              $fileNameToStore =  'No File';
          }
         $declaration = new Declaration;
@@ -74,7 +74,7 @@ class TraineeDeclarationController extends Controller
         $declaration->user_id = $user->id;
         $declaration->include = $fileNameToStore;
         $declaration->save();
-        return redirect()->back()->with('succes', 'Declaratie succesvol aangepast');
+        return redirect()->back()->with('success', 'Declaratie succesvol aangepast');
     }
     /**
      * Display the specified resource.
@@ -107,24 +107,19 @@ class TraineeDeclarationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id, $declaration_id)
     {
-
-
-        $user = Auth::user();
-        $new = Declaration::find($id);
+        $new = Declaration::find($declaration_id);
         $new->date_receipt = $request->input('date_receipt');
         $new->type = $request->input('type');
         $new->total_receipt = $request->input('total_receipt');
         $new->btw = $request->input('btw');
         $new->description = $request->input('description');
-        $new->user_id = $user->id;
-
+        $new->user_id = $id;
 
         $new->save();
 
-        return redirect()->back()->with('succes', 'Declaratie succesvol aangepast');
-
+        return redirect('/declarations/'.$id)->with('success', 'Declaratie succesvol aangepast');
     }
     /**
      * Remove the specified resource from storage.

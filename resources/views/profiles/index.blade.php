@@ -22,11 +22,11 @@
                       @if (auth()->user()->rol == 0)
                           <th scope="row">{{$profile->id}}</th>
                       @endif
-                      <td><a href='/profiles/{{$profile->id}}'>{{$profile->username}}</a></td>
+                      <td><a href='/profiles/{{$profile->user_id}}'>{{$profile->username}}</a></td>
                       <td>{{$profile->dateofbirth}}</td>
                       <td>{{$profile->created_at}}</td>
                       @if (auth()->user()->rol == 0)
-                          <td><a href ="/profiles/{{$profile->id}}/edit" class="btn btn-sm btn-default">Profiel bewerken ></a></td>
+                          <td><a href ="/profiles/{{$profile->user_id}}/edit" class="btn btn-sm btn-default">Profiel bewerken ></a></td>
                           <td><a href ="/RemoveUser/{{$profile}}" class="btn btn-sm btn-default">Gebruiker verwijderen ></a></td>
                       @endif
                     </tr>

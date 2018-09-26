@@ -24,9 +24,7 @@ class ProfileController extends Controller
     
     public function myProfile()
     {
-        $user_id = auth()->user()->id;
-        $user = User::find($user_id);
-        return view('profiles.myprofile')->with('profile', $user->profile);
+        //
     }
 
 
@@ -92,9 +90,8 @@ class ProfileController extends Controller
      */
     public function show($id)
     {
-        $profile = Profile::find($id);
-        return view('profiles.show')->with('profile', $profile);
-                                    
+        $user = User::find($id);
+        return view('profiles.show')->with('profile', $user->profile);
     }
 
     /**
@@ -105,8 +102,8 @@ class ProfileController extends Controller
      */
     public function edit($id)
     {
-        $profile = Profile::find($id);
-        return view('profiles.edit')->with('profile', $profile);
+        $user = User::find($id);
+        return view('profiles.edit')->with('profile', $user->profile);
     }
 
     /**
@@ -122,34 +119,33 @@ class ProfileController extends Controller
             'email'=>'required',
             'image' => 'mimes:jpeg,jpg,bmp,png',
         ]);
-        
+
         $profile = Profile::find($id);
-        //        ==========-----FOTO UPDATE================
+        //==========-----FOTO UPDATE------================
         if($request->file('image')){
             $old_name = $profile->username;
-            $old_filename = $old_name . '-' . $profile->id . '.jpg';
+            $old_filename = $old_name . '-' . $profile->user_id . '.jpg';
     //        DELETE FILE FROM STORAGE.
             Storage::delete($old_filename);
     //        ADD FILE TO STORAGE
             $file = $request->file('image');
-            $filename = $old_name . '-' . $profile->id . '.jpg';
+            $filename = $old_name . '-' . $profile->user_id . '.jpg';
 
             Storage::disk('local')->put($filename, File::get($file));
 
         }
         //Profiel wijzigen
-        
-        
+
         $profile->email = $request->input('email');
         $profile->dateofbirth = $request->input('dateofbirth');
         $profile->position = $request->input('position');
         $profile->biography = $request->input('biography');
-        if($request->file('image')){
-        $profile->image = $request->input('image');
+        if ($request->file('image')) {
+            $profile->image = $request->input('image');
         }
         $profile->save();
-        
-        return redirect('/myprofile')->with('success', 'Profiel succesvol gewijzigd');
+
+        return view('/profiles.show')->with('profile', Profile::find($id))->with('success', 'Profiel succesvol gewijzigd');
     }
 
     /**
@@ -162,6 +158,4 @@ class ProfileController extends Controller
     {
         //
     }
-    
-    
 }

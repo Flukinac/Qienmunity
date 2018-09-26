@@ -80,19 +80,15 @@ class TraineeHours_declarationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user = Auth::user();
-
         $hours = Hours_declaration::find($id);
         $hours->amount = $request->input('amount');
         $hours->type = $request->input('type');
         $hours->date = $request->input('date');
         $hours->statement = $request->input('statement');
-        $hours->updated_at = $request->input('updated_at');
-        $user->user_id = $user->id;
 
         $hours->save();
-//        return redirect()->back()->with('succes', 'Uren succesvol aangepast');
-        return redirect("/trainees/$user->id");
+
+        return redirect("/trainees/".Auth::user()->id)->with('succes', 'Uren succesvol aangepast');
 
     }
     /**s

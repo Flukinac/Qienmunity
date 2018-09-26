@@ -179,9 +179,8 @@ $id = $user->id;
                   @endforeach
           </table>
         </div>
-</>
-
       </div>
+     </div>
 <!---========================-Declaratie formulier------------------------------>
 
 

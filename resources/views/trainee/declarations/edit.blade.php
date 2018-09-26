@@ -25,9 +25,8 @@
             <div class="row">
                 {!! Form::open(['action' => ['TraineeDeclarationController@update', $user->id, $declaration->id], 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
                     <div class="form-group">
-                        {{Form::hidden('_method','PUT')}}
                         {{Form::label('datum bon', 'datum bon')}}
-                        {{Form::date('date_receipt', $declaration->date_receipt, ['name' => 'date_receipt', 'id' => 'date_receipt', 'class' => 'form-control input-sm'])}}
+                        {{Form::date('date_receipt', $declaration->date_receipt, ['name' => 'date_receipt', 'id' => 'date_receipt', 'class' => 'form-control input-sm', 'required' => 'required'])}}
                     </div>
                     <div class="form-group">
                         {{ Form::select('type', [
@@ -39,7 +38,7 @@
                            'lunch_diner' => 'lunch/diner',
                            'outings' => 'uitjes',
                            'extra' => 'overig']
-                        ) }}
+                        )}}
                     </div>
                     <div class="form-group">
                         {{Form::label('totaal bon', 'totaal bon')}}
@@ -47,7 +46,7 @@
                     </div>
                     <div class="form-group">
                         {{Form::label('btw', 'btw')}}
-                        {{Form::number('btw', $declaration->btw, ['name' => 'btw', 'id' => 'btw', 'class' => 'form-control input-sm'])}}
+                        {{Form::number('btw', $declaration->btw, ['name' => 'btw', 'id' => 'btw', 'class' => 'form-control input-sm', 'required' => 'required'])}}
                     </div>
                     <div class="form-group">
                         {{Form::label('beschrijving', 'beschrijving')}}
@@ -57,7 +56,7 @@
                     <div class="form-group">
                         {{Form::file('cover_image')}}
                     </div>
-
+                    {{Form::hidden('_method','PUT')}}
                     {{Form::submit('updaten', ['class'=>'btn btn-primary'])}}
             {!! Form::close() !!}
 	        </div>
