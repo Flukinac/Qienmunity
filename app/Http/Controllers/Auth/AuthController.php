@@ -70,9 +70,9 @@ class AuthController extends Controller
     {  
         if($data['rol'] == 'Admin'){
             $data['rol'] = 0;
-        } elseif ($data['rol'] == 'Trainee'){
-            $data['rol'] = 1;
         } elseif ($data['rol'] == 'Docent'){
+            $data['rol'] = 1;
+        } elseif ($data['rol'] == 'Trainee'){
             $data['rol'] = 2;
         } 
         

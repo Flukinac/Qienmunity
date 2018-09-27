@@ -61,7 +61,7 @@
 
         </tr>
         @foreach($users as $user)
-            @if($user->rol == 0)
+            @if($user->rol == 2)
                     <tr>
                         <td>{{$user->name}}</td>
                         <td>{{$user->last_name}}</td>

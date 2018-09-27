@@ -1,23 +1,23 @@
-function contactPost(){                 //voor contactmail pagina
-    var subject = $(".subject").val();
-    var text = $(".text").val();
-    
-    objectify(subject, text);
-}
-
-function objectify(subject, text){      //voor contactmail pagina
-    var mail = {};
-    mail.subject = subject;
-    mail.text = text;
-    
-    var mailjson = JSON.stringify(mail);
-    xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function(){
-        document.getElementById('mailSucces').innerHTML = this.responseText;
-    };
-    xhttp.open("POST","/contactMail", true);
-    xhttp.send(mailjson);
-}
+// function contactPost(){                 //voor contactmail pagina        script obsolete
+//     var subject = $(".subject").val();
+//     var text = $(".text").val();
+//
+//     objectify(subject, text);
+// }
+//
+// function objectify(subject, text){      //voor contactmail pagina        script obsolete
+//     var mail = {};
+//     mail.subject = subject;
+//     mail.text = text;
+//
+//     var mailjson = JSON.stringify(mail);
+//     xhttp = new XMLHttpRequest();
+//     xhttp.onreadystatechange = function(){
+//         document.getElementById('mailSucces').innerHTML = this.responseText;
+//     };
+//     xhttp.open("POST","/contactMail", true);
+//     xhttp.send(mailjson);
+// }
     
 function zoeken(){                      //voor nieuwspagina
     var data = {
