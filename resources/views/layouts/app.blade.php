@@ -58,7 +58,7 @@
                     <li><a href="{{ url('/communitypost') }}">Community</a></li>
                     <li><a href="{{ url('/resource') }}">Resource</a></li>
                     {{--<li><a href="{{ url('/events') }}">Events</a></li>--}}
-                    <li><a href="{{ url('/contact') }}">Contact</a></li>
+                    <li><a href="{{ url('/contactIndex') }}">Contact</a></li>
                     <li><a href="{{ url('/declarations',auth()->user()->id) }}">Declaraties</a></li>
                 </ul>
                 @endif

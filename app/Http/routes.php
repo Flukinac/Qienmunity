@@ -22,24 +22,13 @@ Route::group(['middleware' => 'auth'], function () {
         return view('community');
     });
 
-    Route::get('/contact', function () {
-        return view('contact');
-    });
-
     Route::get('/nieuws', function () {
         return view('nieuws');
     });
 
-//    Route::get('/resource', function () {
-//        return view('index');
-//    });
-
     Route::get('/nieuwegebruiker', function () {
         return view('auth/register');
     });
-    
-//    Route::get('/myprofile',[
-//    'uses'=>'ProfileController@myProfile'] );
 
     //custom routes
 
@@ -115,6 +104,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/newsimage/{filename}', ['uses' => 'NieuwsController@getUserImage', 'as' => 'news.image']);
     
     Route::post('/contactMail', 'ContactController@sendContact');
+
+    Route::get('/contactIndex', 'ContactController@contactIndex');
 
     Route::get('/home','HomeController@index');
    

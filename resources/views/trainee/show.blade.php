@@ -56,7 +56,7 @@ $id = $user->id;
         <h2>Uren Declaraties</h2>
 
         <div class="form">
-            {!! Form::open (['url' => "/trainees/$id/hours_declarations", 'method' => 'POST' ,'enctype' => 'multipart/form-data', 'class' => 'form-groupss'])!!}
+            {!! Form::open (['url' => "/trainees/$id/hours_declarations", 'method' => 'POST' ,'enctype' => 'multipart/form-data', 'class' => 'form-group'])!!}
               <div>
                   {{Form::label('Totaal Uren', ' ')}}
                   {{Form::number('hours', 'hours',['placeholder' => 'Totaal aantal uren', 'class' => 'form-group', 'required' => 'required'])}}
