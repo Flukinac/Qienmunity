@@ -86,7 +86,7 @@
                             <ul class="dropdown-menu" role="menu">
                                 @if (auth()->user()->rol == 0)
                                 <li><a href="{{ url('/register') }}"><i class="fa fa-btn"></i>Nieuwe user aanmaken</a></li>
-                                <li><a href="{{ url('/companies/create') }}"><i class="fa fa-btn"></i>Nieuw bedrijf aanmaken</a></li>
+                                <li><a href="{{ url('/companies/') }}"><i class="fa fa-btn"></i>Nieuw bedrijf aanmaken</a></li>
                                 @endif
                                 <li><a href="{{ url('/profiles/'.auth()->user()->id) }}"><i class="fa fa-btn"></i>Mijn profiel</a></li>
                                 <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>

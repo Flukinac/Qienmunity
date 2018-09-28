@@ -17,8 +17,15 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        $companies = Company::all();
-        
+        $request = (object) [
+            'name' => '',
+            'location' => '',
+            'contact_person' => '',
+            'email' => '',
+            'phone_number' => ''
+        ];
+
+        return view('company.create')->with('request', $request);
     }
 
     /**
@@ -28,7 +35,7 @@ class CompanyController extends Controller
      */
     public function create()
     {
-      return view('company.create');
+        //
     }
 
     /**
@@ -40,14 +47,19 @@ class CompanyController extends Controller
 
     public function store(Request $request)
     {
-      $company = $request->json()->all();
+      $company = new Company();
+      $company->name = $request->input('name');
+      $company->location = $request->input('location');
+      $company->contact_person = $request->input('contact_person');
+      $company->email = $request->input('email');
+      $company->phone_number = $request->input('phone_number');
+      $success = $company->save();
 
-      if($comp = Company::create($company)){
-        return Response("$comp->id", 200)
-                  ->header('Content-Type', 'text/plain');
+      if ($success) {
+          return redirect('/home')->with('success', 'Bedrijf aangemaakt');
       } else {
-        return Response(500);
-      };
+          return view('/company.create')->with('request', $request);
+      }
     }
 
 
