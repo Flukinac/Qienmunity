@@ -73,7 +73,8 @@ class DeclarationController extends Controller
      */
     public function show($id)
     {
-        $user = User::find($id);
+        $user = User::find($id)->companies();
+        dd($user);
         $hours = Hours_declaration::where('user_id',$id)->get();
         $declarations = Declaration::where('user_id',$id)->get();
         if (isset($user->company_id)) {
@@ -85,7 +86,9 @@ class DeclarationController extends Controller
 
         if (Auth::user()->rol == 0) {
             $users = User::all();
-            $companies = Company::all();
+                            dd($users);
+
+            $companies = Company::all();   // Filmpje over models afkijken en proberen om bi
             return view('admin.show')->with(compact('users','hours','declarations','companies','date'));
 
         } elseif (Auth::user()->rol >= 1) {

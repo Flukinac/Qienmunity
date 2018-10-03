@@ -14,9 +14,13 @@ class CommunityCommentController extends Controller
 {
      public function store(Request $request, $post_id)
     {
-        $this->validate($request, array(
+        $this->validate($request, [
             'comment'   =>  'required|min:5|max:2000'
-            ));
+        ],[
+            'comment.required' => 'Vul het tekstveld in',
+            'comment.min' => 'Vul tenminste 5 karakters in',
+            'comment.max' => 'Vul maximaal 2000 karakters in'
+        ]);
         
         $post = Communitypost::find($post_id);
        

@@ -36,10 +36,15 @@ class ProfileController extends Controller
 
     public function store(Request $request)
     {
-        $this->validate($request,[
-            'username'=>'required',
-            'email'=>'required',
-            'image' => 'mimes:jpeg,jpg,bmp,png',
+        $this->validate($request, [
+            'username' => 'required | min:4',
+            'email' => 'required',
+            'image' => 'mimes:jpeg,jpg,bmp,png'
+        ],[
+            'username.required' => 'Vul het een gebruikersnaam in',
+            'username.min' => 'Vul minimaal 4 karakters in',
+            'email.required' => 'Vul een emailadres in',
+            'image.mimes' => 'Een afbeelding mag alleen van het type jpeg, jpg, bmp of png zijn.'
         ]);
 
 //        ==========-----FOTO UPLOAD================
@@ -116,8 +121,11 @@ class ProfileController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request,[
-            'email'=>'required',
-            'image' => 'mimes:jpeg,jpg,bmp,png',
+            'email' => 'required',
+            'image' => 'mimes:jpeg,jpg,bmp,png'
+        ],[
+            'email.required' => 'Vul een emailadres in',
+            'image.mimes' => 'Een afbeelding mag alleen van het type jpeg, jpg, bmp of png zijn.'
         ]);
 
         $profile = Profile::find($id);

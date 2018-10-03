@@ -2,7 +2,7 @@
 @section('content')
 
 <script>
-  // function submit(){
+  // function submit(){                                     Oude manier van data verzenden naar backend
   //   var Company = Backbone.Model.extend({
   //     urlRoot: '/companies'
   //   });

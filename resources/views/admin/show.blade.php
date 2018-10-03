@@ -58,29 +58,18 @@
             <th>Bedrijf</th>
             <th>Bekijk</th>
             <th>Wijzig</th>
-
         </tr>
         @foreach($users as $user)
             @if($user->rol == 2)
-                    <tr>
-                        <td>{{$user->name}}</td>
-                        <td>{{$user->last_name}}</td>
-                        <td>{{$user->email}}</td>
-                        <td>{{$user->employee_number}}</td>
-                        <td>
-                            @foreach($companies as $company)
-                                @if ($company->id == $user->company_id)
-                                    {{$company->name}}
-                                @endif
-                            @endforeach
-                        </td>
-
-                            <td><a href='/trainees/{{$user->id}}'class='btn btn-default'>Bekijk</a></td>
-
-                            <td><a href='/trainees/{{$user->id}}/edit'class='btn btn-default'>Wijzig</a></td>
-
-
-                    </tr>
+                <tr>
+                    <td>{{$user->name}}</td>
+                    <td>{{$user->last_name}}</td>
+                    <td>{{$user->email}}</td>
+                    <td>{{$user->employee_number}}</td>
+                    <td>{{App\Company::find($user->company_id)['name']}}</td>
+                    <td><a href='/trainees/{{$user->id}}' class='btn btn-default'>Bekijk</a></td>
+                    <td><a href='/trainees/{{$user->id}}/edit' class='btn btn-default'>Wijzig</a></td>
+                </tr>
             @endif
         @endforeach
     </table>
@@ -94,7 +83,6 @@
             <th>Achternaam</th>
             <th>email </th>
             <th>Wijzig</th>
-
         </tr>
         @foreach($users as $user)
             @if($user->rol == 0)
@@ -102,9 +90,7 @@
                         <td>{{$user->name}}</td>
                         <td>{{$user->last_name}}</td>
                         <td>{{$user->email}}</td>
-                            <td><a href='/trainees/{{$user->id}}/edit'class='btn btn-default'>Wijzig</a></td>
-
-
+                        <td><a href='/trainees/{{$user->id}}/edit'class='btn btn-default'>Wijzig</a></td>
                     </tr>
             @endif
         @endforeach
@@ -152,7 +138,6 @@
                 <th>Persoon</th>
                 <th>gemaakt op</th>
                 <th>Laatste update</th>
-
             </tr>
             @foreach($hours as $hour)
                 @if($hour->status == 0)

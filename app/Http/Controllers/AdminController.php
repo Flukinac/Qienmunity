@@ -56,10 +56,8 @@ class AdminController extends Controller
         $companies = Company::all();
         $declarations = Declaration::all();
         $hours = Hours_declaration::all();
-        $users = User::all();
-
-
-
+        $users = User::all()
+            dd($users);
 
         return view('admin.show')->with(compact('users','hours','declarations','companies','admin', 'date'));
     }

@@ -22,19 +22,34 @@ class ContactController extends Controller
     }
 
     public function sendContact(Request $request) {
+        $this->validate($request, [
+            'subject' => 'required | min:3',
+            'text' => 'required | min:3'
+        ],[
+            'subject.required' => 'Het onderwerpveld moet ingevuld worden',
+            'subject.min' => 'Voer minimaal 3 karakters in',
+            'text.required' => 'Het berichtveld moet ingevuld worden',
+            'text.min' => 'Voer mininmaal 3 karakters in'
+        ]);
+
         $title = $request->input('subject');
         $mail = $request->input('text');
         $sendFrom = auth()->user()->name;
         $replyTo = auth()->user()->email;
-         
+
         mail::send('mailTemplate', ['content' => $mail,'sendFrom' => $sendFrom, 'replyTo' => $replyTo] ,function($message) use ($title, $replyTo) {
             $message->subject($title);
             $message->from($replyTo, 'Qienmunity');
-            $message->to('paul.veen@qien.nl');
+            $message->to('paul.vedeeen@qien.nl');
         });
 
         if (count(mail::failures()) > 0) {
-            return view('/contact')->with('request', $request);
+            $error = 'foutje';
+
+            $request->session()->put('error', 'Fout bij versturen. Probeer het nog eens');
+
+            return view('/contact')->with(compact('request', 'error'));
+
         } else {
             return redirect('/home')->with('success', 'Bericht verzonden');
         }

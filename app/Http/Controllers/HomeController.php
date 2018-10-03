@@ -41,6 +41,8 @@ class HomeController extends Controller
     {   
         $this->validate($request, [
             'video_embed_code' => 'required'
+        ],[
+            'video_embed_code.required' => 'Vul een videolink in.'
         ]);
         
         DB::table('dashboard')->where('id', '1')->update(['video_embed_code' => $request->input('video_embed_code')]);

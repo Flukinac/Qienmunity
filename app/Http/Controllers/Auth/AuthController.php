@@ -57,6 +57,17 @@ class AuthController extends Controller
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:6|confirmed',
             'rol'=>'required',
+        ],[
+            'name.required' => 'Vul een naam in.',
+            'name.max' => 'De naam mag maximaal 255 karakters lang zijn.',
+            'email.required' => 'Vul een emailadres in.',
+            'email.email' => 'Vul een geldig emailadres in.',
+            'email.max' => 'Het emailadres mag maximaal 255 karakters lang zijn.',
+            'email.unique' => 'Het emailadres bestaat al.',
+            'password.required' => 'Voer een wachtwoord in.',
+            'password.min' => 'Het wachtwoord moet uit minimaal 6 karakters bestaan.',
+            'password.confirmed' => 'Het twee ingevoerde wachtwoorden komen niet overeen',
+            'rol.required' => 'Kies een rol uit'
         ]);
     }
 

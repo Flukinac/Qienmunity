@@ -53,7 +53,7 @@ $id = $user->id;
         <h3>Welkom {{ $user->name }}</h3>
 
 
-        <h2>Uren Declaraties</h2>
+        <h2>Urenregistraties</h2>
 
         <div class="form">
             {!! Form::open (['url' => "/trainees/$id/hours_declarations", 'method' => 'POST' ,'enctype' => 'multipart/form-data', 'class' => 'form-group'])!!}
@@ -195,7 +195,7 @@ $id = $user->id;
                         margin-bottom: 15px;
                     }
                 </style>
-                <h2>Declaraties</h2>
+                <h2>Kostendeclaraties</h2>
 
                 <div class="form">
                     {!! Form::open(['url' => "/trainees/$id/declarations",'method' => 'POST' , 'enctype' => 'multipart/form-data', 'files' => true, 'class' => 'form-group']) !!}

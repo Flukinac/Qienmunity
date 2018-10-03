@@ -14,9 +14,13 @@ class NieuwsCommentController extends Controller
 {
      public function store(Request $request, $post_id)
     {
-        $this->validate($request, array(
-            'comment'   =>  'required|min:5|max:2000'
-            ));
+        $this->validate($request, [
+            'comment' => 'required|min:5|max:2000'
+        ],[
+            'comment.required' => 'Vul het tekstveld in',
+            'comment.min' => 'Vul minimaal 5 karakters in',
+            'comment.max' => 'Vul maximaal 2000 karakters in'
+        ]);
         
         $post = Nieuwspost::find($post_id);
        

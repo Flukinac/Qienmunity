@@ -44,9 +44,15 @@ class NieuwsController extends Controller
     {
 //        ==========-----DATA VALIDATION================
         $this->validate($request,[
-            'titel' => 'required',
-            'content' => 'required',
-            'image' => 'mimes:jpeg,jpg,bmp,png',
+            'titel' => 'required | min:3',
+            'content' => 'required | min:3',
+            'image' => 'mimes:jpeg,jpg,bmp,png'
+        ],[
+            'titel.required' => 'Vul een titel in.',
+            'titel.min' => 'Vul minimaal 3 karakters in',
+            'content.required' => 'Vul een tekst in',
+            'content.min' => 'Vul minimaal 12 karakters in',
+            'image.mimes' => 'Een afbeelding mag alleen van het type jpeg, jpg, bmp of png zijn.'
         ]);
 //        ==========-----FOTO UPLOAD================
         $file = $request->file('image');
@@ -59,9 +65,10 @@ class NieuwsController extends Controller
 
         $post = new Nieuwspost;
         $post->user_id = $id;
-        $post->image = $filename;
         $post->title = $request->input('titel');
         $post->content = $request->input('content');
+        isset($filename) ?? $post->image = $filename;
+
         $post->save();
 //        ==========-----NOTIFY MAIL================
         $afzenderControl = "nieuwsposts";
@@ -113,9 +120,15 @@ class NieuwsController extends Controller
     {
         if((!$request->pinned) && (!$request->unpin)){
             $this->validate($request,[
-                'titel' => 'required',
-                'content' =>  'required',
+                'titel' => 'required | min:3',
+                'content' => 'required | min:3',
                 'image' => 'mimes:jpeg,jpg,bmp,png',
+            ],[
+                'titel.required' => 'Vul een titel in.',
+                'titel.min' => 'Vul minimaal 3 karakters in',
+                'content.required' => 'Vul een tekst in',
+                'content.min' => 'Vul minimaal 3 karakters in',
+                'image.mimes' => 'Een afbeelding mag alleen van het type jpeg, jpg, bmp of png zijn.'
             ]);
 //        ==========-----FOTO UPDATE================
         $file = $request->file('image');
